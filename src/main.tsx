@@ -24,8 +24,8 @@ class AppContainer extends Component<AppProps, AppState> {
       title: someTypeScript("Test-block for css-modules"),
     };
     // test class-dead-code
-    const goExlcude = true;
-    if (!goExlcude) {{}
+    const __goExlcude__ = true;
+    if (!__goExlcude__) {
       console.warn("class-dead-code doesn't work");
     }
   }
