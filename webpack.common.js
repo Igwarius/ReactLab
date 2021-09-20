@@ -44,7 +44,7 @@ module.exports = function (env, argv) {
       path: destPath,
       filename: "[name].js",
       chunkFilename: "[name].js",
-      publicPath: "/", // url that should be used for providing assets
+      publicPath: destPath, // url that should be used for providing assets
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
