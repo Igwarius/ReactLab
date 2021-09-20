@@ -26,7 +26,6 @@ module.exports = function (env, argv) {
   const isDevServer = env.WEBPACK_SERVE;
   const mode = argv.mode || (isDevServer ? "development" : "production");
   const isDevMode = mode !== "production";
-
   process.env.NODE_ENV = mode; // it resolves issues in postcss.config.js (since Define plugin is loaded only after reading config-files)
 
   /** @type {import('webpack').Configuration} */
@@ -44,7 +43,7 @@ module.exports = function (env, argv) {
       path: destPath,
       filename: "[name].js",
       chunkFilename: "[name].js",
-      publicPath: destPath, // url that should be used for providing assets
+      publicPath: isDevServer ? "/" : destPath, // url that should be used for providing assets
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
