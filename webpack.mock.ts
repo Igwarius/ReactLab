@@ -2,7 +2,7 @@
 import webpackMockServer from "webpack-mock-server";
 
 export default webpackMockServer.add((app, helper) => {
-  app.get("/testMock", (_req, res) => {
+  app.get("/test-mock", (_req, res) => {
     const response = {
       id: helper.getUniqueIdInt(),
       randomInt: helper.getRandomInt(),
@@ -11,7 +11,7 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json(response);
   });
-  app.post("/testPostMock", (req, res) => {
+  app.post("/test-post-mock", (req, res) => {
     res.json({ body: req.body || null, success: true });
   });
 });
