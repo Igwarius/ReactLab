@@ -57,8 +57,6 @@ module.exports = {
     "max-len": [
       "warn",
       {
-        code: 120,
-        tabWidth: 2,
         comments: 1000,
         ignoreComments: true,
         ignoreTrailingComments: true,
