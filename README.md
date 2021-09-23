@@ -1,4 +1,4 @@
-# webpack-must-have
+# ReactLab
 
 Webpack version: 5+
 
@@ -8,7 +8,6 @@ Webpack version: 5+
 - Smaller bundle sizes (better tree-shaking)
 - Better long term caching
 
-### If you need Webpack4 take a look branch [webpack_v4](https://github.com/Yegorich555/WebpackMustHave/tree/webpack_v4)
 
 ## How to run project
 
@@ -39,10 +38,3 @@ Webpack version: 5+
 - **BrowserList. Stylelint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding stylelint will show on-css rule that unsupported (according to .browserslistrc)
 - **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
 - **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [OptimizeCSSAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
-
-## TODO. Issues
-
-- add Prepack
-- replace Prettier by better alternative (Prettier works bad)
-- add icomoon to fonts
-- Path autocomplete doesn't read path-alias-config from tsconfig.json
