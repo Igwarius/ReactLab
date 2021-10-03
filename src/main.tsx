@@ -7,10 +7,10 @@ import { createBrowserHistory } from "history";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Products from "./products/products";
 import Main from "./main-page/mainPage";
-import urls from "./statics/urls";
+import urls from "./constants/urls";
 import About from "./about/about";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "./header/components/header";
+import Footer from "./footer/components/footer";
 
 interface AppProps {
   nothing: boolean;

@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import headersData from "./headerData";
+import headersData from "../../constants/headerData";
 
 export default function Header() {
   const getMenuButtons = () =>
