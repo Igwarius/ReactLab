@@ -6,7 +6,7 @@ import ReactDom from "react-dom";
 import { createBrowserHistory } from "history";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Products from "./products/products";
-import Main from "./mainPage/mainPage";
+import Main from "./main-page/mainPage";
 import urls from "./statics/urls";
 import About from "./about/about";
 import Header from "./components/header";
