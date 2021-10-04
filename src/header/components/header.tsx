@@ -19,7 +19,6 @@ const Header = () => {
   return (
     <header>
       <AppBar position="sticky">
-        {" "}
         <Typography variant="body1" color="inherit">
           Best Games Market
         </Typography>
