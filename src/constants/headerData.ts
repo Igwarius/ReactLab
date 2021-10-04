@@ -12,4 +12,5 @@ const headersData = [
     href: "/about",
   },
 ];
+
 export default headersData;
