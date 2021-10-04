@@ -16,7 +16,6 @@ const Header = () => {
         {label}
       </Button>
     ));
-  const displayDesktop = () => <Toolbar>{getMenuButtons()}</Toolbar>;
   return (
     <header>
       <AppBar position="sticky">
@@ -24,7 +23,7 @@ const Header = () => {
         <Typography variant="body1" color="inherit">
           Best Games Market
         </Typography>
-        {displayDesktop()}
+        <Toolbar>{getMenuButtons()}</Toolbar>
       </AppBar>
     </header>
   );
