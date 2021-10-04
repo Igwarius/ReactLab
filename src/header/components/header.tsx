@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import headersData from "../../constants/headerData";
 
-export default function Header() {
+const Header = () => {
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
       <Button
@@ -28,4 +28,5 @@ export default function Header() {
       </AppBar>
     </header>
   );
-}
+};
+export default Header;
