@@ -14,8 +14,7 @@
     "lint-ts": "./node_modules/.bin/tsc --skipLibCheck --incremental --noEmit",
     "lint-es": "./node_modules/.bin/eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
     "lint-styles": "prettier --write **/*.{css,scss,less} --loglevel warn",
-    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath",
-    "postinstall": "npm audit fix && husky install"
+    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "repository": {
     "type": "git",
