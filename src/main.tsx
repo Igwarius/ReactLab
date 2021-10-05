@@ -9,14 +9,7 @@ import About from "./about/about";
 import Header from "./header/components/header";
 import Footer from "./footer/components/footer";
 
-interface AppProps {
-  nothing: boolean;
-}
-interface AppState {
-  title: string;
-}
-
-class AppContainer extends Component<AppProps, AppState> {
+class AppContainer extends Component {
   ["constructor"]: typeof AppContainer;
 
   render() {
@@ -35,4 +28,4 @@ class AppContainer extends Component<AppProps, AppState> {
   }
 }
 
-ReactDom.render(<AppContainer nothing={false} />, document.getElementById("app"));
+ReactDom.render(<AppContainer />, document.getElementById("app"));
