@@ -1,9 +1,6 @@
-import "./styles/main.css";
-import "./styles/main.scss";
-// watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
 import { Component } from "react";
+import "./styles/index.css";
 import ReactDom from "react-dom";
-import { createBrowserHistory } from "history";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import Products from "./products/products";
 import Main from "./main-page/mainPage";
@@ -22,20 +19,16 @@ interface AppState {
 class AppContainer extends Component<AppProps, AppState> {
   ["constructor"]: typeof AppContainer;
 
-  history = createBrowserHistory();
-
   render() {
     return (
       <Router>
         <Header />
-        <div className="page">
-          <Switch>
-            <Route exact path={urls.MAIN} component={Main} />
-            <Route exact path={urls.PRODUCTS} component={Products} />
-            <Route exact path={urls.ABOUT} component={About} />
-            <Route render={() => <Redirect to={urls.MAIN} />} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={urls.MAIN} component={Main} />
+          <Route exact path={urls.PRODUCTS} component={Products} />
+          <Route exact path={urls.ABOUT} component={About} />
+          <Route render={() => <Redirect to={urls.MAIN} />} />
+        </Switch>
         <Footer />
       </Router>
     );
