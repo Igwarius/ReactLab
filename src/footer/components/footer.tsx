@@ -12,15 +12,15 @@ const useStyles = makeStyles({
   ref: {
     margin: 5,
   },
-  EA: {
+  ea: {
     width: 50,
     height: 50,
   },
-  Bethesda: {
+  bethesda: {
     width: 80,
     height: 30,
   },
-  CDP: {
+  cdp: {
     width: 80,
     height: 50,
   },
@@ -35,13 +35,13 @@ const Footer = () => {
           <Typography variant="body1" color="inherit">
             Incredible convenient
             <a className={classes.ref} href="https://www.ea.com/ru-ru">
-              <img src={imgEA} className={classes.EA} alt="EA" />
+              <img src={imgEA} className={classes.ea} alt="EA" />
             </a>
             <a className={classes.ref} href="https://bethesda.net/ru/dashboard">
-              <img src={imgBethesda} className={classes.Bethesda} alt="Bethesda" />
+              <img src={imgBethesda} className={classes.bethesda} alt="Bethesda" />
             </a>
             <a className={classes.ref} href="https://en.cdprojektred.com/">
-              <img src={imgCDP} className={classes.CDP} alt="CDP" />
+              <img src={imgCDP} className={classes.cdp} alt="CDP" />
             </a>
           </Typography>
         </Toolbar>
