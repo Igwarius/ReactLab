@@ -49,4 +49,5 @@ const Footer = () => {
     </AppBar>
   );
 };
+
 export default Footer;
