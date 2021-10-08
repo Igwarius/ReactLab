@@ -34,6 +34,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-use-before-define": "error",
     "require-await": "error",
+    "newline-before-return": "error",
     "prettier/prettier": ["error"],
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,

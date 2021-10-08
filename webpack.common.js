@@ -89,6 +89,14 @@ module.exports = function (env, argv) {
             // optional: "eslint-loader" //provides lint-errors into wepback output
           ],
         },
+        {
+          test: /\.html$/i,
+          loader: "html-loader",
+          options: {
+            // Disables attributes processing
+            sources: true,
+          },
+        },
         // rule for ts, tsx files
         {
           test: /\.(js|jsx)$/,
@@ -159,7 +167,7 @@ module.exports = function (env, argv) {
         },
         // rules for style-files
         {
-          test: /\.css$|\.scss$/,
+          test: /\.css$/,
           use: [
             isDevServer
               ? "style-loader" // it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
@@ -180,21 +188,13 @@ module.exports = function (env, argv) {
                           .replace(".module.scss", "")
                           .replace(/\\|\//g, "-")
                           .replace(/\./g, "_");
+
                         return `${request}__${localName}`;
                       }
                     : MinifyCssNames(
                         // minify classNames for prod-build
                         { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
                       ),
-                },
-              },
-            },
-            {
-              loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
-              options: {
-                additionalData: '@import "variables";', // inject this import by default in each scss-file
-                sassOptions: {
-                  includePaths: [path.resolve(__dirname, "src/styles")], // using pathes as root
                 },
               },
             },
@@ -205,7 +205,7 @@ module.exports = function (env, argv) {
     },
     plugins: [
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // it adds force-ignoring unused parts of modules like moment/locale/*.js
+      new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html
         "process.env": {
