@@ -1,23 +1,23 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import Button from "@material-ui/core/Button";
 
-interface Props {
+interface IErrorBoundaryProps {
   children: ReactNode;
 }
 
-interface State {
+interface IErrorBoundaryState {
   hasError: boolean;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
+  constructor(props: IErrorBoundaryProps) {
     super(props);
     this.state = {
       hasError: false,
     };
   }
 
-  public static getDerivedStateFromError(): State {
+  public static getDerivedStateFromError(): IErrorBoundaryState {
     return { hasError: true };
   }
 
