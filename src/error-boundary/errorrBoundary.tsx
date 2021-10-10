@@ -30,12 +30,12 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
   public render() {
     if (this.state.hasError) {
       return (
-        <div>
+        <>
           <div>Oops.... an error occurred</div>
           <Button onClick={reoload} variant="contained">
             Reload
           </Button>
-        </div>
+        </>
       );
     }
 
