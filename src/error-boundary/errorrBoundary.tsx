@@ -8,9 +8,7 @@ interface IErrorBoundaryProps {
 interface IErrorBoundaryState {
   hasError: boolean;
 }
-const reoload = () => {
-  window.location.reload();
-};
+
 class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
   constructor(props: IErrorBoundaryProps) {
     super(props);
@@ -27,12 +25,16 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
     console.error("Uncaught error:", error, errorInfo);
   }
 
+  onClickReloadPage = () => {
+    window.location.reload();
+  };
+
   public render() {
     if (this.state.hasError) {
       return (
         <>
           <div>Oops.... an error occurred</div>
-          <Button onClick={reoload} variant="contained">
+          <Button onClick={this.onClickReloadPage} variant="contained">
             Reload
           </Button>
         </>
