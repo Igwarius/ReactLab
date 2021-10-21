@@ -9,6 +9,7 @@ import About from "./about/about";
 import Header from "./header/components/header";
 import Footer from "./footer/components/footer";
 import ErrorBoundary from "./error-boundary/errorrBoundary";
+import Search from "./search/searc";
 
 class AppContainer extends Component {
   ["constructor"]: typeof AppContainer;
@@ -18,6 +19,7 @@ class AppContainer extends Component {
       <ErrorBoundary>
         <Router>
           <Header />
+          <Search />
           <Switch>
             <Route exact path={urls.MAIN} component={Main} />
             <Route exact path={urls.PRODUCTS} component={Products} />
