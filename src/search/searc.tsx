@@ -12,14 +12,20 @@ interface iGame {
 }
 const useStyles = makeStyles({
   input: {
-    width: "100%",
+    width: "300px",
+    boxSizing: "border-box",
+  },
+  root: {
+    boxSizing: "border-box",
   },
 });
 function Search() {
   const classes = useStyles();
 
   const Listbox = styled("ul")(({ theme }) => ({
-    width: "100%",
+    width: "300px",
+    color: "black",
+    boxSizing: "border-box",
     margin: 0,
     padding: 0,
     zIndex: 1,
@@ -60,8 +66,13 @@ function Search() {
   console.log(games.length);
 
   return (
-    <div>
-      <input className={classes.input} defaultValue="" onChange={(e) => debounced(e.target.value)} />
+    <div className={classes.root}>
+      <input
+        placeholder="Serach"
+        className={classes.input}
+        defaultValue=""
+        onChange={(e) => debounced(e.target.value)}
+      />
 
       {games && games.length ? (
         <Listbox>
