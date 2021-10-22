@@ -7,8 +7,12 @@ import { SetStateAction, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
 
-interface iGame {
+interface IGame {
   name: string;
+  img: string;
+  price: number;
+  raiting: number;
+  date: Date;
 }
 const useStyles = makeStyles({
   input: {
@@ -49,13 +53,13 @@ function Search() {
     alert(name);
   };
 
-  const [games, setGemes] = useState<iGame[]>([]);
+  const [games, setGemes] = useState<IGame[]>([]);
   // Debounce callback
 
   const debounced = useDebouncedCallback(
     // eslint-disable-next-line no-shadow
     async (value: SetStateAction<string>) => {
-      const response: AxiosResponse<Array<iGame>> = await axios.get(`http://localhost:8079/gameByName?name=${value}`);
+      const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/gameByName?name=${value}`);
 
       setGemes(response.data);
     },
@@ -68,7 +72,7 @@ function Search() {
   return (
     <div className={classes.root}>
       <input
-        placeholder="Serach"
+        placeholder="Search"
         className={classes.input}
         defaultValue=""
         onChange={(e) => debounced(e.target.value)}
