@@ -24,13 +24,13 @@ const useStyles = makeStyles({
 const Main = () => {
   const classes = useStyles();
   const [games, setGemes] = useState<IGame[]>([]);
-  const get3games = async () => {
+  const getTopThreeGames = async () => {
     const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/top3games`);
     setGemes(response.data);
   };
 
   useEffect(() => {
-    get3games();
+    getTopThreeGames();
   }, []);
 
   return (
