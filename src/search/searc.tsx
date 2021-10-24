@@ -58,10 +58,14 @@ function Search() {
   const debounceDelay = 300;
   const debounced = useDebouncedCallback(
     // eslint-disable-next-line no-shadow
-    async (value: SetStateAction<string>) => {
-      const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/game-by-name?name=${value}`);
 
-      setGemes(response.data);
+    async (value: SetStateAction<string>) => {
+      if (value.length >= 3) {
+        const response: AxiosResponse<Array<IGame>> = await axios.get(
+          `http://localhost:8079/game-by-name?name=${value}`
+        );
+        setGemes(response.data);
+      }
     },
     debounceDelay
   );
