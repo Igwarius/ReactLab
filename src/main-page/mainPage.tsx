@@ -25,7 +25,7 @@ const Main = () => {
   const classes = useStyles();
   const [games, setGemes] = useState<IGame[]>([]);
   const getTopThreeGames = async () => {
-    const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/top3games`);
+    const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/top-three-games`);
     setGemes(response.data);
   };
 

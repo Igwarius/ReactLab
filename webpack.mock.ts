@@ -57,7 +57,7 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json(gemesres);
   });
-  app.get("/top3games", (_req, res) => {
+  app.get("/top-three-games", (_req, res) => {
     let gemesres: typeof games = [];
     gemesres = games.sort((a, b) => a.date.getTime() - b.date.getTime()).slice(games.length - 3, games.length);
 
