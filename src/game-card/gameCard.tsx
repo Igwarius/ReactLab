@@ -31,7 +31,7 @@ const GameCard = (props: IGame) => {
     <div className={classes.root}>
       <h3 className={classes.header}> {props.name}</h3>
       <img className={classes.img} src={props.img} alt="Poster" />
-      <p>{`price: ${props.price} $`}</p>
+      <p>price: {props.price} $</p>
       <Rating name="read-only" value={props.raiting} readOnly />
     </div>
   );
