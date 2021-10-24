@@ -26,9 +26,9 @@ const Header = () => {
     }
   }
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
