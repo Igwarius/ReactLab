@@ -49,6 +49,7 @@ function Search() {
       color: "white",
     },
   }));
+
   const onClickGameShow = (name: string) => {
     alert(name);
   };

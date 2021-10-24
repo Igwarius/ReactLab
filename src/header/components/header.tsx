@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
 }));
+
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
@@ -28,6 +29,7 @@ const Header = () => {
   function handleClose() {
     setAnchorEl(null);
   }
+
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
       <Button

@@ -7,6 +7,7 @@ interface IGame {
   price: number;
   raiting: number;
 }
+
 const useStyles = makeStyles({
   root: {
     border: "2px solid black",
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
 });
+
 const GameCard = (props: IGame) => {
   const classes = useStyles();
 

@@ -9,6 +9,7 @@ interface IGame {
   price: number;
   raiting: number;
 }
+
 const useStyles = makeStyles({
   header: {
     textAlign: "center",
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
 });
+
 const Main = () => {
   const classes = useStyles();
   const [games, setGemes] = useState<IGame[]>([]);
