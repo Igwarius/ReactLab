@@ -6,6 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { SetStateAction, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
+import Urls from "@/constants/urls";
 
 interface IGame {
   id: number;
@@ -62,9 +63,7 @@ function Search() {
 
     async (value: SetStateAction<string>) => {
       if (value.length >= 3) {
-        const response: AxiosResponse<Array<IGame>> = await axios.get(
-          `http://localhost:8079/game-by-name?name=${value}`
-        );
+        const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GETGAMEBYNAME}?name=${value}`);
         setGemes(response.data);
       }
     },

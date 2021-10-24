@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import GameCard from "@/game-card/gameCard";
+import Urls from "@/constants/urls";
 
 interface IGame {
   id: number;
@@ -26,7 +27,7 @@ const Main = () => {
   const classes = useStyles();
   const [games, setGemes] = useState<IGame[]>([]);
   const getTopThreeGames = async () => {
-    const response: AxiosResponse<Array<IGame>> = await axios.get(`http://localhost:8079/top-three-games`);
+    const response: AxiosResponse<Array<IGame>> = await axios.get(Urls.GETTHREEGAMES);
     setGemes(response.data);
   };
 
