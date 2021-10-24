@@ -46,7 +46,6 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get("/gameByName", (req, res) => {
     const { name } = req.query;
-    console.log(req.body);
     const gemesres: typeof games = [];
     games.forEach((element) => {
       if (name && name.length && name.length >= 3) {

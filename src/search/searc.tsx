@@ -67,8 +67,6 @@ function Search() {
     // delay in ms
     300
   );
-  console.log(games);
-  console.log(games.length);
 
   return (
     <div className={classes.root}>
