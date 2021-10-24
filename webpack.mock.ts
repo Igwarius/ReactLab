@@ -5,6 +5,7 @@ import cors from "cors";
 
 const games = [
   {
+    id: 1,
     name: "Witcher",
     img: "https://www.mmohelper.ru/wp-content/uploads/2020/06/1-oblozhka-diska-igry.jpg",
     price: 50,
@@ -12,6 +13,7 @@ const games = [
     date: new Date("October 26, 2007"),
   },
   {
+    id: 2,
     name: "CS Go",
     img: "https://sm.ign.com/ign_ru/screenshot/default/1counter-strike-global-offensive_373t.jpg",
     price: 50,
@@ -19,6 +21,7 @@ const games = [
     date: new Date("October 26, 2005"),
   },
   {
+    id: 3,
     name: "Tekken",
     img: "https://upload.wikimedia.org/wikipedia/ru/6/6e/Tekken7Poster.jpg",
     price: 50,
@@ -26,6 +29,7 @@ const games = [
     date: new Date("October 26, 2004"),
   },
   {
+    id: 4,
     name: "Witcher 2",
     img: "https://s1.gaming-cdn.com/images/products/789/orig/game-gog-com-the-witcher-2-assassins-of-kings-enhanced-edition-cover.jpg",
     price: 50,

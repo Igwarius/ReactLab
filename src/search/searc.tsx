@@ -8,6 +8,7 @@ import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
 
 interface IGame {
+  id: number;
   name: string;
   img: string;
   price: number;
@@ -82,7 +83,9 @@ function Search() {
       {games && games.length ? (
         <Listbox>
           {games.map((element) => (
-            <div onClick={() => onClickGameShow(element.name)}> {element.name}</div>
+            <div key={element.id} onClick={() => onClickGameShow(element.name)}>
+              {element.name}
+            </div>
           ))}
         </Listbox>
       ) : null}

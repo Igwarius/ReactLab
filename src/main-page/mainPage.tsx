@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import GameCard from "@/game-card/gameCard";
 
 interface IGame {
+  id: number;
   name: string;
   img: string;
   price: number;
@@ -40,7 +41,13 @@ const Main = () => {
         <h1 className={classes.header}>Newest games</h1>
         <div className={classes.container}>
           {games.map((element) => (
-            <GameCard name={element.name} img={element.img} price={element.price} rating={element.rating} />
+            <GameCard
+              key={element.id}
+              name={element.name}
+              img={element.img}
+              price={element.price}
+              rating={element.rating}
+            />
           ))}
         </div>
       </div>
