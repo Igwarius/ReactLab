@@ -7,7 +7,7 @@ interface IGame {
   name: string;
   img: string;
   price: number;
-  raiting: number;
+  rating: number;
 }
 
 const useStyles = makeStyles({
@@ -40,7 +40,7 @@ const Main = () => {
         <h1 className={classes.header}>Newest games</h1>
         <div className={classes.container}>
           {games.map((element) => (
-            <GameCard name={element.name} img={element.img} price={element.price} raiting={element.raiting} />
+            <GameCard name={element.name} img={element.img} price={element.price} rating={element.rating} />
           ))}
         </div>
       </div>

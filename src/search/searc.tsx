@@ -11,7 +11,7 @@ interface IGame {
   name: string;
   img: string;
   price: number;
-  raiting: number;
+  rating: number;
   date: Date;
 }
 const useStyles = makeStyles({

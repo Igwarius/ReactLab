@@ -5,7 +5,7 @@ interface IGame {
   name: string;
   img: string;
   price: number;
-  raiting: number;
+  rating: number;
 }
 
 const useStyles = makeStyles({
@@ -32,7 +32,7 @@ const GameCard = (props: IGame) => {
       <h3 className={classes.header}> {props.name}</h3>
       <img className={classes.img} src={props.img} alt="Poster" />
       <p>price: {props.price} $</p>
-      <Rating name="read-only" value={props.raiting} readOnly />
+      <Rating name="read-only" value={props.rating} readOnly />
     </div>
   );
 };
