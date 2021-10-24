@@ -19,7 +19,7 @@ const games = [
     date: new Date("October 26, 2005"),
   },
   {
-    name: "Takken",
+    name: "Tekken",
     img: "https://upload.wikimedia.org/wikipedia/ru/6/6e/Tekken7Poster.jpg",
     price: 50,
     rating: 4,
