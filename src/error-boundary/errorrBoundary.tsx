@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import React, { Component, ErrorInfo, ReactNode } from "react";
 import Button from "@material-ui/core/Button";
 
 interface IErrorBoundaryProps {

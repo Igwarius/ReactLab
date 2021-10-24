@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import React from "react";
 import Pc from "@/pc/pc";
 import Xbox from "@/xbox/xbox";
 import Ps from "@/ps/ps";

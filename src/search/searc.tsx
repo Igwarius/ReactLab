@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 
 import { useDebouncedCallback } from "use-debounce";
-import { SetStateAction, useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
 import Urls from "@/constants/urls";
@@ -58,17 +58,12 @@ function Search() {
 
   const [games, setGemes] = useState<IGame[]>([]);
   const debounceDelay = 300;
-  const debounced = useDebouncedCallback(
-    // eslint-disable-next-line no-shadow
-
-    async (value: SetStateAction<string>) => {
-      if (value.length >= 3) {
-        const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GETGAMEBYNAME}?name=${value}`);
-        setGemes(response.data);
-      }
-    },
-    debounceDelay
-  );
+  const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
+    if (value.length >= 3) {
+      const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GETGAMEBYNAME}?name=${value}`);
+      setGemes(response.data);
+    }
+  }, debounceDelay);
 
   return (
     <div className={classes.root}>

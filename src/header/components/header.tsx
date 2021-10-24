@@ -1,9 +1,5 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-/* eslint-disable no-use-before-define */
-/* eslint-disable react/jsx-no-bind */
-
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/search/searc";
@@ -16,17 +12,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Header = (): JSX.Element => {
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
 
-  function handleClick(event: any) {
+  const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
     }
-  }
+  };
 
-  const handleClose = () => {
+  const onHandleClose = () => {
     setAnchorEl(null);
   };
 
@@ -58,8 +54,7 @@ const Header = () => {
             aria-controls="fade-menu"
             aria-owns={anchorEl ? "simple-menu" : undefined}
             aria-haspopup="true"
-            onClick={handleClick}
-            onMouseOver={handleClick}
+            onMouseOver={onHandleClick}
           >
             Categories
           </Button>
@@ -72,21 +67,21 @@ const Header = () => {
             getContentAnchorEl={null}
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
-            onClose={handleClose}
-            MenuListProps={{ onMouseLeave: handleClose }}
+            onClose={onHandleClose}
+            MenuListProps={{ onMouseLeave: onHandleClose }}
             TransitionComponent={Fade}
           >
-            <MenuItem href="/products" color="inherit" onClick={handleClose}>
+            <MenuItem href="/products" color="inherit" onClick={onHandleClose}>
               <RouterLink className={classes.menuPaper} to="/products/pc">
                 PC
               </RouterLink>
             </MenuItem>
-            <MenuItem color="inherit" onClick={handleClose}>
+            <MenuItem color="inherit" onClick={onHandleClose}>
               <RouterLink className={classes.menuPaper} to="/products/xbox">
                 XBOX
               </RouterLink>
             </MenuItem>
-            <MenuItem color="inherit" onClick={handleClose}>
+            <MenuItem color="inherit" onClick={onHandleClose}>
               <RouterLink className={classes.menuPaper} to="/products/ps">
                 PS
               </RouterLink>

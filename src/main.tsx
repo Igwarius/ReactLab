@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import "./styles/index.css";
 import ReactDom from "react-dom";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";

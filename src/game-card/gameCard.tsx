@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import React from "react";
 
 interface IGame {
   name: string;
@@ -24,15 +25,15 @@ const useStyles = makeStyles({
   },
 });
 
-const GameCard = (props: IGame) => {
+const GameCard = ({ name, img, price, rating }: IGame) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <h3 className={classes.header}> {props.name}</h3>
-      <img className={classes.img} src={props.img} alt="Poster" />
-      <p>price: {props.price} $</p>
-      <Rating name="read-only" value={props.rating} readOnly />
+      <h3 className={classes.header}> {name}</h3>
+      <img className={classes.img} src={img} alt="Poster" />
+      <p>price: {price} $</p>
+      <Rating name="read-only" value={rating} readOnly />
     </div>
   );
 };
