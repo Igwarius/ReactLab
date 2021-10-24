@@ -55,8 +55,7 @@ function Search() {
   };
 
   const [games, setGemes] = useState<IGame[]>([]);
-  // Debounce callback
-
+  const debounceDelay = 300;
   const debounced = useDebouncedCallback(
     // eslint-disable-next-line no-shadow
     async (value: SetStateAction<string>) => {
@@ -64,8 +63,7 @@ function Search() {
 
       setGemes(response.data);
     },
-    // delay in ms
-    300
+    debounceDelay
   );
 
   return (
