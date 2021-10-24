@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/search/searc";
 
@@ -11,17 +11,42 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
 }));
+interface ICategory {
+  id: number;
+  label: string;
+  path: string;
+}
+
+const categoriesArray: Array<ICategory> = [
+  {
+    id: 1,
+    label: "PC",
+    path: "/products/pc",
+  },
+  {
+    id: 2,
+    label: "PS",
+    path: "/products/ps",
+  },
+  {
+    id: 3,
+    label: "XBOX",
+    path: "/products/xbox",
+  },
+];
 
 const Header = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
-
+  const history = useHistory();
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
     }
   };
-
+  const onLinkClick = (link: string) => {
+    history.push(link);
+  };
   const onHandleClose = () => {
     setAnchorEl(null);
   };
@@ -71,21 +96,11 @@ const Header = (): JSX.Element => {
             MenuListProps={{ onMouseLeave: onHandleClose }}
             TransitionComponent={Fade}
           >
-            <MenuItem href="/products" color="inherit" onClick={onHandleClose}>
-              <RouterLink className={classes.menuPaper} to="/products/pc">
-                PC
-              </RouterLink>
-            </MenuItem>
-            <MenuItem color="inherit" onClick={onHandleClose}>
-              <RouterLink className={classes.menuPaper} to="/products/xbox">
-                XBOX
-              </RouterLink>
-            </MenuItem>
-            <MenuItem color="inherit" onClick={onHandleClose}>
-              <RouterLink className={classes.menuPaper} to="/products/ps">
-                PS
-              </RouterLink>
-            </MenuItem>
+            {categoriesArray.map((element) => (
+              <MenuItem key={element.id} color="inherit" onClick={() => onLinkClick(element.path)}>
+                {element.label}
+              </MenuItem>
+            ))}
           </Menu>
           <Search />
         </Toolbar>
