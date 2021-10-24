@@ -44,7 +44,7 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json(response);
   });
-  app.get("/gameByName", (req, res) => {
+  app.get("/game-by-name", (req, res) => {
     const { name } = req.query;
     const gemesres: typeof games = [];
     games.forEach((element) => {
