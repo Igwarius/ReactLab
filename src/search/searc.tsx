@@ -60,7 +60,7 @@ function Search() {
   const debounceDelay = 300;
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     if (value.length >= 3) {
-      const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GETGAMEBYNAME}?name=${value}`);
+      const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GET_GAME_BY_NAME}?name=${value}`);
       setGemes(response.data);
     }
   }, debounceDelay);

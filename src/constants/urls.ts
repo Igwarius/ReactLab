@@ -3,7 +3,7 @@ const urls = {
   PRODUCTS: "/products",
   MAIN: "/",
   ABOUT: "/about",
-  GETTHREEGAMES: `${serverURL}/top-three-games`,
-  GETGAMEBYNAME: `${serverURL}/game-by-name`,
+  GET_THREE_GAMES: `${serverURL}/top-three-games`,
+  GET_GAME_BY_NAME: `${serverURL}/game-by-name`,
 };
 export default urls;
