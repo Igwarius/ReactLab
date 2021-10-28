@@ -1,13 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import React from "react";
-
-interface IGame {
-  name: string;
-  img: string;
-  price: number;
-  rating: number;
-}
+import IGame from "@/types";
 
 const useStyles = makeStyles({
   root: {

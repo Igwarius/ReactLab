@@ -3,14 +3,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import GameCard from "@/components/game-card/GameCard";
 import Urls from "@/constants/urls";
-
-interface IGame {
-  id: number;
-  name: string;
-  img: string;
-  price: number;
-  rating: number;
-}
+import IGame from "@/types";
 
 const useStyles = makeStyles({
   header: {
@@ -49,6 +42,8 @@ const Main = () => {
               img={element.img}
               price={element.price}
               rating={element.rating}
+              id={element.id}
+              date={element.date}
             />
           ))}
         </div>
