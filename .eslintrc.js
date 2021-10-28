@@ -34,6 +34,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-use-before-define": "off",
     "no-use-before-define": "off",
+    "import/no-extraneous-dependencies": "off",
     "require-await": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "newline-before-return": "error",
