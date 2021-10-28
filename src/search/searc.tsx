@@ -53,6 +53,7 @@ function Search() {
   };
 
   const [games, setGames] = useState<IGame[]>([]);
+  const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     if (value.length >= 3) {
@@ -60,6 +61,10 @@ function Search() {
       setGames(response.data);
     }
   }, debounceDelay);
+  const onInputChange = (value: string) => {
+    setGameName(value);
+    debounced(value);
+  };
 
   return (
     <div className={classes.root}>
@@ -67,7 +72,8 @@ function Search() {
         placeholder="Search"
         className={classes.input}
         defaultValue=""
-        onChange={(e) => debounced(e.target.value)}
+        onChange={(e) => onInputChange(e.target.value)}
+        value={gameName}
       />
 
       {games && games.length ? (
