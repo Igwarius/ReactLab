@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/search/searc";
+import urls from "@/constants/urls";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -21,17 +22,17 @@ const categoriesArray: Array<ICategory> = [
   {
     id: 1,
     label: "PC",
-    path: "/products/pc",
+    path: `${urls.PRODUCTS}/pc`,
   },
   {
     id: 2,
     label: "PS",
-    path: "/products/ps",
+    path: `${urls.PRODUCTS}/ps`,
   },
   {
     id: 3,
     label: "XBOX",
-    path: "/products/xbox",
+    path: `${urls.PRODUCTS}/xbox`,
   },
 ];
 
