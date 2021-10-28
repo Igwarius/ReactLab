@@ -52,7 +52,7 @@ export default webpackMockServer.add((app, helper) => {
     const { name } = req.query;
     const gemesres: typeof games = [];
     games.forEach((element) => {
-      if (name && name.length && name.length >= 3) {
+      if (name) {
         if (element.name.toLowerCase().includes(name.toString().toLowerCase())) {
           gemesres.push(element);
         }
