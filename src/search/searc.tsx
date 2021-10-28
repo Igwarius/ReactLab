@@ -72,7 +72,7 @@ function Search() {
         placeholder="Search"
         className={classes.input}
         defaultValue=""
-        onChange={(e) => onInputChange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onInputChange(e.target.value)}
         value={gameName}
       />
 
