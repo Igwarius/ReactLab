@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./styles/index.css";
 import ReactDom from "react-dom";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import Products from "./products/products";
-import Main from "./main-page/mainPage";
+import Products from "./components/products/Products";
+import Main from "./components/main-page/MainPage";
 import urls from "./constants/urls";
-import About from "./about/about";
-import Header from "./header/components/header";
-import Footer from "./footer/components/footer";
-import ErrorBoundary from "./error-boundary/errorrBoundary";
+import About from "./components/about/About";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 
 class AppContainer extends Component {
   ["constructor"]: typeof AppContainer;

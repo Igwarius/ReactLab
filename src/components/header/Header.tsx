@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles }
 import React, { useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
-import Search from "@/search/searc";
+import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
 
 const useStyles = makeStyles(() => ({

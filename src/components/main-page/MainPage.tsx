@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import GameCard from "@/game-card/gameCard";
+import GameCard from "@/components/game-card/GameCard";
 import Urls from "@/constants/urls";
 
 interface IGame {
