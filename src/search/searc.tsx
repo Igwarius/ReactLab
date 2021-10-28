@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable max-len */
-
 import { useDebouncedCallback } from "use-debounce";
 import React, { SetStateAction, useState } from "react";
 import axios, { AxiosResponse } from "axios";
@@ -77,7 +73,13 @@ function Search() {
       {games && games.length ? (
         <Listbox>
           {games.map((element) => (
-            <div key={element.id} onClick={() => onClickGameShow(element.name)}>
+            <div
+              key={element.id}
+              onClick={() => onClickGameShow(element.name)}
+              onKeyDown={() => onClickGameShow(element.name)}
+              role="menuitem"
+              tabIndex={element.id}
+            >
               {element.name}
             </div>
           ))}
