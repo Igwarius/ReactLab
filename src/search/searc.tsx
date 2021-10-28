@@ -56,12 +56,12 @@ function Search() {
     alert(name);
   };
 
-  const [games, setGemes] = useState<IGame[]>([]);
+  const [games, setGames] = useState<IGame[]>([]);
   const debounceDelay = 300;
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     if (value.length >= 3) {
       const response: AxiosResponse<Array<IGame>> = await axios.get(`${Urls.GET_GAME_BY_NAME}?name=${value}`);
-      setGemes(response.data);
+      setGames(response.data);
     }
   }, debounceDelay);
 
