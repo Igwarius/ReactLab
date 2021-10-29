@@ -50,16 +50,19 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get("/game-by-name", (req, res) => {
     const { name } = req.query;
-    const gemesRes: typeof games = [];
-    games.forEach((element) => {
-      if (name) {
-        if (element.name.toLowerCase().includes(name.toString().toLowerCase())) {
-          gemesRes.push(element);
-        }
-      }
-    });
+    if (!name) {
+      res.status(400);
 
-    res.json(gemesRes);
+      return res;
+    }
+
+    let gamesRes: typeof games = [];
+
+    gamesRes = games.filter((game) => game.name.toLowerCase().includes(name.toString().toLowerCase()));
+
+    res.json(gamesRes);
+
+    return res;
   });
   app.get("/top-three-games", (_req, res) => {
     const gemesRes: typeof games = games
