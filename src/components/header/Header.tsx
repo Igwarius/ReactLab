@@ -45,9 +45,11 @@ const Header = (): JSX.Element => {
       setAnchorEl(event.currentTarget);
     }
   };
+
   const onLinkClick = (link: string) => {
     history.push(link);
   };
+
   const onHandleClose = () => {
     setAnchorEl(null);
   };

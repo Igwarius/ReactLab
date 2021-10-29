@@ -14,9 +14,9 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
   },
 });
+
 function Search() {
   const classes = useStyles();
-
   const Listbox = styled("ul")(({ theme }) => ({
     width: "300px",
     color: "black",
@@ -54,6 +54,7 @@ function Search() {
       setGames(response.data);
     }
   }, debounceDelay);
+
   const onInputChange = (value: string) => {
     setGameName(value);
     debounced(value);
@@ -68,7 +69,6 @@ function Search() {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onInputChange(e.target.value)}
         value={gameName}
       />
-
       {games && games.length ? (
         <Listbox>
           {games.map((element) => (
@@ -87,4 +87,5 @@ function Search() {
     </div>
   );
 }
+
 export default Search;
