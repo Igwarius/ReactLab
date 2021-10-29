@@ -65,11 +65,11 @@ export default webpackMockServer.add((app, helper) => {
     return res;
   });
   app.get("/top-three-games", (_req, res) => {
-    const gemesRes: typeof games = games
+    const gamesRes: typeof games = games
       .sort((a, b) => a.date.getTime() - b.date.getTime())
       .slice(games.length - 3, games.length);
 
-    res.json(gemesRes);
+    res.json(gamesRes);
   });
   app.post("/test-post-mock", (req, res) => {
     res.json({ body: req.body || null, success: true });
