@@ -50,23 +50,23 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get("/game-by-name", (req, res) => {
     const { name } = req.query;
-    const gemesres: typeof games = [];
+    const gemesRes: typeof games = [];
     games.forEach((element) => {
       if (name) {
         if (element.name.toLowerCase().includes(name.toString().toLowerCase())) {
-          gemesres.push(element);
+          gemesRes.push(element);
         }
       }
     });
 
-    res.json(gemesres);
+    res.json(gemesRes);
   });
   app.get("/top-three-games", (_req, res) => {
-    const gemesres: typeof games = games
+    const gemesRes: typeof games = games
       .sort((a, b) => a.date.getTime() - b.date.getTime())
       .slice(games.length - 3, games.length);
 
-    res.json(gemesres);
+    res.json(gemesRes);
   });
   app.post("/test-post-mock", (req, res) => {
     res.json({ body: req.body || null, success: true });
