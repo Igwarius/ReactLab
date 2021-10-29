@@ -15,31 +15,32 @@ const useStyles = makeStyles({
   },
 });
 
+const Listbox = styled("ul")(({ theme }) => ({
+  width: "300px",
+  color: "black",
+  boxSizing: "border-box",
+  margin: 0,
+  padding: 0,
+  zIndex: 1,
+  position: "absolute",
+  listStyle: "none",
+  backgroundColor: theme.palette.background.paper,
+  overflow: "auto",
+  maxHeight: 200,
+  border: "1px solid rgba(0,0,0,.25)",
+  '& li[data-focus="true"]': {
+    backgroundColor: "#4a8df6",
+    color: "white",
+    cursor: "pointer",
+  },
+  "& li:active": {
+    backgroundColor: "#2977f5",
+    color: "white",
+  },
+}));
+
 const Search = () => {
   const classes = useStyles();
-  const Listbox = styled("ul")(({ theme }) => ({
-    width: "300px",
-    color: "black",
-    boxSizing: "border-box",
-    margin: 0,
-    padding: 0,
-    zIndex: 1,
-    position: "absolute",
-    listStyle: "none",
-    backgroundColor: theme.palette.background.paper,
-    overflow: "auto",
-    maxHeight: 200,
-    border: "1px solid rgba(0,0,0,.25)",
-    '& li[data-focus="true"]': {
-      backgroundColor: "#4a8df6",
-      color: "white",
-      cursor: "pointer",
-    },
-    "& li:active": {
-      backgroundColor: "#2977f5",
-      color: "white",
-    },
-  }));
 
   const onClickGameShow = (name: string) => {
     alert(name);
