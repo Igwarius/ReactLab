@@ -3,6 +3,7 @@ import imgEA from "images/EA.png";
 import imgBethesda from "images/Bethesda.png";
 import imgCDP from "images/CDP.png";
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles({
     height: 50,
   },
 });
+
 const Footer = () => {
   const classes = useStyles();
 

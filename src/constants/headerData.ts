@@ -1,15 +1,17 @@
+import urls from "./urls";
+
 const headersData = [
   {
     label: "Main",
-    href: "/",
+    href: urls.MAIN,
   },
   {
     label: "Products",
-    href: "/products",
+    href: urls.PRODUCTS,
   },
   {
     label: "About",
-    href: "/about",
+    href: urls.ABOUT,
   },
 ];
 
