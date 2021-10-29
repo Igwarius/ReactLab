@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Search() {
+const Search = () => {
   const classes = useStyles();
   const Listbox = styled("ul")(({ theme }) => ({
     width: "300px",
@@ -86,6 +86,6 @@ function Search() {
       ) : null}
     </div>
   );
-}
+};
 
 export default Search;
