@@ -39,7 +39,6 @@
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@material-ui/lab": "^4.0.0-alpha.60",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/history": "^4.7.9",
@@ -105,6 +104,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@types/react-router-dom": "^5.3.0",
     "axios": "^0.23.0",
     "html-loader": "^2.1.2",
