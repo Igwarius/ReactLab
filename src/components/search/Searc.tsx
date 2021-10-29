@@ -49,6 +49,7 @@ const Search = () => {
   const [games, setGames] = useState<IGame[]>([]);
   const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
+
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     if (value.length >= 3) {
       const response: AxiosResponse<IGame[]> = await axios.get(`${Urls.GET_GAME_BY_NAME}?name=${value}`);
