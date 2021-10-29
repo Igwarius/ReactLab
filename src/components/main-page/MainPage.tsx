@@ -36,15 +36,7 @@ const Main = () => {
         <h1 className={classes.header}>Newest games</h1>
         <div className={classes.container}>
           {games.map((element) => (
-            <GameCard
-              key={element.id}
-              name={element.name}
-              img={element.img}
-              price={element.price}
-              rating={element.rating}
-              id={element.id}
-              date={element.date}
-            />
+            <GameCard {...element} />
           ))}
         </div>
       </div>
