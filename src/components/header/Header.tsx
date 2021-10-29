@@ -18,7 +18,7 @@ interface ICategory {
   path: string;
 }
 
-const categoriesArray: Array<ICategory> = [
+const categoriesArray: ICategory[] = [
   {
     id: 1,
     label: "PC",
