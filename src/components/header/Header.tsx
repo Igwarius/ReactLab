@@ -1,9 +1,10 @@
-import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles, Modal } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
+import MyForm from "../modal/Modal";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -35,11 +36,23 @@ const categoriesArray: ICategory[] = [
     path: `${urls.PRODUCTS}/xbox`,
   },
 ];
+interface IType {
+  type: string;
+}
 
 const Header = (): JSX.Element => {
+  const registration: IType = { type: "Registration" };
+  const logIn: IType = { type: "Log in" };
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
   const history = useHistory();
+  const [openReg, setOpenReg] = React.useState(false);
+  const handleOpenReg = () => setOpenReg(true);
+  const handleCloseReg = () => setOpenReg(false);
+  const [openLog, setOpenLog] = React.useState(false);
+  const handleOpenLog = () => setOpenLog(true);
+  const handleCloseLog = () => setOpenLog(false);
+
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -52,6 +65,10 @@ const Header = (): JSX.Element => {
 
   const onHandleClose = () => {
     setAnchorEl(null);
+  };
+  const onLogOut = () => {
+    localStorage.removeItem("isAutorised");
+    window.location.reload();
   };
 
   const getMenuButtons = () =>
@@ -86,7 +103,20 @@ const Header = (): JSX.Element => {
           >
             Categories
           </Button>
-
+          {!localStorage.getItem("isAutorised") ? (
+            <div>
+              <Button color="inherit" onClick={handleOpenReg}>
+                Registration
+              </Button>
+              <Button color="inherit" onClick={handleOpenLog}>
+                Log in
+              </Button>
+            </div>
+          ) : (
+            <Button color="inherit" onClick={onLogOut}>
+              Log out
+            </Button>
+          )}
           <Menu
             classes={{ paper: classes.menuPaper }}
             color="inherit"
@@ -108,6 +138,12 @@ const Header = (): JSX.Element => {
           <Search />
         </Toolbar>
       </AppBar>
+      <Modal open={openReg} onClose={handleCloseReg}>
+        <MyForm {...registration} />
+      </Modal>
+      <Modal open={openLog} onClose={handleCloseLog}>
+        <MyForm {...logIn} />
+      </Modal>
     </header>
   );
 };
