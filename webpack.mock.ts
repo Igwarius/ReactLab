@@ -40,7 +40,7 @@ const games = [
 const users = [
   {
     login: "Igwarius",
-    password: "123",
+    password: "12345678",
   },
 ];
 export default webpackMockServer.add((app, helper) => {
@@ -81,16 +81,12 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ body: req.body || null, success: true });
   });
   app.post("/registration", (req, res) => {
-    console.log(req.body);
     users.push(req.body);
-    console.log(users);
     res.json({ success: true });
   });
   app.post("/log-in", (req, res) => {
-    console.log(req.body);
     users.forEach((element) => {
       if (element.login === req.body.login && element.password === req.body.password) {
-        console.log(element);
         res.json({ success: true });
       }
     });

@@ -36,7 +36,6 @@ const useStyles = makeStyles(() => ({
 const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
-    console.log(JSON.stringify(values));
     if (type !== "Registration") {
       const response: AxiosResponse<IStatus> = await axios.post(urls.LOG_IN, values);
       if (response.status === 200) {
