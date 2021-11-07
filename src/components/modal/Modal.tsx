@@ -12,7 +12,7 @@ interface IForm {
   passwordCheck: string | undefined;
 }
 
-interface IStatus {
+interface IAuthStatus {
   data: { success: boolean };
 }
 
@@ -38,14 +38,14 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     if (type !== "Registration") {
-      const response: AxiosResponse<IStatus> = await axios.post(urls.LOG_IN, values);
+      const response: AxiosResponse<IAuthStatus> = await axios.post(urls.LOG_IN, values);
       if (response.status === 200) {
         localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
         changeIsLogged();
         handleCloseReg();
       }
     } else {
-      const response: AxiosResponse<IStatus> = await axios.post(urls.REGISTRATION, values);
+      const response: AxiosResponse<IAuthStatus> = await axios.post(urls.REGISTRATION, values);
       if (response.status === 200) {
         localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
         changeIsLogged();
