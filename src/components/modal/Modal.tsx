@@ -56,13 +56,14 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
 
   const validation = (values: IForm) => {
     const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
+    const minPasswordLength = 8;
     if (!values.login) {
       errors.login = "Required";
     }
     if (!values.password) {
       errors.password = "Required";
     }
-    if (values.password && values.password.length < 8) {
+    if (values.password && values.password.length < minPasswordLength) {
       errors.password = "Must contain at least 8 or more characters";
     }
     if (type === "Registration" && values.password !== values.passwordCheck) {
