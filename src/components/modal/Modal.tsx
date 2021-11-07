@@ -2,6 +2,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
 import globalConstants from "@/constants/globalConstants";
 import { IModalProps } from "@/types";
@@ -39,14 +40,14 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const onSubmit = async (values: IForm) => {
     if (type !== "Registration") {
       const response: AxiosResponse<IAuthStatus> = await axios.post(urls.LOG_IN, values);
-      if (response.status === 200) {
+      if (response.status === StatusCodes.OK) {
         localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
         changeIsLogged();
         handleCloseReg();
       }
     } else {
       const response: AxiosResponse<IAuthStatus> = await axios.post(urls.REGISTRATION, values);
-      if (response.status === 200) {
+      if (response.status === StatusCodes.OK) {
         localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
         changeIsLogged();
         handleCloseReg();
