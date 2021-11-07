@@ -85,11 +85,13 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ success: true });
   });
   app.post("/log-in", (req, res) => {
-    users.forEach((element) => {
-      if (element.login === req.body.login && element.password === req.body.password) {
-        res.json({ success: true });
-      }
-    });
+    const check = (element: { login: unknown; password: unknown }) =>
+      element.login === req.body.login && element.password === req.body.password;
+
+    if (users.some(check)) {
+      res.json({ success: true });
+    }
+
     res.status(400);
     res.json({ success: false });
   });
