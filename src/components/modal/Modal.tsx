@@ -82,7 +82,7 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className={classes.content}>
-              <div>{type}</div>
+              <p>{type}</p>
               <div>
                 <Field name="login">
                   {({ input, meta }) => (
