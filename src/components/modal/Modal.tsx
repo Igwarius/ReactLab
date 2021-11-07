@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
   content: { display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" },
   errors: { color: "red" },
 }));
+
 const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
@@ -53,27 +54,29 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     }
   };
 
+  const validation = (values: IForm) => {
+    const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
+    if (!values.login) {
+      errors.login = "Required";
+    }
+    if (!values.password) {
+      errors.password = "Required";
+    }
+    if (values.password && values.password.length < 8) {
+      errors.password = "Must contain at least 8 or more characters";
+    }
+    if (type === "Registration" && values.password !== values.passwordCheck) {
+      errors.passwordCheck = "Not same";
+    }
+
+    return errors;
+  };
+
   return (
     <div className={classes.menuPaper}>
       <Form
         onSubmit={onSubmit}
-        validate={(values) => {
-          const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
-          if (!values.login) {
-            errors.login = "Required";
-          }
-          if (!values.password) {
-            errors.password = "Required";
-          }
-          if (values.password && values.password.length < 8) {
-            errors.password = "Must contain at least 8 or more characters";
-          }
-          if (type === "Registration" && values.password !== values.passwordCheck) {
-            errors.passwordCheck = "Not same";
-          }
-
-          return errors;
-        }}
+        validate={validation}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className={classes.content}>
