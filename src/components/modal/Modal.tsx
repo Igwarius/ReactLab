@@ -3,15 +3,15 @@ import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { Form, Field } from "react-final-form";
 import urls from "@/constants/urls";
+import globalConstants from "@/constants/globalConstants";
+import { IModalProps } from "@/types";
 
 interface IForm {
   login: string | undefined;
   password: string | undefined;
   passwordCheck: string | undefined;
 }
-interface IType {
-  type: string;
-}
+
 interface IStatus {
   data: { success: boolean };
 }
@@ -33,21 +33,23 @@ const useStyles = makeStyles(() => ({
   content: { display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" },
   errors: { color: "red" },
 }));
-const MyForm = ({ type }: IType) => {
+const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     console.log(JSON.stringify(values));
     if (type !== "Registration") {
       const response: AxiosResponse<IStatus> = await axios.post(urls.LOG_IN, values);
       if (response.status === 200) {
-        localStorage.setItem("isAutorised", "true");
-        window.location.reload();
+        localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
+        changeIsLogged();
+        handleCloseReg();
       }
     } else {
       const response: AxiosResponse<IStatus> = await axios.post(urls.REGISTRATION, values);
       if (response.status === 200) {
-        localStorage.setItem("isAutorised", "true");
-        window.location.reload();
+        localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
+        changeIsLogged();
+        handleCloseReg();
       }
     }
   };

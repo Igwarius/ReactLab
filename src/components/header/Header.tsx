@@ -1,10 +1,12 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles, Modal } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
 import MyForm from "../modal/Modal";
+import globalConstants from "@/constants/globalConstants";
+import { IModalProps } from "@/types";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -36,23 +38,31 @@ const categoriesArray: ICategory[] = [
     path: `${urls.PRODUCTS}/xbox`,
   },
 ];
-interface IType {
-  type: string;
-}
 
 const Header = (): JSX.Element => {
-  const registration: IType = { type: "Registration" };
-  const logIn: IType = { type: "Log in" };
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
   const history = useHistory();
   const [openReg, setOpenReg] = React.useState(false);
   const handleOpenReg = () => setOpenReg(true);
-  const handleCloseReg = () => setOpenReg(false);
+  const handleCloseModal = () => {
+    setOpenReg(false);
+    setOpenLog(false);
+  };
   const [openLog, setOpenLog] = React.useState(false);
   const handleOpenLog = () => setOpenLog(true);
-  const handleCloseLog = () => setOpenLog(false);
 
+  const [isLogged, setIsLogged] = React.useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem(globalConstants.IS_AUTORISED_KEY)) {
+      changeIsLogged();
+    }
+  }, []);
+  const changeIsLogged = () => {
+    setIsLogged(true);
+    handleCloseModal();
+  };
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -67,7 +77,7 @@ const Header = (): JSX.Element => {
     setAnchorEl(null);
   };
   const onLogOut = () => {
-    localStorage.removeItem("isAutorised");
+    localStorage.removeItem(globalConstants.IS_AUTORISED_KEY);
     window.location.reload();
   };
 
@@ -84,6 +94,9 @@ const Header = (): JSX.Element => {
         {label}
       </Button>
     ));
+
+  const registration: IModalProps = { type: "Registration", changeIsLogged, handleCloseReg: handleCloseModal };
+  const logIn: IModalProps = { type: "Log in", changeIsLogged, handleCloseReg: handleCloseModal };
 
   return (
     <header>
@@ -103,7 +116,7 @@ const Header = (): JSX.Element => {
           >
             Categories
           </Button>
-          {!localStorage.getItem("isAutorised") ? (
+          {!isLogged ? (
             <div>
               <Button color="inherit" onClick={handleOpenReg}>
                 Registration
@@ -138,10 +151,10 @@ const Header = (): JSX.Element => {
           <Search />
         </Toolbar>
       </AppBar>
-      <Modal open={openReg} onClose={handleCloseReg}>
+      <Modal open={openReg} onClose={handleCloseModal}>
         <MyForm {...registration} />
       </Modal>
-      <Modal open={openLog} onClose={handleCloseLog}>
+      <Modal open={openLog} onClose={handleCloseModal}>
         <MyForm {...logIn} />
       </Modal>
     </header>
