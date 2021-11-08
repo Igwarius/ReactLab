@@ -19,20 +19,25 @@ interface IAuthStatus {
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "white",
+    color: "black",
     textDecoration: "none",
-    height: "300px",
+    height: "25%",
     margin: "0",
-    width: "300px",
+    width: "30%",
     position: "absolute",
     top: "50%",
     left: "50%",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
-  content: { display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center" },
+
+  content: { display: "flex", flexDirection: "column", justifyContent: "start" },
   errors: { color: "red" },
+  header: { display: "flex", alignItems: "center", justifyContent: "center" },
+  lableAndPass: { display: "flex", flexDirection: "row", justifyContent: "space-between" },
+  input: { width: "50%" },
+  passAndError: { display: "flex", flexDirection: "column" },
 }));
 
 const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
@@ -65,7 +70,7 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
       errors.password = "Required";
     }
     if (values.password && values.password.length < minPasswordLength) {
-      errors.password = "Must contain at least 8 or more characters";
+      errors.password = "8 or more characters";
     }
     if (type === "Registration" && values.password !== values.passwordCheck) {
       errors.passwordCheck = "Not same";
@@ -82,16 +87,19 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className={classes.content}>
-              <p>{type}</p>
+              <p className={classes.header}>{type}</p>
               <div>
                 <Field name="login">
                   {({ input, meta }) => (
-                    <div>
+                    <div className={classes.lableAndPass}>
                       <label>Login</label>
-                      <input {...input} type="text" placeholder="Login" />
-                      {(meta.error || meta.submitError) && meta.touched && (
-                        <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                      )}
+                      <div className={classes.passAndError}>
+                        <input className={classes.input} {...input} type="text" placeholder="Login" />
+
+                        {(meta.error || meta.submitError) && meta.touched && (
+                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
+                        )}
+                      </div>
                     </div>
                   )}
                 </Field>
@@ -100,12 +108,14 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
               <div>
                 <Field name="password">
                   {({ input, meta }) => (
-                    <div>
+                    <div className={classes.lableAndPass}>
                       <label>Password</label>
-                      <input type="text" {...input} placeholder="Password" />
-                      {(meta.error || meta.submitError) && meta.touched && (
-                        <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                      )}
+                      <div className={classes.passAndError}>
+                        <input className={classes.input} type="text" {...input} placeholder="Password" />
+                        {(meta.error || meta.submitError) && meta.touched && (
+                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
+                        )}
+                      </div>
                     </div>
                   )}
                 </Field>
@@ -115,12 +125,15 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
                 <div>
                   <Field name="passwordCheck">
                     {({ input, meta }) => (
-                      <div>
+                      <div className={classes.lableAndPass}>
                         <label>Password check</label>
-                        <input {...input} type="text" placeholder="Password check" />
-                        {(meta.error || meta.submitError) && meta.touched && (
-                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                        )}
+                        <div className={classes.passAndError}>
+                          <input className={classes.input} {...input} type="text" placeholder="Password check" />
+
+                          {(meta.error || meta.submitError) && meta.touched && (
+                            <span className={classes.errors}>{meta.error || meta.submitError}</span>
+                          )}
+                        </div>
                       </div>
                     )}
                   </Field>
@@ -128,6 +141,7 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
               ) : (
                 <div />
               )}
+
               <Button type="submit">{type}</Button>
             </div>
           </form>
