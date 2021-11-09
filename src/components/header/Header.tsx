@@ -40,16 +40,21 @@ const categoriesArray: ICategory[] = [
 ];
 
 const Header = (): JSX.Element => {
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
   const history = useHistory();
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+
   const [openReg, setOpenReg] = React.useState(false);
+
   const handleOpenReg = () => setOpenReg(true);
+
   const handleCloseModal = () => {
     setOpenReg(false);
     setOpenLog(false);
   };
+
   const [openLog, setOpenLog] = React.useState(false);
+
   const handleOpenLog = () => setOpenLog(true);
 
   const [isLogged, setIsLogged] = React.useState(false);
