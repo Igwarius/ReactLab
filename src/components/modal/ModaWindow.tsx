@@ -4,8 +4,8 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
-import globalConstants from "@/constants/globalConstants";
 import { IModalProps } from "@/types";
+import IS_AUTORISED_KEY from "@/constants/globalConstants";
 
 interface IForm {
   login: string | undefined;
@@ -62,7 +62,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
       values
     );
     if (response.status === StatusCodes.OK) {
-      localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
+      localStorage.setItem(IS_AUTORISED_KEY, "true");
       changeIsLogged();
       handleCloseReg();
     }

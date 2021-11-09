@@ -4,9 +4,9 @@ import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
-import globalConstants from "@/constants/globalConstants";
 import { IModalProps } from "@/types";
 import ModalWindow from "../modal/ModaWindow";
+import IS_AUTORISED_KEY from "@/constants/globalConstants";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -60,7 +60,7 @@ const Header = (): JSX.Element => {
   const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
   useEffect(() => {
-    if (localStorage.getItem(globalConstants.IS_AUTORISED_KEY)) {
+    if (localStorage.getItem(IS_AUTORISED_KEY)) {
       changeIsLogged();
     }
   }, []);
@@ -82,7 +82,7 @@ const Header = (): JSX.Element => {
     setAnchorEl(null);
   };
   const onLogOut = () => {
-    localStorage.removeItem(globalConstants.IS_AUTORISED_KEY);
+    localStorage.removeItem(IS_AUTORISED_KEY);
     window.location.reload();
   };
 

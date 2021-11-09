@@ -1,4 +1,3 @@
-const globalConstants = {
-  IS_AUTORISED_KEY: "isAutorised",
-};
+const globalConstants = "isAutorised";
+
 export default globalConstants;
