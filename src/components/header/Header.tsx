@@ -6,7 +6,7 @@ import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
 import ModalWindow from "../modal/ModaWindow";
-import IS_AUTORISED_KEY from "@/constants/globalConstants";
+import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -97,8 +97,8 @@ const Header = (): JSX.Element => {
       </Button>
     ));
 
-  const registration: IModalProps = { type: "Registration", changeIsLogged, handleCloseReg: handleCloseModal };
-  const logIn: IModalProps = { type: "Log in", changeIsLogged, handleCloseReg: handleCloseModal };
+  const registration: IModalProps = { type: ModalType.registration, changeIsLogged, handleCloseReg: handleCloseModal };
+  const logIn: IModalProps = { type: ModalType.logIn, changeIsLogged, handleCloseReg: handleCloseModal };
 
   return (
     <header>

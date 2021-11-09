@@ -5,7 +5,7 @@ import { Form } from "react-final-form";
 import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
 import { IFormInput, IModalProps } from "@/types";
-import IS_AUTORISED_KEY from "@/constants/globalConstants";
+import { InputName, InputPlaceholder, IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
 import FormInput from "./FormInput";
 
 interface IForm {
@@ -50,7 +50,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     const response: AxiosResponse<IAuthStatus> = await axios.post(
-      type !== "Registration" ? urls.LOG_IN : urls.REGISTRATION,
+      type !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
       values
     );
     if (response.status === StatusCodes.OK) {
@@ -72,16 +72,16 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     if (values.password && values.password.length < minPasswordLength) {
       errors.password = "8 or more characters";
     }
-    if (type === "Registration" && values.password !== values.passwordCheck) {
+    if (type === ModalType.registration && values.password !== values.passwordCheck) {
       errors.passwordCheck = "Not same";
     }
 
     return errors;
   };
 
-  const logIn: IFormInput = { name: "login", placeholder: "Login" };
-  const password: IFormInput = { name: "password", placeholder: "Password" };
-  const passwordCheck: IFormInput = { name: "passwordCheck", placeholder: "Password check" };
+  const logIn: IFormInput = { name: InputName.logIn, placeholder: InputPlaceholder.logIn };
+  const password: IFormInput = { name: InputName.password, placeholder: InputPlaceholder.password };
+  const passwordCheck: IFormInput = { name: InputName.passwordCheck, placeholder: InputPlaceholder.passwordCheck };
 
   return (
     <div className={classes.menuPaper}>
@@ -100,7 +100,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
                 <FormInput {...password} />
               </div>
 
-              {type === "Registration" ? (
+              {type === ModalType.registration ? (
                 <div>
                   <FormInput {...passwordCheck} />
                 </div>

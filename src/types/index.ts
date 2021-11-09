@@ -1,3 +1,5 @@
+import { InputName, InputPlaceholder, ModalType } from "@/constants/globalConstants";
+
 export interface IGame {
   id: number;
   name: string;
@@ -8,12 +10,12 @@ export interface IGame {
 }
 
 export interface IModalProps {
-  type: string;
+  type: ModalType;
   changeIsLogged: () => void;
   handleCloseReg: () => void;
 }
 
 export interface IFormInput {
-  name: string;
-  placeholder: string;
+  name: InputName;
+  placeholder: InputPlaceholder;
 }
