@@ -42,22 +42,19 @@ const categoriesArray: ICategory[] = [
 const Header = (): JSX.Element => {
   const classes = useStyles();
   const history = useHistory();
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+  const [openLog, setOpenLog] = React.useState<boolean>(false);
   const [openReg, setOpenReg] = React.useState<boolean>(false);
+  const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
   const handleOpenReg = () => setOpenReg(true);
+  const handleOpenLog = () => setOpenLog(true);
 
   const handleCloseModal = () => {
     setOpenReg(false);
     setOpenLog(false);
   };
-
-  const [openLog, setOpenLog] = React.useState<boolean>(false);
-
-  const handleOpenLog = () => setOpenLog(true);
-
-  const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem(IS_AUTORISED_KEY)) {
