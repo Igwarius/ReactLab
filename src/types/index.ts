@@ -6,8 +6,14 @@ export interface IGame {
   rating: number;
   date: Date;
 }
+
 export interface IModalProps {
   type: string;
   changeIsLogged: () => void;
   handleCloseReg: () => void;
+}
+
+export interface IFormInput {
+  name: string;
+  placeholder: string;
 }

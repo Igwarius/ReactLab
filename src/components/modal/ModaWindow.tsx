@@ -1,11 +1,12 @@
 import { Button, makeStyles } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
 import React from "react";
-import { Form, Field } from "react-final-form";
+import { Form } from "react-final-form";
 import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
-import { IModalProps } from "@/types";
+import { IFormInput, IModalProps } from "@/types";
 import IS_AUTORISED_KEY from "@/constants/globalConstants";
+import FormInput from "./FormInput";
 
 interface IForm {
   login: string | undefined;
@@ -36,21 +37,10 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "start",
   },
-  errors: { color: "red" },
   header: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-  lableAndPass: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  input: { width: "50%" },
-  passAndError: {
-    display: "flex",
-    flexDirection: "column",
   },
 }));
 
@@ -87,6 +77,10 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     return errors;
   };
 
+  const logIn: IFormInput = { name: "login", placeholder: "Login" };
+  const password: IFormInput = { name: "password", placeholder: "Password" };
+  const passwordCheck: IFormInput = { name: "passwordCheck", placeholder: "Password check" };
+
   return (
     <div className={classes.menuPaper}>
       <Form
@@ -97,54 +91,16 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
             <div className={classes.content}>
               <p className={classes.header}>{type}</p>
               <div>
-                <Field name="login">
-                  {({ input, meta }) => (
-                    <div className={classes.lableAndPass}>
-                      <span>Login</span>
-                      <div className={classes.passAndError}>
-                        <input className={classes.input} {...input} type="text" placeholder="Login" />
-
-                        {(meta.error || meta.submitError) && meta.touched && (
-                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </Field>
+                <FormInput {...logIn} />
               </div>
 
               <div>
-                <Field name="password">
-                  {({ input, meta }) => (
-                    <div className={classes.lableAndPass}>
-                      <span>Password</span>
-                      <div className={classes.passAndError}>
-                        <input className={classes.input} type="text" {...input} placeholder="Password" />
-                        {(meta.error || meta.submitError) && meta.touched && (
-                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </Field>
+                <FormInput {...password} />
               </div>
 
               {type === "Registration" ? (
                 <div>
-                  <Field name="passwordCheck">
-                    {({ input, meta }) => (
-                      <div className={classes.lableAndPass}>
-                        <span>Password check</span>
-                        <div className={classes.passAndError}>
-                          <input className={classes.input} {...input} type="text" placeholder="Password check" />
-
-                          {(meta.error || meta.submitError) && meta.touched && (
-                            <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </Field>
+                  <FormInput {...passwordCheck} />
                 </div>
               ) : (
                 <div />
