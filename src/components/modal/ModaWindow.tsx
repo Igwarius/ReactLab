@@ -39,7 +39,7 @@ const useStyles = makeStyles(() => ({
   passAndError: { display: "flex", flexDirection: "column" },
 }));
 
-const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
+const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     if (type !== "Registration") {
@@ -149,4 +149,4 @@ const MyForm = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     </div>
   );
 };
-export default MyForm;
+export default ModalWindow;

@@ -4,9 +4,9 @@ import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
-import MyForm from "../modal/Modal";
 import globalConstants from "@/constants/globalConstants";
 import { IModalProps } from "@/types";
+import ModalWindow from "../modal/ModaWindow";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -157,10 +157,10 @@ const Header = (): JSX.Element => {
         </Toolbar>
       </AppBar>
       <Modal open={openReg} onClose={handleCloseModal}>
-        <MyForm {...registration} />
+        <ModalWindow {...registration} />
       </Modal>
       <Modal open={openLog} onClose={handleCloseModal}>
-        <MyForm {...logIn} />
+        <ModalWindow {...logIn} />
       </Modal>
     </header>
   );
