@@ -100,7 +100,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
                 <Field name="login">
                   {({ input, meta }) => (
                     <div className={classes.lableAndPass}>
-                      <label>Login</label>
+                      <span>Login</span>
                       <div className={classes.passAndError}>
                         <input className={classes.input} {...input} type="text" placeholder="Login" />
 
@@ -117,7 +117,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
                 <Field name="password">
                   {({ input, meta }) => (
                     <div className={classes.lableAndPass}>
-                      <label>Password</label>
+                      <span>Password</span>
                       <div className={classes.passAndError}>
                         <input className={classes.input} type="text" {...input} placeholder="Password" />
                         {(meta.error || meta.submitError) && meta.touched && (
@@ -134,7 +134,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
                   <Field name="passwordCheck">
                     {({ input, meta }) => (
                       <div className={classes.lableAndPass}>
-                        <label>Password check</label>
+                        <span>Password check</span>
                         <div className={classes.passAndError}>
                           <input className={classes.input} {...input} type="text" placeholder="Password check" />
 
