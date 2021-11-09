@@ -31,31 +31,40 @@ const useStyles = makeStyles(() => ({
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
-  content: { display: "flex", flexDirection: "column", justifyContent: "start" },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "start",
+  },
   errors: { color: "red" },
-  header: { display: "flex", alignItems: "center", justifyContent: "center" },
-  lableAndPass: { display: "flex", flexDirection: "row", justifyContent: "space-between" },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lableAndPass: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   input: { width: "50%" },
-  passAndError: { display: "flex", flexDirection: "column" },
+  passAndError: {
+    display: "flex",
+    flexDirection: "column",
+  },
 }));
 
 const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
-    if (type !== "Registration") {
-      const response: AxiosResponse<IAuthStatus> = await axios.post(urls.LOG_IN, values);
-      if (response.status === StatusCodes.OK) {
-        localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
-        changeIsLogged();
-        handleCloseReg();
-      }
-    } else {
-      const response: AxiosResponse<IAuthStatus> = await axios.post(urls.REGISTRATION, values);
-      if (response.status === StatusCodes.OK) {
-        localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
-        changeIsLogged();
-        handleCloseReg();
-      }
+    const response: AxiosResponse<IAuthStatus> = await axios.post(
+      type !== "Registration" ? urls.LOG_IN : urls.REGISTRATION,
+      values
+    );
+    if (response.status === StatusCodes.OK) {
+      localStorage.setItem(globalConstants.IS_AUTORISED_KEY, "true");
+      changeIsLogged();
+      handleCloseReg();
     }
   };
 
