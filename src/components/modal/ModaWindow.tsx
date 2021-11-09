@@ -9,9 +9,9 @@ import IS_AUTORISED_KEY from "@/constants/globalConstants";
 import FormInput from "./FormInput";
 
 interface IForm {
-  login: string | undefined;
-  password: string | undefined;
-  passwordCheck: string | undefined;
+  login?: string;
+  password?: string;
+  passwordCheck?: string;
 }
 
 interface IAuthStatus {
