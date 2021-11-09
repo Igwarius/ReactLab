@@ -44,7 +44,7 @@ const Header = (): JSX.Element => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
 
-  const [openReg, setOpenReg] = React.useState(false);
+  const [openReg, setOpenReg] = React.useState<boolean>(false);
 
   const handleOpenReg = () => setOpenReg(true);
 
@@ -53,11 +53,11 @@ const Header = (): JSX.Element => {
     setOpenLog(false);
   };
 
-  const [openLog, setOpenLog] = React.useState(false);
+  const [openLog, setOpenLog] = React.useState<boolean>(false);
 
   const handleOpenLog = () => setOpenLog(true);
 
-  const [isLogged, setIsLogged] = React.useState(false);
+  const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem(globalConstants.IS_AUTORISED_KEY)) {
