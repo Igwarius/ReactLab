@@ -31,7 +31,6 @@ const useStyles = makeStyles(() => ({
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
-
   content: { display: "flex", flexDirection: "column", justifyContent: "start" },
   errors: { color: "red" },
   header: { display: "flex", alignItems: "center", justifyContent: "center" },
