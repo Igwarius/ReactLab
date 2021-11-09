@@ -4,13 +4,17 @@ import { Field } from "react-final-form";
 import { IFormInput } from "@/types";
 
 const useStyles = makeStyles(() => ({
-  errors: { color: "red" },
+  errors: {
+    color: "red",
+  },
   global_input_container: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
   },
-  input: { width: "50%" },
+  input: {
+    width: "50%",
+  },
   inner_input_container: {
     display: "flex",
     flexDirection: "column",

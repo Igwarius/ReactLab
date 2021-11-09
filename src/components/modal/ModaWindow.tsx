@@ -15,7 +15,9 @@ interface IForm {
 }
 
 interface IAuthStatus {
-  data: { success: boolean };
+  data: {
+    success: boolean;
+  };
 }
 
 const useStyles = makeStyles(() => ({
