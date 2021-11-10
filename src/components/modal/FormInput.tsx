@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
   errors: {
     color: "red",
   },
-  global_input_container: {
+  globalInputContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   input: {
     width: "50%",
   },
-  inner_input_container: {
+  innerInputContainer: {
     display: "flex",
     flexDirection: "column",
   },
@@ -27,9 +27,9 @@ const FormInput = ({ name, placeholder }: IFormInput) => {
   return (
     <Field name={name}>
       {({ input, meta }) => (
-        <div className={classes.global_input_container}>
+        <div className={classes.globalInputContainer}>
           <span>Login</span>
-          <div className={classes.inner_input_container}>
+          <div className={classes.innerInputContainer}>
             <input className={classes.input} {...input} type="text" placeholder={placeholder} />
 
             {(meta.error || meta.submitError) && meta.touched && (
