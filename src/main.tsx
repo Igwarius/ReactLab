@@ -22,7 +22,6 @@ class AppContainer extends Component {
           <Switch>
             <Route exact path={urls.MAIN} component={Main} />
             <Route path={urls.PRODUCTS} component={Products} />
-
             <Route exact path={urls.ABOUT} component={About} />
             <Route render={() => <Redirect to={urls.MAIN} />} />
           </Switch>

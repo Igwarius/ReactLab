@@ -3,7 +3,7 @@ import React, { SetStateAction, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
 import Urls from "@/constants/urls";
-import IGame from "@/types";
+import { IGame } from "@/types";
 
 const useStyles = makeStyles({
   input: {

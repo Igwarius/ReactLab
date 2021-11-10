@@ -1,9 +1,12 @@
-import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
-import React, { useState } from "react";
+import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles, Modal } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
 import urls from "@/constants/urls";
+import { IModalProps } from "@/types";
+import ModalWindow from "../modal/ModaWindow";
+import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -37,9 +40,31 @@ const categoriesArray: ICategory[] = [
 ];
 
 const Header = (): JSX.Element => {
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const classes = useStyles();
   const history = useHistory();
+
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+  const [openLog, setOpenLog] = React.useState<boolean>(false);
+  const [openReg, setOpenReg] = React.useState<boolean>(false);
+  const [isLogged, setIsLogged] = React.useState<boolean>(false);
+
+  const handleOpenReg = () => setOpenReg(true);
+  const handleOpenLog = () => setOpenLog(true);
+
+  const handleCloseModal = () => {
+    setOpenReg(false);
+    setOpenLog(false);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem(IS_AUTORISED_KEY)) {
+      changeIsLogged();
+    }
+  }, []);
+  const changeIsLogged = () => {
+    setIsLogged(true);
+    handleCloseModal();
+  };
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -52,6 +77,10 @@ const Header = (): JSX.Element => {
 
   const onHandleClose = () => {
     setAnchorEl(null);
+  };
+  const onLogOut = () => {
+    localStorage.removeItem(IS_AUTORISED_KEY);
+    window.location.reload();
   };
 
   const getMenuButtons = () =>
@@ -67,6 +96,9 @@ const Header = (): JSX.Element => {
         {label}
       </Button>
     ));
+
+  const registration: IModalProps = { type: ModalType.registration, changeIsLogged, handleCloseReg: handleCloseModal };
+  const logIn: IModalProps = { type: ModalType.logIn, changeIsLogged, handleCloseReg: handleCloseModal };
 
   return (
     <header>
@@ -86,7 +118,20 @@ const Header = (): JSX.Element => {
           >
             Categories
           </Button>
-
+          {!isLogged ? (
+            <div>
+              <Button color="inherit" onClick={handleOpenReg}>
+                Registration
+              </Button>
+              <Button color="inherit" onClick={handleOpenLog}>
+                Log in
+              </Button>
+            </div>
+          ) : (
+            <Button color="inherit" onClick={onLogOut}>
+              Log out
+            </Button>
+          )}
           <Menu
             classes={{ paper: classes.menuPaper }}
             color="inherit"
@@ -108,6 +153,12 @@ const Header = (): JSX.Element => {
           <Search />
         </Toolbar>
       </AppBar>
+      <Modal open={openReg} onClose={handleCloseModal}>
+        <ModalWindow {...registration} />
+      </Modal>
+      <Modal open={openLog} onClose={handleCloseModal}>
+        <ModalWindow {...logIn} />
+      </Modal>
     </header>
   );
 };

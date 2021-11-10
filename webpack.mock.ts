@@ -37,6 +37,12 @@ const games = [
     date: new Date("October 26, 2003"),
   },
 ];
+const users = [
+  {
+    login: "Igwarius",
+    password: "12345678",
+  },
+];
 export default webpackMockServer.add((app, helper) => {
   app.use(cors());
   app.get("/test-mock", (_req, res) => {
@@ -73,5 +79,20 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post("/test-post-mock", (req, res) => {
     res.json({ body: req.body || null, success: true });
+  });
+  app.post("/registration", (req, res) => {
+    users.push(req.body);
+    res.json({ success: true });
+  });
+  app.post("/log-in", (req, res) => {
+    const check = (element: { login: unknown; password: unknown }) =>
+      element.login === req.body.login && element.password === req.body.password;
+
+    if (users.some(check)) {
+      res.json({ success: true });
+    }
+
+    res.status(400);
+    res.json({ success: false });
   });
 });

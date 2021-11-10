@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import GameCard from "@/components/game-card/GameCard";
 import Urls from "@/constants/urls";
-import IGame from "@/types";
+import { IGame } from "@/types";
 
 const useStyles = makeStyles({
   header: {
