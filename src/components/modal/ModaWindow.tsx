@@ -5,7 +5,7 @@ import { Form } from "react-final-form";
 import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
 import { IFormInput, IModalProps } from "@/types";
-import { InputName, InputPlaceholder, IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
+import { InputName, InputType, InputPlaceholder, IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
 import FormInput from "./FormInput";
 
 interface IForm {
@@ -79,9 +79,17 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     return errors;
   };
 
-  const logIn: IFormInput = { name: InputName.logIn, placeholder: InputPlaceholder.logIn };
-  const password: IFormInput = { name: InputName.password, placeholder: InputPlaceholder.password };
-  const passwordCheck: IFormInput = { name: InputName.passwordCheck, placeholder: InputPlaceholder.passwordCheck };
+  const logIn: IFormInput = { name: InputName.logIn, placeholder: InputPlaceholder.logIn, type: InputType.text };
+  const password: IFormInput = {
+    name: InputName.password,
+    placeholder: InputPlaceholder.password,
+    type: InputType.password,
+  };
+  const passwordCheck: IFormInput = {
+    name: InputName.passwordCheck,
+    placeholder: InputPlaceholder.passwordCheck,
+    type: InputType.password,
+  };
 
   return (
     <div className={classes.menuPaper}>

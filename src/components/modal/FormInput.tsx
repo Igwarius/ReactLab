@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const FormInput = ({ name, placeholder }: IFormInput) => {
+const FormInput = ({ name, placeholder, type }: IFormInput) => {
   const classes = useStyles();
 
   return (
@@ -30,7 +30,7 @@ const FormInput = ({ name, placeholder }: IFormInput) => {
         <div className={classes.globalInputContainer}>
           <span>Login</span>
           <div className={classes.innerInputContainer}>
-            <input className={classes.input} {...input} type="text" placeholder={placeholder} />
+            <input className={classes.input} {...input} type={type} placeholder={placeholder} />
 
             {(meta.error || meta.submitError) && meta.touched && (
               <span className={classes.errors}>{meta.error || meta.submitError}</span>

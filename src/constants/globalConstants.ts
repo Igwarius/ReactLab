@@ -17,3 +17,8 @@ export const enum InputPlaceholder {
   password = "Password",
   passwordCheck = "Password Check",
 }
+
+export const enum InputType {
+  text = "text",
+  password = "password",
+}
