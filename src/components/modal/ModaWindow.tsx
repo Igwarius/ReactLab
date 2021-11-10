@@ -70,7 +70,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
       errors.password = "Required";
     }
     if (values.password && values.password.length < minPasswordLength) {
-      errors.password = "8 or more characters";
+      errors.password = `${minPasswordLength} or more characters`;
     }
     if (type === ModalType.registration && values.password !== values.passwordCheck) {
       errors.passwordCheck = "Not same";
