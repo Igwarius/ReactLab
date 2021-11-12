@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles, Modal } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
@@ -44,16 +44,21 @@ const Header = (): JSX.Element => {
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
-  const [openLog, setOpenLog] = React.useState<boolean>(false);
-  const [openReg, setOpenReg] = React.useState<boolean>(false);
+  const [modelType, setmodelType] = React.useState<ModalType | null>(null);
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
-  const handleOpenReg = () => setOpenReg(true);
-  const handleOpenLog = () => setOpenLog(true);
+  const handleOpenReg = () => {
+    setOpenModal(true);
+    setmodelType(ModalType.registration);
+  };
+  const handleOpenLog = () => {
+    setOpenModal(true);
+    setmodelType(ModalType.logIn);
+  };
 
   const handleCloseModal = () => {
-    setOpenReg(false);
-    setOpenLog(false);
+    setOpenModal(false);
   };
 
   useEffect(() => {
@@ -97,8 +102,12 @@ const Header = (): JSX.Element => {
       </Button>
     ));
 
-  const registration: IModalProps = { type: ModalType.registration, changeIsLogged, handleCloseReg: handleCloseModal };
-  const logIn: IModalProps = { type: ModalType.logIn, changeIsLogged, handleCloseReg: handleCloseModal };
+  const registration: IModalProps = {
+    typeModal: modelType,
+    changeIsLogged,
+    handleClose: handleCloseModal,
+    open: openModal,
+  };
 
   return (
     <header>
@@ -153,12 +162,8 @@ const Header = (): JSX.Element => {
           <Search />
         </Toolbar>
       </AppBar>
-      <Modal open={openReg} onClose={handleCloseModal}>
-        <ModalWindow {...registration} />
-      </Modal>
-      <Modal open={openLog} onClose={handleCloseModal}>
-        <ModalWindow {...logIn} />
-      </Modal>
+
+      <ModalWindow {...registration} />
     </header>
   );
 };
