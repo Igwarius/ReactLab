@@ -32,6 +32,7 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
+    "jsx-a11y/label-has-associated-control": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "no-use-before-define": "off",
     "import/no-extraneous-dependencies": "off",
