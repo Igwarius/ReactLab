@@ -10,9 +10,10 @@ export interface IGame {
 }
 
 export interface IModalProps {
-  type: ModalType;
+  typeModal: ModalType | null;
+  open: boolean;
   changeIsLogged: () => void;
-  handleCloseReg: () => void;
+  handleClose: () => void;
 }
 
 export interface IFormInput {

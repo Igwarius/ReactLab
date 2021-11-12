@@ -1,4 +1,4 @@
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, makeStyles, Modal } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { Form } from "react-final-form";
@@ -46,11 +46,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
+const ModalWindow = ({ typeModal, changeIsLogged, handleClose: handleCloseReg, open }: IModalProps) => {
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     const response: AxiosResponse<IAuthStatus> = await axios.post(
-      type !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
+      typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
       values
     );
     if (response.status === StatusCodes.OK) {
@@ -72,7 +72,7 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
     if (values.password && values.password.length < minPasswordLength) {
       errors.password = `${minPasswordLength} or more characters`;
     }
-    if (type === ModalType.registration && values.password !== values.passwordCheck) {
+    if (typeModal === ModalType.registration && values.password !== values.passwordCheck) {
       errors.passwordCheck = "Not same";
     }
 
@@ -92,36 +92,38 @@ const ModalWindow = ({ type, changeIsLogged, handleCloseReg }: IModalProps) => {
   };
 
   return (
-    <div className={classes.menuPaper}>
-      <Form
-        onSubmit={onSubmit}
-        validate={validation}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <div className={classes.content}>
-              <p className={classes.header}>{type}</p>
-              <div>
-                <FormInput {...logIn} />
-              </div>
-
-              <div>
-                <FormInput {...password} />
-              </div>
-
-              {type === ModalType.registration ? (
+    <Modal open={open} onClose={handleCloseReg}>
+      <div className={classes.menuPaper}>
+        <Form
+          onSubmit={onSubmit}
+          validate={validation}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <div className={classes.content}>
+                <p className={classes.header}>{typeModal}</p>
                 <div>
-                  <FormInput {...passwordCheck} />
+                  <FormInput {...logIn} />
                 </div>
-              ) : (
-                <div />
-              )}
 
-              <Button type="submit">{type}</Button>
-            </div>
-          </form>
-        )}
-      />
-    </div>
+                <div>
+                  <FormInput {...password} />
+                </div>
+
+                {typeModal === ModalType.registration ? (
+                  <div>
+                    <FormInput {...passwordCheck} />
+                  </div>
+                ) : (
+                  <div />
+                )}
+
+                <Button type="submit">{typeModal}</Button>
+              </div>
+            </form>
+          )}
+        />
+      </div>
+    </Modal>
   );
 };
 export default ModalWindow;

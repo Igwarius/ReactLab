@@ -28,7 +28,7 @@ const FormInput = ({ name, placeholder, type }: IFormInput) => {
     <Field name={name}>
       {({ input, meta }) => (
         <div className={classes.globalInputContainer}>
-          <span>Login</span>
+          <span>{placeholder}</span>
           <div className={classes.innerInputContainer}>
             <input className={classes.input} {...input} type={type} placeholder={placeholder} />
 
