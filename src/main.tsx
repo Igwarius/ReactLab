@@ -6,7 +6,7 @@ import Products from "./components/products/Products";
 import Main from "./components/main-page/MainPage";
 import urls from "./constants/urls";
 import About from "./components/about/About";
-import Header from "./components/header/Header";
+import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 import { IS_AUTORISED_KEY } from "./constants/globalConstants";
@@ -53,7 +53,7 @@ class AppContainer extends Component<IMainProps, IMainState> {
       <LogInContext.Provider value={{ isLogged: this.state.isLogged, signIn: this.signIn, signOut: this.signOut }}>
         <ErrorBoundary>
           <Router>
-            <Header />
+            <HeaderContainer />
 
             <Switch>
               <Route exact path={urls.MAIN} component={Main} />
