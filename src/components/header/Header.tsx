@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import headersData from "../../constants/headerData";
 import Search from "@/components/search/Searc";
@@ -7,6 +7,7 @@ import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
 import ModalWindow from "../modal/ModaWindow";
 import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
+import LogInContext from "../loginContext";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -46,7 +47,6 @@ const Header = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const [modelType, setmodelType] = React.useState<ModalType | null>(null);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
-  const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
   const handleOpenReg = () => {
     setOpenModal(true);
@@ -67,7 +67,6 @@ const Header = (): JSX.Element => {
     }
   }, []);
   const changeIsLogged = () => {
-    setIsLogged(true);
     handleCloseModal();
   };
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,8 +83,7 @@ const Header = (): JSX.Element => {
     setAnchorEl(null);
   };
   const onLogOut = () => {
-    localStorage.removeItem(IS_AUTORISED_KEY);
-    window.location.reload();
+    things.signOut && things.signOut();
   };
 
   const getMenuButtons = () =>
@@ -104,13 +102,13 @@ const Header = (): JSX.Element => {
 
   const registration: IModalProps = {
     typeModal: modelType,
-    changeIsLogged,
     handleClose: handleCloseModal,
     open: openModal,
   };
+  const things = useContext(LogInContext);
 
   return (
-    <header>
+    <>
       <AppBar position="sticky">
         <Typography variant="body1" color="inherit">
           Best Games Market
@@ -127,7 +125,7 @@ const Header = (): JSX.Element => {
           >
             Categories
           </Button>
-          {!isLogged ? (
+          {!things.isLogged ? (
             <div>
               <Button color="inherit" onClick={handleOpenReg}>
                 Registration
@@ -164,7 +162,7 @@ const Header = (): JSX.Element => {
       </AppBar>
 
       <ModalWindow {...registration} />
-    </header>
+    </>
   );
 };
 

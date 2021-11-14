@@ -1,12 +1,13 @@
 import { Button, makeStyles, Modal } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-final-form";
 import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
 import { IFormInput, IModalProps } from "@/types";
-import { InputName, InputType, InputPlaceholder, IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
+import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
 import FormInput from "./FormInput";
+import LogInContext from "../loginContext";
 
 interface IForm {
   login?: string;
@@ -46,7 +47,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ModalWindow = ({ typeModal, changeIsLogged, handleClose: handleCloseReg, open }: IModalProps) => {
+const ModalWindow = ({ typeModal, handleClose: handleCloseReg, open }: IModalProps) => {
+  const things = useContext(LogInContext);
   const classes = useStyles();
   const onSubmit = async (values: IForm) => {
     const response: AxiosResponse<IAuthStatus> = await axios.post(
@@ -54,9 +56,8 @@ const ModalWindow = ({ typeModal, changeIsLogged, handleClose: handleCloseReg, o
       values
     );
     if (response.status === StatusCodes.OK) {
-      localStorage.setItem(IS_AUTORISED_KEY, "true");
-      changeIsLogged();
       handleCloseReg();
+      things.signIn && things.signIn();
     }
   };
 

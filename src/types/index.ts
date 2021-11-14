@@ -12,7 +12,6 @@ export interface IGame {
 export interface IModalProps {
   typeModal: ModalType | null;
   open: boolean;
-  changeIsLogged: () => void;
   handleClose: () => void;
 }
 
@@ -20,4 +19,10 @@ export interface IFormInput {
   name: InputName;
   placeholder: InputPlaceholder;
   type: InputType;
+}
+
+export interface ILoginContext {
+  isLogged: boolean;
+  signIn?: () => void;
+  signOut?: () => void;
 }

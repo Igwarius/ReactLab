@@ -10,7 +10,8 @@ const useStyles = makeStyles(() => ({
   globalInputContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    marginRight: "20%",
   },
   input: {
     width: "50%",
