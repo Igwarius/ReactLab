@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component } from "react";
 import "./styles/index.css";
 import ReactDom from "react-dom";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
@@ -12,16 +12,12 @@ import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 import { IS_AUTORISED_KEY } from "./constants/globalConstants";
 import LogInContext from "./components/loginContext";
 
-interface IMainProps {
-  children: ReactNode;
-}
-
 interface IMainState {
   isLogged: boolean;
 }
 
-class AppContainer extends Component<IMainProps, IMainState> {
-  constructor(props: IMainProps) {
+class AppContainer extends Component<unknown, IMainState> {
+  constructor(props: unknown) {
     super(props);
     this.state = {
       isLogged: false,
@@ -66,4 +62,4 @@ class AppContainer extends Component<IMainProps, IMainState> {
 }
 
 // eslint-disable-next-line react/no-children-prop
-ReactDom.render(<AppContainer children={undefined} />, document.getElementById("app"));
+ReactDom.render(<AppContainer />, document.getElementById("app"));
