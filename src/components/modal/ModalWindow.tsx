@@ -48,9 +48,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ModalWindow = (props: IModalWindow) => {
+const ModalWindow = ({
+  typeModal,
+  handleClose,
+  open,
+  onSubmit,
+  validation,
+  logIn,
+  password,
+  passwordCheck,
+}: IModalWindow) => {
   const classes = useStyles();
-  const { typeModal, handleClose, open, onSubmit, validation, logIn, password, passwordCheck } = props;
 
   return (
     <Modal open={open} onClose={handleClose}>

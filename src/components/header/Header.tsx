@@ -32,20 +32,19 @@ export interface IHeaderProps {
   categoriesArray: ICategory[];
 }
 
-const Header = (props: IHeaderProps): JSX.Element => {
+const Header = ({
+  anchorEl,
+  onHandleClick,
+  things,
+  handleOpenReg,
+  handleOpenLog,
+  onLogOut,
+  onHandleClose,
+  onLinkClick,
+  registration,
+  categoriesArray,
+}: IHeaderProps): JSX.Element => {
   const classes = useStyles();
-  const {
-    anchorEl,
-    onHandleClick,
-    things,
-    handleOpenReg,
-    handleOpenLog,
-    onLogOut,
-    onHandleClose,
-    onLinkClick,
-    registration,
-    categoriesArray,
-  } = props;
 
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
