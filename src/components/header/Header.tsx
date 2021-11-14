@@ -1,8 +1,10 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Search from "@/components/search/Searc";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
 import { ILoginContext, IModalProps } from "@/types";
+import headersData from "@/constants/headerData";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -19,7 +21,6 @@ export interface ICategory {
 }
 
 export interface IHeaderProps {
-  getMenuButtons: () => JSX.Element[];
   anchorEl: (EventTarget & HTMLButtonElement) | null;
   onHandleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   things: ILoginContext;
@@ -35,7 +36,6 @@ export interface IHeaderProps {
 const Header = (props: IHeaderProps): JSX.Element => {
   const classes = useStyles();
   const {
-    getMenuButtons,
     anchorEl,
     onHandleClick,
     things,
@@ -47,6 +47,20 @@ const Header = (props: IHeaderProps): JSX.Element => {
     registration,
     categoriesArray,
   } = props;
+
+  const getMenuButtons = () =>
+    headersData.map(({ label, href }) => (
+      <Button
+        {...{
+          key: label,
+          color: "inherit",
+          to: href,
+          component: RouterLink,
+        }}
+      >
+        {label}
+      </Button>
+    ));
 
   return (
     <>

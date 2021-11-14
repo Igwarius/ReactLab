@@ -1,7 +1,5 @@
-import { Button } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { Link as RouterLink, useHistory } from "react-router-dom";
-import headersData from "../../constants/headerData";
+import { useHistory } from "react-router-dom";
 import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
 import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
@@ -74,20 +72,6 @@ const HeaderContainer = (): JSX.Element => {
     thingsContext.signOut && thingsContext.signOut();
   };
 
-  const getMenuButtons = () =>
-    headersData.map(({ label, href }) => (
-      <Button
-        {...{
-          key: label,
-          color: "inherit",
-          to: href,
-          component: RouterLink,
-        }}
-      >
-        {label}
-      </Button>
-    ));
-
   const registration: IModalProps = {
     typeModal: modelType,
     handleClose: handleCloseModal,
@@ -95,7 +79,6 @@ const HeaderContainer = (): JSX.Element => {
   };
 
   const props: IHeaderProps = {
-    getMenuButtons,
     anchorEl,
     onHandleClick,
     things: thingsContext,
