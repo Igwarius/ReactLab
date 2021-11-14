@@ -4,7 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import urls from "@/constants/urls";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
-import LogInContext from "../loginContext";
+import LogInContext from "../../contexts/loginContext";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
 
 interface IAuthStatus {

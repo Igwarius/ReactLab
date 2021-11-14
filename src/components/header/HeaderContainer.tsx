@@ -5,7 +5,7 @@ import headersData from "../../constants/headerData";
 import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
 import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
-import LogInContext from "../loginContext";
+import LogInContext from "../../contexts/loginContext";
 import Header, { ICategory, IHeaderProps } from "./Header";
 
 const categoriesArray: ICategory[] = [
