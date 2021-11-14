@@ -10,7 +10,7 @@ import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 import { IS_AUTORISED_KEY } from "./constants/globalConstants";
-import LogInContext from "./contexts/loginContext";
+import LogInContext from "@/contexts/loginContext";
 
 interface IMainState {
   isLogged: boolean;

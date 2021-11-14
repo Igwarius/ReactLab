@@ -28,7 +28,7 @@ const categoriesArray: ICategory[] = [
 
 const HeaderContainer = (): JSX.Element => {
   const history = useHistory();
-
+  const thingsContext = useContext(LogInContext);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const [modelType, setModelType] = React.useState<ModalType | null>(null);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
@@ -71,7 +71,7 @@ const HeaderContainer = (): JSX.Element => {
     setAnchorEl(null);
   };
   const onLogOut = () => {
-    things.signOut && things.signOut();
+    thingsContext.signOut && thingsContext.signOut();
   };
 
   const getMenuButtons = () =>
@@ -94,13 +94,11 @@ const HeaderContainer = (): JSX.Element => {
     open: openModal,
   };
 
-  const things = useContext(LogInContext);
-
   const props: IHeaderProps = {
     getMenuButtons,
     anchorEl,
     onHandleClick,
-    things,
+    things: thingsContext,
     handleOpenReg,
     handleOpenLog,
     onLogOut,
