@@ -8,17 +8,14 @@ import Header, { ICategory, IHeaderProps } from "./Header";
 
 const categoriesArray: ICategory[] = [
   {
-    id: 1,
     label: "PC",
     path: `${urls.PRODUCTS}/pc`,
   },
   {
-    id: 2,
     label: "PS",
     path: `${urls.PRODUCTS}/ps`,
   },
   {
-    id: 3,
     label: "XBOX",
     path: `${urls.PRODUCTS}/xbox`,
   },

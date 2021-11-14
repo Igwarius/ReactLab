@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export interface ICategory {
-  id: number;
   label: string;
   path: string;
 }
@@ -106,8 +105,8 @@ const Header = (props: IHeaderProps): JSX.Element => {
             MenuListProps={{ onMouseLeave: onHandleClose }}
             TransitionComponent={Fade}
           >
-            {categoriesArray.map((element) => (
-              <MenuItem key={element.id} color="inherit" onClick={() => onLinkClick(element.path)}>
+            {categoriesArray.map((element, index) => (
+              <MenuItem key={index} color="inherit" onClick={() => onLinkClick(element.path)}>
                 {element.label}
               </MenuItem>
             ))}
