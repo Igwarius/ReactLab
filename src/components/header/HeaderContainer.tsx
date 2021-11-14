@@ -37,6 +37,7 @@ const HeaderContainer = (): JSX.Element => {
     setOpenModal(true);
     setmodelType(ModalType.registration);
   };
+
   const handleOpenLog = () => {
     setOpenModal(true);
     setmodelType(ModalType.logIn);
@@ -51,9 +52,11 @@ const HeaderContainer = (): JSX.Element => {
       changeIsLogged();
     }
   }, []);
+
   const changeIsLogged = () => {
     handleCloseModal();
   };
+
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -90,7 +93,9 @@ const HeaderContainer = (): JSX.Element => {
     handleClose: handleCloseModal,
     open: openModal,
   };
+
   const things = useContext(LogInContext);
+
   const props: IHeaderProps = {
     getMenuButtons,
     anchorEl,
