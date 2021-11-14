@@ -61,5 +61,4 @@ class AppContainer extends Component<unknown, IMainState> {
   }
 }
 
-// eslint-disable-next-line react/no-children-prop
 ReactDom.render(<AppContainer />, document.getElementById("app"));

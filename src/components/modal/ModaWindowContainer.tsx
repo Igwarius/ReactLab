@@ -45,7 +45,11 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
     return errors;
   };
 
-  const logIn: IFormInput = { name: InputName.logIn, placeholder: InputPlaceholder.logIn, type: InputType.text };
+  const logIn: IFormInput = {
+    name: InputName.logIn,
+    placeholder: InputPlaceholder.logIn,
+    type: InputType.text,
+  };
   const password: IFormInput = {
     name: InputName.password,
     placeholder: InputPlaceholder.password,
