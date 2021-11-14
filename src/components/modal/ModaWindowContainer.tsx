@@ -14,7 +14,7 @@ interface IAuthStatus {
 }
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
-  const things = useContext(LogInContext);
+  const thingsContext = useContext(LogInContext);
   const onSubmit = async (values: IForm) => {
     const response: AxiosResponse<IAuthStatus> = await axios.post(
       typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
@@ -22,7 +22,7 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
     );
     if (response.status === StatusCodes.OK) {
       handleClose();
-      things.signIn && things.signIn();
+      thingsContext.signIn && thingsContext.signIn();
     }
   };
 
