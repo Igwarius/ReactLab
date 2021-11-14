@@ -29,12 +29,8 @@ class AppContainer extends Component<IMainProps, IMainState> {
   }
 
   componentDidMount(): void {
-    console.log(this.state.isLogged);
-    console.log(localStorage.getItem(IS_AUTORISED_KEY));
     if (localStorage.getItem(IS_AUTORISED_KEY)) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ isLogged: true });
-      console.log(this.state.isLogged);
     }
   }
 
