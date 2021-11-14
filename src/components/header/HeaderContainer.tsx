@@ -30,17 +30,17 @@ const HeaderContainer = (): JSX.Element => {
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
-  const [modelType, setmodelType] = React.useState<ModalType | null>(null);
+  const [modelType, setModelType] = React.useState<ModalType | null>(null);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
 
   const handleOpenReg = () => {
     setOpenModal(true);
-    setmodelType(ModalType.registration);
+    setModelType(ModalType.registration);
   };
 
   const handleOpenLog = () => {
     setOpenModal(true);
-    setmodelType(ModalType.logIn);
+    setModelType(ModalType.logIn);
   };
 
   const handleCloseModal = () => {
