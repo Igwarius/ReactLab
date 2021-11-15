@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
-import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
+import { IS_AUTHORIZED_KEY, ModalType } from "@/constants/globalConstants";
 import LogInContext from "../../contexts/loginContext";
 import Header, { ICategory, IHeaderProps } from "./Header";
 
@@ -43,7 +43,7 @@ const HeaderContainer = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem(IS_AUTORISED_KEY)) {
+    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
       changeIsLogged();
     }
   }, []);

@@ -9,7 +9,7 @@ import About from "./components/about/About";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
-import { IS_AUTORISED_KEY } from "./constants/globalConstants";
+import { IS_AUTHORIZED_KEY } from "./constants/globalConstants";
 import LogInContext from "@/contexts/loginContext";
 
 interface IMainState {
@@ -25,18 +25,18 @@ class AppContainer extends Component<unknown, IMainState> {
   }
 
   componentDidMount(): void {
-    if (localStorage.getItem(IS_AUTORISED_KEY)) {
+    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
       this.setState({ isLogged: true });
     }
   }
 
   signIn = () => {
-    localStorage.setItem(IS_AUTORISED_KEY, "true");
+    localStorage.setItem(IS_AUTHORIZED_KEY, "true");
     this.setState({ isLogged: true });
   };
 
   signOut = () => {
-    localStorage.removeItem(IS_AUTORISED_KEY);
+    localStorage.removeItem(IS_AUTHORIZED_KEY);
     this.setState({ isLogged: false });
   };
 
