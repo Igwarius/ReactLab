@@ -78,7 +78,7 @@ const HeaderContainer = (): JSX.Element => {
   const props: IHeaderProps = {
     anchorEl,
     onHandleClick,
-    things: thingsContext,
+    isLogged: thingsContext.isLogged,
     handleOpenReg,
     handleOpenLog,
     onLogOut,

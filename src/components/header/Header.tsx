@@ -3,7 +3,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Search from "@/components/search/Searc";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
-import { ILoginContext, IModalProps } from "@/types";
+import { IModalProps } from "@/types";
 import headersData from "@/constants/headerData";
 
 const useStyles = makeStyles(() => ({
@@ -22,7 +22,7 @@ export interface ICategory {
 export interface IHeaderProps {
   anchorEl: (EventTarget & HTMLButtonElement) | null;
   onHandleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  things: ILoginContext;
+  isLogged: boolean;
   handleOpenReg: () => void;
   handleOpenLog: () => void;
   onLogOut: () => void;
@@ -35,7 +35,7 @@ export interface IHeaderProps {
 const Header = ({
   anchorEl,
   onHandleClick,
-  things,
+  isLogged,
   handleOpenReg,
   handleOpenLog,
   onLogOut,
@@ -78,7 +78,7 @@ const Header = ({
           >
             Categories
           </Button>
-          {!things.isLogged ? (
+          {!isLogged ? (
             <div>
               <Button color="inherit" onClick={handleOpenReg}>
                 Registration
