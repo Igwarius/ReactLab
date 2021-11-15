@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-export const IS_AUTORISED_KEY = "isAutorised";
+export const IS_AUTHORIZED_KEY = "isAutorised";
 
 export const enum ModalType {
   registration = "Registration",

@@ -33,6 +33,7 @@ module.exports = {
       },
     ],
     "jsx-a11y/label-has-associated-control": "off",
+    "react/no-array-index-key": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "no-use-before-define": "off",
     "import/no-extraneous-dependencies": "off",

@@ -1,12 +1,10 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { Link as RouterLink, useHistory } from "react-router-dom";
-import headersData from "../../constants/headerData";
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Search from "@/components/search/Searc";
-import urls from "@/constants/urls";
+import ModalWindowContainer from "../modal/ModaWindowContainer";
 import { IModalProps } from "@/types";
-import ModalWindow from "../modal/ModaWindow";
-import { IS_AUTORISED_KEY, ModalType } from "@/constants/globalConstants";
+import headersData from "@/constants/headerData";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -15,78 +13,38 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
 }));
-interface ICategory {
-  id: number;
+
+export interface ICategory {
   label: string;
   path: string;
 }
 
-const categoriesArray: ICategory[] = [
-  {
-    id: 1,
-    label: "PC",
-    path: `${urls.PRODUCTS}/pc`,
-  },
-  {
-    id: 2,
-    label: "PS",
-    path: `${urls.PRODUCTS}/ps`,
-  },
-  {
-    id: 3,
-    label: "XBOX",
-    path: `${urls.PRODUCTS}/xbox`,
-  },
-];
+export interface IHeaderProps {
+  anchorEl: (EventTarget & HTMLButtonElement) | null;
+  onHandleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  isLogged: boolean;
+  handleOpenReg: () => void;
+  handleOpenLog: () => void;
+  onLogOut: () => void;
+  onHandleClose: () => void;
+  onLinkClick: (link: string) => void;
+  registration: IModalProps;
+  categoriesArray: ICategory[];
+}
 
-const Header = (): JSX.Element => {
+const Header = ({
+  anchorEl,
+  onHandleClick,
+  isLogged,
+  handleOpenReg,
+  handleOpenLog,
+  onLogOut,
+  onHandleClose,
+  onLinkClick,
+  registration,
+  categoriesArray,
+}: IHeaderProps): JSX.Element => {
   const classes = useStyles();
-  const history = useHistory();
-
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
-  const [modelType, setmodelType] = React.useState<ModalType | null>(null);
-  const [openModal, setOpenModal] = React.useState<boolean>(false);
-  const [isLogged, setIsLogged] = React.useState<boolean>(false);
-
-  const handleOpenReg = () => {
-    setOpenModal(true);
-    setmodelType(ModalType.registration);
-  };
-  const handleOpenLog = () => {
-    setOpenModal(true);
-    setmodelType(ModalType.logIn);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem(IS_AUTORISED_KEY)) {
-      changeIsLogged();
-    }
-  }, []);
-  const changeIsLogged = () => {
-    setIsLogged(true);
-    handleCloseModal();
-  };
-  const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  const onLinkClick = (link: string) => {
-    history.push(link);
-  };
-
-  const onHandleClose = () => {
-    setAnchorEl(null);
-  };
-  const onLogOut = () => {
-    localStorage.removeItem(IS_AUTORISED_KEY);
-    window.location.reload();
-  };
 
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
@@ -102,15 +60,8 @@ const Header = (): JSX.Element => {
       </Button>
     ));
 
-  const registration: IModalProps = {
-    typeModal: modelType,
-    changeIsLogged,
-    handleClose: handleCloseModal,
-    open: openModal,
-  };
-
   return (
-    <header>
+    <>
       <AppBar position="sticky">
         <Typography variant="body1" color="inherit">
           Best Games Market
@@ -153,8 +104,8 @@ const Header = (): JSX.Element => {
             MenuListProps={{ onMouseLeave: onHandleClose }}
             TransitionComponent={Fade}
           >
-            {categoriesArray.map((element) => (
-              <MenuItem key={element.id} color="inherit" onClick={() => onLinkClick(element.path)}>
+            {categoriesArray.map((element, index) => (
+              <MenuItem key={index} color="inherit" onClick={() => onLinkClick(element.path)}>
                 {element.label}
               </MenuItem>
             ))}
@@ -163,8 +114,8 @@ const Header = (): JSX.Element => {
         </Toolbar>
       </AppBar>
 
-      <ModalWindow {...registration} />
-    </header>
+      <ModalWindowContainer {...registration} />
+    </>
   );
 };
 
