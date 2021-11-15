@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import urls from "@/constants/urls";
 import { IModalProps } from "@/types";
-import { IS_AUTHORIZED_KEY, ModalType } from "@/constants/globalConstants";
+import { ModalType } from "@/constants/globalConstants";
 import LogInContext from "../../contexts/loginContext";
 import Header, { ICategory, IHeaderProps } from "./Header";
 
@@ -40,16 +40,6 @@ const HeaderContainer = (): JSX.Element => {
 
   const handleCloseModal = () => {
     setOpenModal(false);
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
-      changeIsLogged();
-    }
-  }, []);
-
-  const changeIsLogged = () => {
-    handleCloseModal();
   };
 
   const onHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
