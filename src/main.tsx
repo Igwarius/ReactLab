@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import "./styles/index.css";
 import ReactDom from "react-dom";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { Provider } from "react-redux";
 import Products from "./components/products/Products";
 import Main from "./components/main-page/MainPage";
 import urls from "./constants/urls";
@@ -9,56 +10,24 @@ import About from "./components/about/About";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
-import { IS_AUTHORIZED_KEY } from "./constants/globalConstants";
-import LogInContext from "@/contexts/loginContext";
+import { store } from "./Redux/reduxStore";
 
-interface IMainState {
-  isLogged: boolean;
-}
+const AppContainer = (): JSX.Element => (
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Router>
+        <HeaderContainer />
 
-class AppContainer extends Component<unknown, IMainState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      isLogged: false,
-    };
-  }
-
-  componentDidMount(): void {
-    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
-      this.setState({ isLogged: true });
-    }
-  }
-
-  signIn = () => {
-    localStorage.setItem(IS_AUTHORIZED_KEY, "true");
-    this.setState({ isLogged: true });
-  };
-
-  signOut = () => {
-    localStorage.removeItem(IS_AUTHORIZED_KEY);
-    this.setState({ isLogged: false });
-  };
-
-  render() {
-    return (
-      <LogInContext.Provider value={{ isLogged: this.state.isLogged, signIn: this.signIn, signOut: this.signOut }}>
-        <ErrorBoundary>
-          <Router>
-            <HeaderContainer />
-
-            <Switch>
-              <Route exact path={urls.MAIN} component={Main} />
-              <Route path={urls.PRODUCTS} component={Products} />
-              <Route exact path={urls.ABOUT} component={About} />
-              <Route render={() => <Redirect to={urls.MAIN} />} />
-            </Switch>
-            <Footer />
-          </Router>
-        </ErrorBoundary>
-      </LogInContext.Provider>
-    );
-  }
-}
+        <Switch>
+          <Route exact path={urls.MAIN} component={Main} />
+          <Route path={urls.PRODUCTS} component={Products} />
+          <Route exact path={urls.ABOUT} component={About} />
+          <Route render={() => <Redirect to={urls.MAIN} />} />
+        </Switch>
+        <Footer />
+      </Router>
+    </Provider>
+  </ErrorBoundary>
+);
 
 ReactDom.render(<AppContainer />, document.getElementById("app"));

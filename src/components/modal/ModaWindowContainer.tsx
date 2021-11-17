@@ -1,11 +1,12 @@
 import axios, { AxiosResponse } from "axios";
-import React, { useContext } from "react";
+import React from "react";
 import { StatusCodes } from "http-status-codes";
+import { useDispatch } from "react-redux";
 import urls from "@/constants/urls";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
-import LogInContext from "../../contexts/loginContext";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
+import { signIn } from "@/Redux/reducer";
 
 interface IAuthStatus {
   data: {
@@ -14,7 +15,7 @@ interface IAuthStatus {
 }
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
-  const thingsContext = useContext(LogInContext);
+  const dispatch = useDispatch();
   const onSubmit = async (values: IForm) => {
     const response: AxiosResponse<IAuthStatus> = await axios.post(
       typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
@@ -22,7 +23,7 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
     );
     if (response.status === StatusCodes.OK) {
       handleClose();
-      thingsContext.signIn && thingsContext.signIn();
+      dispatch(signIn());
     }
   };
 
