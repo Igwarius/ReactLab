@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import GameCard from "@/components/game-card/GameCard";
 import { IGame } from "@/types";
-import { getThreeGames } from "@/Redux/reducer";
+import { getThreeGames } from "@/redux/reducer";
 
 interface IToolkit {
   toolkit: {

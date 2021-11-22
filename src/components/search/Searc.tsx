@@ -3,7 +3,7 @@ import React, { SetStateAction, useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { IGame } from "@/types";
-import { getSearchGames } from "@/Redux/reducer";
+import { getSearchGames } from "@/redux/reducer";
 
 const useStyles = makeStyles({
   input: {

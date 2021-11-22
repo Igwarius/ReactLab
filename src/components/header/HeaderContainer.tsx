@@ -5,7 +5,7 @@ import urls from "../../constants/urls";
 import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { ICategory, IHeaderProps } from "./Header";
-import { signIn, signOut } from "@/Redux/reducer";
+import { signIn, signOut } from "@/redux/reducer";
 
 interface IToolkit {
   toolkit: {

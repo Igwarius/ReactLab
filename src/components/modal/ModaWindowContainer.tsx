@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { registrationOrLogin, signIn } from "@/Redux/reducer";
+import { registrationOrLogin, signIn } from "@/redux/reducer";
 
 interface IToolkit {
   toolkit: {

@@ -10,7 +10,7 @@ import About from "./components/about/About";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
-import { store } from "./Redux/reduxStore";
+import { store } from "./redux/reduxStore";
 
 const AppContainer = (): JSX.Element => (
   <ErrorBoundary>
