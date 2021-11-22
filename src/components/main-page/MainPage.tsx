@@ -1,9 +1,15 @@
-import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 import GameCard from "@/components/game-card/GameCard";
-import Urls from "@/constants/urls";
 import { IGame } from "@/types";
+import { getThreeGames } from "@/Redux/reducer";
+
+interface IToolkit {
+  toolkit: {
+    games: IGame[];
+  };
+}
 
 const useStyles = makeStyles({
   header: {
@@ -18,16 +24,17 @@ const useStyles = makeStyles({
 
 const Main = () => {
   const classes = useStyles();
-  const [games, setGames] = useState<IGame[]>([]);
+  const dispatch = useDispatch();
 
+  const [isOnline, setIsOnline] = useState(false);
+  let games: IGame[] = [];
+  games = useSelector((state: IToolkit) => state.toolkit.games);
   useEffect(() => {
-    const getTopThreeGames = async () => {
-      const response: AxiosResponse<IGame[]> = await axios.get(Urls.GET_THREE_GAMES);
-      setGames(response.data);
-    };
-
-    getTopThreeGames();
-  }, []);
+    if (!isOnline) {
+      dispatch(getThreeGames());
+      setIsOnline(true);
+    }
+  });
 
   return (
     <>

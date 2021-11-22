@@ -1,9 +1,9 @@
 import { useDebouncedCallback } from "use-debounce";
 import React, { SetStateAction, useState } from "react";
-import axios, { AxiosResponse } from "axios";
 import { makeStyles, styled } from "@material-ui/core";
-import Urls from "@/constants/urls";
+import { useDispatch, useSelector } from "react-redux";
 import { IGame } from "@/types";
+import { getSearchGames } from "@/Redux/reducer";
 
 const useStyles = makeStyles({
   input: {
@@ -14,6 +14,12 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
   },
 });
+
+interface IToolkit {
+  toolkit: {
+    searchGames: IGame[];
+  };
+}
 
 const Listbox = styled("ul")(({ theme }) => ({
   width: "300px",
@@ -41,19 +47,20 @@ const Listbox = styled("ul")(({ theme }) => ({
 
 const Search = () => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const onClickGameShow = (name: string) => {
     alert(name);
   };
 
-  const [games, setGames] = useState<IGame[]>([]);
   const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
+  const games = useSelector((state: IToolkit) => state.toolkit.searchGames);
 
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
+    console.log(value);
     if (value.length >= 3) {
-      const response: AxiosResponse<IGame[]> = await axios.get(`${Urls.GET_GAME_BY_NAME}?name=${value}`);
-      setGames(response.data);
+      console.log(dispatch(getSearchGames(value)));
+      await dispatch(getSearchGames(value));
     }
   }, debounceDelay);
 

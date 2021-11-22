@@ -1,29 +1,25 @@
-import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { StatusCodes } from "http-status-codes";
-import { useDispatch } from "react-redux";
-import urls from "@/constants/urls";
+import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { signIn } from "@/Redux/reducer";
+import { registrationOrLogin, signIn } from "@/Redux/reducer";
 
-interface IAuthStatus {
-  data: {
-    success: boolean;
+interface IToolkit {
+  toolkit: {
+    status: number;
   };
 }
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();
+  const statusRed = useSelector((state: IToolkit) => state.toolkit.status);
   const onSubmit = async (values: IForm) => {
-    const response: AxiosResponse<IAuthStatus> = await axios.post(
-      typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION,
-      values
-    );
-    if (response.status === StatusCodes.OK) {
+    dispatch(registrationOrLogin({ typeModal, values }));
+    if (statusRed === StatusCodes.OK) {
       handleClose();
-      dispatch(signIn());
+      await dispatch(signIn());
     }
   };
 
