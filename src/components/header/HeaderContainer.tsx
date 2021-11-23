@@ -5,10 +5,10 @@ import urls from "../../constants/urls";
 import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { ICategory, IHeaderProps } from "./Header";
-import { signIn, signOut } from "@/redux/reducer";
+import { signIn, signOut } from "@/redux/actions/authActions";
 
-interface IToolkit {
-  toolkit: {
+interface IAuth {
+  auth: {
     isAutorised: boolean;
   };
 }
@@ -79,7 +79,7 @@ const HeaderContainer = (): JSX.Element => {
     open: openModal,
   };
 
-  const IsLogged = useSelector((state: IToolkit) => state.toolkit.isAutorised);
+  const IsLogged = useSelector((state: IAuth) => state.auth.isAutorised);
   const props: IHeaderProps = {
     anchorEl,
     onHandleClick,

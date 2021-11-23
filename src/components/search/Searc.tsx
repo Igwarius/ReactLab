@@ -3,7 +3,7 @@ import React, { SetStateAction, useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { IGame } from "@/types";
-import { getSearchGames } from "@/redux/reducer";
+import { getSearchGames } from "@/redux/actions/gameActions";
 
 const useStyles = makeStyles({
   input: {
@@ -15,8 +15,8 @@ const useStyles = makeStyles({
   },
 });
 
-interface IToolkit {
-  toolkit: {
+interface IGames {
+  game: {
     searchGames: IGame[];
   };
 }
@@ -54,7 +54,7 @@ const Search = () => {
 
   const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
-  const games = useSelector((state: IToolkit) => state.toolkit.searchGames);
+  const games = useSelector((state: IGames) => state.game.searchGames);
 
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     console.log(value);

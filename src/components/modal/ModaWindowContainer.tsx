@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { registrationOrLogin, signIn } from "@/redux/reducer";
+import { registrationOrLogin, signIn } from "@/redux/actions/authActions";
 
-interface IToolkit {
-  toolkit: {
+interface IAuth {
+  auth: {
     status: number;
   };
 }
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();
-  const statusRed = useSelector((state: IToolkit) => state.toolkit.status);
+  const statusRed = useSelector((state: IAuth) => state.auth.status);
   const onSubmit = async (values: IForm) => {
     dispatch(registrationOrLogin({ typeModal, values }));
     if (statusRed === StatusCodes.OK) {
