@@ -3,13 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import GameCard from "@/components/game-card/GameCard";
 import { IGame } from "@/types";
-import { getThreeGames } from "@/redux/actions/gameActions";
-
-interface IGames {
-  game: {
-    games: IGame[];
-  };
-}
+import { getThreeGamesSelector } from "@/redux/selectors/gameSelectors";
 
 const useStyles = makeStyles({
   header: {
@@ -28,10 +22,10 @@ const Main = () => {
 
   const [isOnline, setIsOnline] = useState(false);
   let games: IGame[] = [];
-  games = useSelector((state: IGames) => state.game.games);
+  games = useSelector(getThreeGamesSelector);
   useEffect(() => {
     if (!isOnline) {
-      dispatch(getThreeGames());
+      dispatch(getThreeGamesSelector);
       setIsOnline(true);
     }
   });

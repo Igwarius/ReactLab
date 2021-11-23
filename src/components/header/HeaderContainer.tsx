@@ -6,12 +6,7 @@ import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { ICategory, IHeaderProps } from "./Header";
 import { signIn, signOut } from "@/redux/actions/authActions";
-
-interface IAuth {
-  auth: {
-    isAutorised: boolean;
-  };
-}
+import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
 
 const categoriesArray: ICategory[] = [
   {
@@ -79,11 +74,11 @@ const HeaderContainer = (): JSX.Element => {
     open: openModal,
   };
 
-  const IsLogged = useSelector((state: IAuth) => state.auth.isAutorised);
+  const isLogged = useSelector(isAutorisedSelector);
   const props: IHeaderProps = {
     anchorEl,
     onHandleClick,
-    isLogged: IsLogged,
+    isLogged,
     handleOpenReg,
     handleOpenLog,
     onLogOut,

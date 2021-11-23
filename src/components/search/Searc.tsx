@@ -2,8 +2,8 @@ import { useDebouncedCallback } from "use-debounce";
 import React, { SetStateAction, useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { IGame } from "@/types";
 import { getSearchGames } from "@/redux/actions/gameActions";
+import { getSearchGamesSelector } from "@/redux/selectors/gameSelectors";
 
 const useStyles = makeStyles({
   input: {
@@ -14,12 +14,6 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
   },
 });
-
-interface IGames {
-  game: {
-    searchGames: IGame[];
-  };
-}
 
 const Listbox = styled("ul")(({ theme }) => ({
   width: "300px",
@@ -54,7 +48,7 @@ const Search = () => {
 
   const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
-  const games = useSelector((state: IGames) => state.game.searchGames);
+  const games = useSelector(getSearchGamesSelector);
 
   const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
     console.log(value);
