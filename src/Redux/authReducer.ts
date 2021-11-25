@@ -14,7 +14,7 @@ const initialState: IState = {
 };
 
 export default createReducer(initialState, {
-  [signIn.type]: (state: { isAutorised: boolean }) => {
+  [signIn.type]: (state) => {
     state.isAutorised = true;
   },
   [signOut.type]: (state) => {
