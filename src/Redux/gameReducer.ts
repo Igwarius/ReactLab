@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createReducer } from "@reduxjs/toolkit";
 import { IGame } from "@/types";
-import { getThreeGames, getSearchGames } from "@/redux/actions/gameActions";
+import { getSearchGames, getThreeGames } from "./thunks/gameThunks";
 
 interface IState {
   games: IGame[];

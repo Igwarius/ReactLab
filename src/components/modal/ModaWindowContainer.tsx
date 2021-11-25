@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { registrationOrLogin, signIn } from "@/redux/actions/authActions";
 import { getStatusSelector } from "@/redux/selectors/authSelectors";
+import { signIn } from "@/redux/actions/authActions";
+import { registrationOrLogin } from "@/redux/thunks/authThunks";
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();

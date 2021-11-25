@@ -2,8 +2,8 @@ import { useDebouncedCallback } from "use-debounce";
 import React, { SetStateAction, useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearchGames } from "@/redux/actions/gameActions";
 import { getSearchGamesSelector } from "@/redux/selectors/gameSelectors";
+import { getSearchGames } from "@/redux/thunks/gameThunks";
 
 const useStyles = makeStyles({
   input: {

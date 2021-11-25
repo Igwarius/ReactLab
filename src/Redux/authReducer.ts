@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createReducer } from "@reduxjs/toolkit";
-import { registrationOrLogin, signIn, signOut } from "./actions/authActions";
+import { signIn, signOut } from "./actions/authActions";
+import { registrationOrLogin } from "./thunks/authThunks";
 
 interface IState {
   isAutorised: boolean;
