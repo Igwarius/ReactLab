@@ -14,14 +14,14 @@ const initialState: IState = {
 };
 
 export default createReducer(initialState, {
-  [signIn.toString()]: (state: { isAutorised: boolean }) => {
+  [signIn.type]: (state: { isAutorised: boolean }) => {
     state.isAutorised = true;
   },
-  [signOut.toString()]: (state) => {
+  [signOut.type]: (state) => {
     state.isAutorised = false;
     state.status = 0;
   },
-  [registrationOrLogin.fulfilled.toString()]: (state, action) => {
+  [registrationOrLogin.fulfilled.type]: (state, action) => {
     state.status = action.payload;
   },
 });

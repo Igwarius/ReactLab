@@ -14,10 +14,10 @@ const initialState: IState = {
 };
 
 export default createReducer(initialState, {
-  [getThreeGames.fulfilled.toString()]: (state, action) => {
+  [getThreeGames.fulfilled.type]: (state, action) => {
     state.games = action.payload;
   },
-  [getSearchGames.fulfilled.toString()]: (state, action) => {
+  [getSearchGames.fulfilled.type]: (state, action) => {
     state.searchGames = action.payload;
   },
 });
