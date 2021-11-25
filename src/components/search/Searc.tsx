@@ -50,11 +50,10 @@ const Search = () => {
   const debounceDelay = 300;
   const games = useSelector(getSearchGamesSelector);
 
-  const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
+  const debounced = useDebouncedCallback((value: SetStateAction<string>) => {
     console.log(value);
     if (value.length >= 3) {
-      console.log(dispatch(getSearchGames(value)));
-      await dispatch(getSearchGames(value));
+      dispatch(getSearchGames(value));
     }
   }, debounceDelay);
 
