@@ -1,14 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createReducer } from "@reduxjs/toolkit";
+import { IAuthState } from "@/types";
 import { signIn, signOut } from "./actions/authActions";
 import { registrationOrLogin } from "./thunks/authThunks";
 
-interface IState {
-  isAutorised: boolean;
-  status: number;
-}
-
-const initialState: IState = {
+const initialState: IAuthState = {
   isAutorised: false,
   status: 0,
 };

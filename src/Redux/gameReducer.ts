@@ -1,14 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createReducer } from "@reduxjs/toolkit";
-import { IGame } from "@/types";
+import { IGameState } from "@/types";
 import { getSearchGames, getThreeGames } from "./thunks/gameThunks";
 
-interface IState {
-  games: IGame[];
-  searchGames: IGame[];
-}
-
-const initialState: IState = {
+const initialState: IGameState = {
   games: [],
   searchGames: [],
 };

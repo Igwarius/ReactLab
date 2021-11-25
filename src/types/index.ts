@@ -26,3 +26,13 @@ export interface ILoginContext {
   signIn?: () => void;
   signOut?: () => void;
 }
+
+export interface IAuthState {
+  isAutorised: boolean;
+  status: number;
+}
+
+export interface IGameState {
+  games: IGame[];
+  searchGames: IGame[];
+}
