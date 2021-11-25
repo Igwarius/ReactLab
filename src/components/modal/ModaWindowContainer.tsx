@@ -11,11 +11,11 @@ import { registrationOrLogin } from "@/redux/thunks/authThunks";
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();
   const statusRed = useSelector(getStatusSelector);
-  const onSubmit = async (values: IForm) => {
+  const onSubmit = (values: IForm) => {
     dispatch(registrationOrLogin({ typeModal, values }));
     if (statusRed === StatusCodes.OK) {
       handleClose();
-      await dispatch(signIn());
+      dispatch(signIn());
     }
   };
 

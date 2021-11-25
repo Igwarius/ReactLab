@@ -9,7 +9,7 @@ export interface IModalWindow {
   typeModal: ModalType | null;
   handleClose: () => void;
   open: boolean;
-  onSubmit: (values: IForm) => Promise<void>;
+  onSubmit: (values: IForm) => void;
   validation: (values: IForm) => IForm;
   logIn: IFormInput;
   password: IFormInput;
