@@ -22,8 +22,7 @@ const Main = () => {
   const dispatch = useDispatch();
 
   const [isOnline, setIsOnline] = useState(false);
-  let games: IGame[] = [];
-  games = useSelector(getThreeGamesSelector);
+  const games: IGame[] = useSelector(getThreeGamesSelector);
   useEffect(() => {
     if (!isOnline) {
       dispatch(getThreeGames());
