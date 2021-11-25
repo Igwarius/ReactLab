@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GameCard from "@/components/game-card/GameCard";
 import { IGame } from "@/types";
 import { getThreeGamesSelector } from "@/redux/selectors/gameSelectors";
+import { getThreeGames } from "@/redux/thunks/gameThunks";
 
 const useStyles = makeStyles({
   header: {
@@ -25,7 +26,7 @@ const Main = () => {
   games = useSelector(getThreeGamesSelector);
   useEffect(() => {
     if (!isOnline) {
-      dispatch(getThreeGamesSelector);
+      dispatch(getThreeGames());
       setIsOnline(true);
     }
   });
