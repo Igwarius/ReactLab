@@ -33,6 +33,6 @@ export interface IAuthState {
 }
 
 export interface IGameState {
-  games: IGame[];
+  items: IGame[];
   searchGames: IGame[];
 }

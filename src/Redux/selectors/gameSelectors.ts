@@ -2,7 +2,7 @@ import { IGame } from "@/types";
 
 interface IGamesThree {
   game: {
-    games: IGame[];
+    items: IGame[];
   };
 }
 
@@ -12,5 +12,5 @@ interface IGamesSearch {
   };
 }
 
-export const getThreeGamesSelector = (state: IGamesThree) => state.game.games;
+export const getThreeGamesSelector = (state: IGamesThree) => state.game.items;
 export const getSearchGamesSelector = (state: IGamesSearch) => state.game.searchGames;
