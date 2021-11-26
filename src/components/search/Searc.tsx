@@ -1,5 +1,5 @@
 import { useDebouncedCallback } from "use-debounce";
-import React, { SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchGamesSelector } from "@/redux/selectors/gameSelectors";
@@ -50,7 +50,7 @@ const Search = () => {
   const debounceDelay = 300;
   const games = useSelector(getSearchGamesSelector);
 
-  const debounced = useDebouncedCallback((value: SetStateAction<string>) => {
+  const debounced = useDebouncedCallback((value: string) => {
     if (value.length >= 3) {
       dispatch(getSearchGames(value));
     }

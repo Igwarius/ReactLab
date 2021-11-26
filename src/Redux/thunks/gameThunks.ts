@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { SetStateAction } from "react";
 import urls from "@/constants/urls";
 
 export const GameThunks = {
@@ -13,7 +12,7 @@ export const getThreeGames = createAsyncThunk(GameThunks.GET_THREE_GAMES, async 
 
   return response.data;
 });
-export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, async (value: SetStateAction<string>) => {
+export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, async (value: string) => {
   const response = await axios.get(`${urls.GET_GAME_BY_NAME}?name=${value}`);
 
   return response.data;
