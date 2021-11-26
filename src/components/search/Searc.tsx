@@ -51,7 +51,6 @@ const Search = () => {
   const games = useSelector(getSearchGamesSelector);
 
   const debounced = useDebouncedCallback((value: SetStateAction<string>) => {
-    console.log(value);
     if (value.length >= 3) {
       dispatch(getSearchGames(value));
     }
