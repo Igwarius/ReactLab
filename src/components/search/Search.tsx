@@ -66,11 +66,10 @@ const Search = () => {
       <input
         placeholder="Search"
         className={classes.input}
-        defaultValue=""
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onInputChange(e.target.value)}
         value={gameName}
       />
-      {games && games.length ? (
+      {games?.length ? (
         <Listbox>
           {games.map((element) => (
             <div
