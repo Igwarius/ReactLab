@@ -1,9 +1,9 @@
 import { useDebouncedCallback } from "use-debounce";
-import React, { SetStateAction, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import React, { useState } from "react";
 import { makeStyles, styled } from "@material-ui/core";
-import Urls from "@/constants/urls";
-import { IGame } from "@/types";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchGamesSelector } from "@/redux/selectors/gameSelectors";
+import { getSearchGames } from "@/redux/thunks/gameThunks";
 
 const useStyles = makeStyles({
   input: {
@@ -41,19 +41,18 @@ const Listbox = styled("ul")(({ theme }) => ({
 
 const Search = () => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const onClickGameShow = (name: string) => {
     alert(name);
   };
 
-  const [games, setGames] = useState<IGame[]>([]);
   const [gameName, setGameName] = useState<string>("");
   const debounceDelay = 300;
+  const games = useSelector(getSearchGamesSelector);
 
-  const debounced = useDebouncedCallback(async (value: SetStateAction<string>) => {
+  const debounced = useDebouncedCallback((value: string) => {
     if (value.length >= 3) {
-      const response: AxiosResponse<IGame[]> = await axios.get(`${Urls.GET_GAME_BY_NAME}?name=${value}`);
-      setGames(response.data);
+      dispatch(getSearchGames(value));
     }
   }, debounceDelay);
 
@@ -67,11 +66,10 @@ const Search = () => {
       <input
         placeholder="Search"
         className={classes.input}
-        defaultValue=""
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onInputChange(e.target.value)}
         value={gameName}
       />
-      {games && games.length ? (
+      {games?.length ? (
         <Listbox>
           {games.map((element) => (
             <div

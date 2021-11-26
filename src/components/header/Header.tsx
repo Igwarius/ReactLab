@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import Search from "@/components/search/Searc";
+import Search from "@/components/search/Search";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
 import { IModalProps } from "@/types";
 import headersData from "@/constants/headerData";

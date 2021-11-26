@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import urls from "@/constants/urls";
-import { IModalProps } from "@/types";
-import { ModalType } from "@/constants/globalConstants";
-import LogInContext from "../../contexts/loginContext";
+import { useDispatch, useSelector } from "react-redux";
+import urls from "../../constants/urls";
+import { IModalProps } from "../../types";
+import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { ICategory, IHeaderProps } from "./Header";
+import { signIn, signOut } from "@/redux/actions/authActions";
+import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
 
 const categoriesArray: ICategory[] = [
   {
@@ -23,11 +25,16 @@ const categoriesArray: ICategory[] = [
 
 const HeaderContainer = (): JSX.Element => {
   const history = useHistory();
-  const thingsContext = useContext(LogInContext);
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
   const [modelType, setModelType] = React.useState<ModalType | null>(null);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
+      dispatch(signIn());
+    }
+  });
   const handleOpenReg = () => {
     setOpenModal(true);
     setModelType(ModalType.registration);
@@ -55,8 +62,10 @@ const HeaderContainer = (): JSX.Element => {
   const onHandleClose = () => {
     setAnchorEl(null);
   };
+
   const onLogOut = () => {
-    thingsContext.signOut && thingsContext.signOut();
+    localStorage.removeItem(IS_AUTHORIZED_KEY);
+    dispatch(signOut());
   };
 
   const registration: IModalProps = {
@@ -65,10 +74,11 @@ const HeaderContainer = (): JSX.Element => {
     open: openModal,
   };
 
+  const isLogged = useSelector(isAutorisedSelector);
   const props: IHeaderProps = {
     anchorEl,
     onHandleClick,
-    isLogged: thingsContext.isLogged,
+    isLogged,
     handleOpenReg,
     handleOpenLog,
     onLogOut,
