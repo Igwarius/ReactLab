@@ -6,7 +6,7 @@ import urls from "@/constants/urls";
 import { IForm } from "@/components/modal/ModalWindow";
 
 export const AuthThunks = {
-  REGISTRARION_OR_SIGNIN: "user/registrationOrLogin",
+  REGISTRATION_OR_SIGNIN: "user/registrationOrLogin",
 };
 interface IRegistrationParametrs {
   values: IForm;
@@ -14,7 +14,7 @@ interface IRegistrationParametrs {
 }
 
 export const registrationOrLogin = createAsyncThunk(
-  AuthThunks.REGISTRARION_OR_SIGNIN,
+  AuthThunks.REGISTRATION_OR_SIGNIN,
   async ({ typeModal, values }: IRegistrationParametrs) => {
     const response = await axios.post(typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION, values);
 
