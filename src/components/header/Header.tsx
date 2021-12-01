@@ -5,6 +5,7 @@ import Search from "@/components/search/Search";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
 import { IModalProps } from "@/types";
 import headersData from "@/constants/headerData";
+import urls from "@/constants/urls";
 
 const useStyles = makeStyles(() => ({
   menuPaper: {
@@ -30,6 +31,7 @@ export interface IHeaderProps {
   onLinkClick: (link: string) => void;
   registration: IModalProps;
   categoriesArray: ICategory[];
+  userName: string;
 }
 
 const Header = ({
@@ -43,6 +45,7 @@ const Header = ({
   onLinkClick,
   registration,
   categoriesArray,
+  userName,
 }: IHeaderProps): JSX.Element => {
   const classes = useStyles();
 
@@ -88,9 +91,14 @@ const Header = ({
               </Button>
             </div>
           ) : (
-            <Button color="inherit" onClick={onLogOut}>
-              Log out
-            </Button>
+            <>
+              <Button color="inherit" onClick={onLogOut}>
+                Log out
+              </Button>
+              <Button color="inherit" onClick={() => onLinkClick(urls.PROFILE)}>
+                {userName}
+              </Button>
+            </>
           )}
           <Menu
             classes={{ paper: classes.menuPaper }}

@@ -6,7 +6,7 @@ import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { ICategory, IHeaderProps } from "./Header";
 import { signIn, signOut } from "@/redux/actions/authActions";
-import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
+import { getUserNameSelector, isAutorisedSelector } from "@/redux/selectors/authSelectors";
 
 const categoriesArray: ICategory[] = [
   {
@@ -35,6 +35,7 @@ const HeaderContainer = (): JSX.Element => {
       dispatch(signIn());
     }
   });
+  const userName = useSelector(getUserNameSelector);
   const handleOpenReg = () => {
     setOpenModal(true);
     setModelType(ModalType.registration);
@@ -86,6 +87,7 @@ const HeaderContainer = (): JSX.Element => {
     onLinkClick,
     registration,
     categoriesArray,
+    userName,
   };
 
   return <Header {...props} />;
