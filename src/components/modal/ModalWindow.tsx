@@ -20,6 +20,8 @@ export interface IForm {
   login?: string;
   password?: string;
   passwordCheck?: string;
+  img?: string;
+  description?: string;
 }
 
 const useStyles = makeStyles(() => ({
@@ -70,15 +72,19 @@ const ModalWindow = ({
             <form onSubmit={handleSubmit}>
               <div className={classes.content}>
                 <p className={classes.header}>{typeModal}</p>
-                <div>
-                  <FormInput {...logIn} />
-                </div>
+                {typeModal !== ModalType.passwordChange ? (
+                  <div>
+                    <FormInput {...logIn} />
+                  </div>
+                ) : (
+                  <div />
+                )}
 
                 <div>
                   <FormInput {...password} />
                 </div>
 
-                {typeModal === ModalType.registration ? (
+                {typeModal === ModalType.registration || typeModal === ModalType.passwordChange ? (
                   <div>
                     <FormInput {...passwordCheck} />
                   </div>
