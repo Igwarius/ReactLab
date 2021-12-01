@@ -30,6 +30,9 @@ export interface ILoginContext {
 export interface IAuthState {
   isAutorised: boolean;
   status: number;
+  userName: string;
+  description: string;
+  img: string;
 }
 
 export interface IGameState {
