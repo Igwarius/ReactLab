@@ -32,6 +32,8 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
+    "@typescript-eslint/no-empty-function": "off",
+    "import/no-unresolved": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/no-array-index-key": "off",
     "@typescript-eslint/no-use-before-define": "off",
