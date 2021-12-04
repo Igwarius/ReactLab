@@ -3,7 +3,6 @@ import { createReducer } from "@reduxjs/toolkit";
 import { IAuthState } from "@/types";
 import { signIn, signOut } from "./actions/authActions";
 import { changePassword, getProfile, registrationOrLogin, saveProfile } from "./thunks/authThunks";
-import { IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
 
 const initialState: IAuthState = {
   isAutorised: false,
@@ -14,11 +13,9 @@ const initialState: IAuthState = {
 };
 
 export default createReducer(initialState, {
-  [signIn.type]: (state) => {
+  [signIn.type]: (state, action) => {
     state.isAutorised = true;
-    if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
-      state.userName = localStorage.getItem(IS_AUTHORIZED_KEY)!;
-    }
+    state.userName = action.payload;
   },
   [signOut.type]: (state) => {
     state.isAutorised = false;

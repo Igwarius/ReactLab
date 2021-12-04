@@ -32,7 +32,7 @@ const HeaderContainer = (): JSX.Element => {
 
   useEffect(() => {
     if (localStorage.getItem(IS_AUTHORIZED_KEY)) {
-      dispatch(signIn());
+      dispatch(signIn(localStorage.getItem(IS_AUTHORIZED_KEY)));
     }
   });
   const userName = useSelector(getUserNameSelector);

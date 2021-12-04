@@ -5,7 +5,7 @@ import { IFormInput, IModalProps } from "@/types";
 import { InputName, InputType, InputPlaceholder, ModalType, IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
 import { getStatusSelector, getUserNameSelector } from "@/redux/selectors/authSelectors";
-import { signIn, signOut } from "@/redux/actions/authActions";
+import { signOut } from "@/redux/actions/authActions";
 import { changePassword, registrationOrLogin } from "@/redux/thunks/authThunks";
 
 const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
@@ -17,7 +17,6 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
       dispatch(registrationOrLogin({ typeModal, values }));
       if (statusRed === StatusCodes.OK) {
         handleClose();
-        dispatch(signIn());
       }
     } else {
       dispatch(changePassword({ password: values.password, login: userName }));
