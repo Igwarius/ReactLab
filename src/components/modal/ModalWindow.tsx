@@ -68,13 +68,13 @@ const ModalWindow = ({
     <Modal open={open} onClose={handleClose}>
       <div className={classes.menuPaper}>
         <Form
-          onSubmit={typeModal !== ModalType.passwordChange ? onSubmitLogin : onSubmitPasswordChange}
+          onSubmit={typeModal !== ModalType.PasswordChange ? onSubmitLogin : onSubmitPasswordChange}
           validate={validation}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.content}>
                 <p className={classes.header}>{typeModal}</p>
-                {typeModal !== ModalType.passwordChange ? (
+                {typeModal !== ModalType.PasswordChange ? (
                   <div>
                     <FormInput {...logIn} />
                   </div>
@@ -86,7 +86,7 @@ const ModalWindow = ({
                   <FormInput {...password} />
                 </div>
 
-                {typeModal === ModalType.registration || typeModal === ModalType.passwordChange ? (
+                {typeModal === ModalType.Registration || typeModal === ModalType.PasswordChange ? (
                   <div>
                     <FormInput {...passwordCheck} />
                   </div>

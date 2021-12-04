@@ -27,7 +27,7 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
   const validation = (values: IForm) => {
     const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
     const minPasswordLength = 8;
-    if (!values.login && typeModal !== ModalType.passwordChange) {
+    if (!values.login && typeModal !== ModalType.PasswordChange) {
       errors.login = "Required";
     }
     if (!values.password) {
@@ -37,7 +37,7 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
       errors.password = `${minPasswordLength} or more characters`;
     }
     if (
-      (typeModal === ModalType.registration || typeModal === ModalType.passwordChange) &&
+      (typeModal === ModalType.Registration || typeModal === ModalType.PasswordChange) &&
       values.password !== values.passwordCheck
     ) {
       errors.passwordCheck = "Not same";
@@ -47,19 +47,19 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
   };
 
   const logIn: IFormInput = {
-    name: InputName.logIn,
-    placeholder: InputPlaceholder.logIn,
-    type: InputType.text,
+    name: InputName.LogIn,
+    placeholder: InputPlaceholder.LogIn,
+    type: InputType.Text,
   };
   const password: IFormInput = {
-    name: InputName.password,
-    placeholder: InputPlaceholder.password,
-    type: InputType.password,
+    name: InputName.Password,
+    placeholder: InputPlaceholder.Password,
+    type: InputType.Password,
   };
   const passwordCheck: IFormInput = {
-    name: InputName.passwordCheck,
-    placeholder: InputPlaceholder.passwordCheck,
-    type: InputType.password,
+    name: InputName.PasswordCheck,
+    placeholder: InputPlaceholder.PasswordCheck,
+    type: InputType.Password,
   };
   const props: IModalWindow = {
     typeModal,

@@ -18,7 +18,7 @@ interface IRegistrationParametrs {
 export const registrationOrLogin = createAsyncThunk(
   AuthThunks.REGISTRATION_OR_SIGNIN,
   async ({ typeModal, values }: IRegistrationParametrs) => {
-    const response = await axios.post(typeModal !== ModalType.registration ? urls.LOG_IN : urls.REGISTRATION, values);
+    const response = await axios.post(typeModal !== ModalType.Registration ? urls.LOG_IN : urls.REGISTRATION, values);
     if (values.login) {
       localStorage.setItem(IS_AUTHORIZED_KEY, values.login);
     }

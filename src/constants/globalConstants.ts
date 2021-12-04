@@ -1,26 +1,26 @@
 export const IS_AUTHORIZED_KEY = "isAutorised";
 
 export const enum ModalType {
-  registration = "Registration",
-  logIn = "Log in",
-  passwordChange = "Password Change",
+  Registration = "Registration",
+  LogIn = "Log in",
+  PasswordChange = "Password Change",
 }
 
 export const enum InputName {
-  logIn = "login",
-  password = "password",
-  passwordCheck = "passwordCheck",
+  LogIn = "login",
+  Password = "password",
+  PasswordCheck = "passwordCheck",
   description = "Description",
 }
 
 export const enum InputPlaceholder {
-  logIn = "Login",
-  password = "Password",
-  passwordCheck = "Password Check",
-  description = "Description",
+  LogIn = "Login",
+  Password = "Password",
+  PasswordCheck = "Password Check",
+  Description = "Description",
 }
 
 export const enum InputType {
-  text = "text",
-  password = "password",
+  Text = "text",
+  Password = "password",
 }

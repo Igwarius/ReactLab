@@ -70,7 +70,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getProfile(userName));
-    setFormValue(InputName.logIn, userName);
+    setFormValue(InputName.LogIn, userName);
     setFormValue(InputName.description, description);
     setFile(img);
   }, [userName, description]);
@@ -89,7 +89,7 @@ const Profile = () => {
   };
 
   const changePassword: IModalProps = {
-    typeModal: ModalType.passwordChange,
+    typeModal: ModalType.PasswordChange,
     handleClose: handleCloseModal,
     open: openModal,
   };
@@ -97,7 +97,7 @@ const Profile = () => {
     dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
   };
   let setFormValue: { (arg0: InputName, arg1: string): void; (...args: unknown[]): unknown };
-  const logIn = { name: InputName.logIn, placeholder: InputPlaceholder.logIn, type: InputType.text };
+  const logIn = { name: InputName.LogIn, placeholder: InputPlaceholder.LogIn, type: InputType.Text };
 
   return (
     <Form
@@ -126,7 +126,7 @@ const Profile = () => {
                   <Field name={InputName.description}>
                     {({ input, meta }) => (
                       <div>
-                        <span>{InputPlaceholder.description}</span>
+                        <span>{InputPlaceholder.Description}</span>
                         <div>
                           <textarea {...input} />
                           {(meta.error || meta.submitError) && meta.touched && (

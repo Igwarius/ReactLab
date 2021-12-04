@@ -38,12 +38,12 @@ const HeaderContainer = (): JSX.Element => {
   const userName = useSelector(getUserNameSelector);
   const handleOpenReg = () => {
     setOpenModal(true);
-    setModelType(ModalType.registration);
+    setModelType(ModalType.Registration);
   };
 
   const handleOpenLog = () => {
     setOpenModal(true);
-    setModelType(ModalType.logIn);
+    setModelType(ModalType.LogIn);
   };
 
   const handleCloseModal = () => {
