@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpackMockServer from "webpack-mock-server";
 import cors from "cors";

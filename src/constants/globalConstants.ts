@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 export const IS_AUTHORIZED_KEY = "isAutorised";
 
 export const enum ModalType {
