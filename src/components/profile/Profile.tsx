@@ -113,6 +113,7 @@ const Profile = () => {
 
         return (
           <>
+            <ModalWindowContainer {...changePassword} />
             <form onSubmit={handleSubmit}>
               <div className={classes.globalContainer}>
                 <div className={classes.container}>
@@ -146,7 +147,6 @@ const Profile = () => {
                 </div>
               </div>
             </form>
-            <ModalWindowContainer {...changePassword} />
           </>
         );
       }}
