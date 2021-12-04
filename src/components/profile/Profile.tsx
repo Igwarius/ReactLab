@@ -20,6 +20,7 @@ export interface IForm {
   login?: string;
   description?: string;
 }
+
 const useStyles = makeStyles(() => ({
   errors: {
     color: "red",
@@ -39,6 +40,7 @@ const useStyles = makeStyles(() => ({
     marginRight: "auto",
   },
 }));
+
 const Profile = () => {
   const classes = useStyles();
   const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
