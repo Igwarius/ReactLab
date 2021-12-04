@@ -15,6 +15,7 @@ import {
 import { IModalProps } from "@/types";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
 import urls from "@/constants/urls";
+import FormInput from "../modal/FormInput";
 
 export interface IForm {
   login?: string;
@@ -96,6 +97,7 @@ const Profile = () => {
     dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
   };
   let setFormValue: { (arg0: InputName, arg1: string): void; (...args: unknown[]): unknown };
+  const logIn = { name: InputName.logIn, placeholder: InputPlaceholder.logIn, type: InputType.text };
 
   return (
     <Form
@@ -120,20 +122,7 @@ const Profile = () => {
                   </ReactFileReader>
                 </div>
                 <div className={classes.container}>
-                  <Field name={InputName.logIn}>
-                    {({ input, meta }) => (
-                      <div>
-                        <span>{InputPlaceholder.logIn}</span>
-                        <div>
-                          <input {...input} type={InputType.text} placeholder={InputPlaceholder.logIn} />
-
-                          {(meta.error || meta.submitError) && meta.touched && (
-                            <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </Field>
+                  <FormInput {...logIn} />
                   <Field name={InputName.description}>
                     {({ input, meta }) => (
                       <div>
