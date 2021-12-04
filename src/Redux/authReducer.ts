@@ -2,7 +2,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { IAuthState } from "@/types";
 import { signIn, signOut } from "./actions/authActions";
-import { changePassword, getProfile, registrationOrLogin, saveProfile } from "./thunks/authThunks";
+import { getProfile, registrationOrLogin } from "./thunks/authThunks";
 
 const initialState: IAuthState = {
   isAutorised: false,
@@ -29,8 +29,4 @@ export default createReducer(initialState, {
     state.description = action.payload.user[0].description;
     state.img = action.payload.user[0].img;
   },
-
-  [changePassword.fulfilled.type]: () => {},
-
-  [saveProfile.fulfilled.type]: () => {},
 });
