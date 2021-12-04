@@ -89,7 +89,7 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ success: true });
   });
   app.post("/log-in", (req, res) => {
-    const check = (element: { login: unknown; password: unknown }) =>
+    const check = (element: { login: string; password: string }) =>
       element.login === req.body.login && element.password === req.body.password;
 
     if (users.some(check)) {
@@ -101,7 +101,7 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get("/profile-info", (req, res) => {
     const { name } = req.query;
-    const check = (element: { login: unknown }) => element.login === name;
+    const check = (element: { login: string }) => element.login === name;
 
     if (users.some(check)) {
       const user = users.filter((a) => a.login === name);
