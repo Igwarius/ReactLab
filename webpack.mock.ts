@@ -104,7 +104,7 @@ export default webpackMockServer.add((app, helper) => {
     const check = (element: { login: string }) => element.login === name;
 
     if (users.some(check)) {
-      const user = users.filter((a) => a.login === name);
+      const user = users.find((a) => a.login === name);
       res.json({ user });
 
       return;
