@@ -12,20 +12,18 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
   const dispatch = useDispatch();
   const statusRed = useSelector(getStatusSelector);
   const userName = useSelector(getUserNameSelector);
-  const onSubmit = (values: IForm) => {
-    if (typeModal !== ModalType.passwordChange) {
-      dispatch(registrationOrLogin({ typeModal, values }));
-      if (statusRed === StatusCodes.OK) {
-        handleClose();
-      }
-    } else {
-      dispatch(changePassword({ password: values.password, login: userName }));
-      localStorage.removeItem(IS_AUTHORIZED_KEY);
-      dispatch(signOut());
+  const onSubmitLogin = (values: IForm) => {
+    dispatch(registrationOrLogin({ typeModal, values }));
+    if (statusRed === StatusCodes.OK) {
       handleClose();
     }
   };
-
+  const onSubmitPasswordChange = (values: IForm) => {
+    dispatch(changePassword({ password: values.password, login: userName }));
+    localStorage.removeItem(IS_AUTHORIZED_KEY);
+    dispatch(signOut());
+    handleClose();
+  };
   const validation = (values: IForm) => {
     const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
     const minPasswordLength = 8;
@@ -67,7 +65,8 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
     typeModal,
     handleClose,
     open,
-    onSubmit,
+    onSubmitLogin,
+    onSubmitPasswordChange,
     validation,
     logIn,
     password,

@@ -9,7 +9,8 @@ export interface IModalWindow {
   typeModal: ModalType | null;
   handleClose: () => void;
   open: boolean;
-  onSubmit: (values: IForm) => void;
+  onSubmitPasswordChange: (values: IForm) => void;
+  onSubmitLogin: (values: IForm) => void;
   validation: (values: IForm) => IForm;
   logIn: IFormInput;
   password: IFormInput;
@@ -54,7 +55,8 @@ const ModalWindow = ({
   typeModal,
   handleClose,
   open,
-  onSubmit,
+  onSubmitLogin,
+  onSubmitPasswordChange,
   validation,
   logIn,
   password,
@@ -66,7 +68,7 @@ const ModalWindow = ({
     <Modal open={open} onClose={handleClose}>
       <div className={classes.menuPaper}>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={typeModal !== ModalType.passwordChange ? onSubmitLogin : onSubmitPasswordChange}
           validate={validation}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
