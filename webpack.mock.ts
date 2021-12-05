@@ -112,15 +112,13 @@ export default webpackMockServer.add((app, helper) => {
     res.status(400);
     res.json({ success: false });
   });
-  app.post("/change-password", (req, res) => {
-    users = users.map((user) => (user.login === req.body.login ? { ...user, password: req.body.password } : user));
+  app.post("/change-password", ({ body }, res) => {
+    users = users.map((user) => (user.login === body.login ? { ...user, password: body.password } : user));
     res.json({ success: true });
   });
-  app.post("/save-profile", (req, res) => {
+  app.post("/save-profile", ({ body }, res) => {
     users = users.map((user) =>
-      user.login === req.body.login
-        ? { ...user, login: req.body.login, img: req.body.img, description: req.body.description }
-        : user
+      user.login === body.login ? { ...user, login: body.login, img: body.img, description: body.description } : user
     );
     console.log(users);
     res.json({ success: true });
