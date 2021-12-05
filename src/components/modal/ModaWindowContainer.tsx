@@ -27,19 +27,21 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
   const validation = (values: IForm) => {
     const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
     const minPasswordLength = 8;
-    if (!values.login && typeModal !== ModalType.PasswordChange) {
+    const loginIsEmpty = !values.login;
+    const isNotPasswordChangeModal = typeModal !== ModalType.PasswordChange;
+    const isNotPasswordSame = values.password !== values.passwordCheck;
+    const isPasswordEmpty = !values.password;
+    const isPasswordLengthNotCorrect = values.password.length < minPasswordLength;
+    if (loginIsEmpty && isNotPasswordChangeModal) {
       errors.login = "Required";
     }
-    if (!values.password) {
+    if (isPasswordEmpty) {
       errors.password = "Required";
     }
-    if (values.password && values.password.length < minPasswordLength) {
+    if (!isPasswordEmpty && isPasswordLengthNotCorrect) {
       errors.password = `${minPasswordLength} or more characters`;
     }
-    if (
-      (typeModal === ModalType.Registration || typeModal === ModalType.PasswordChange) &&
-      values.password !== values.passwordCheck
-    ) {
+    if (!isNotPasswordChangeModal && isNotPasswordSame) {
       errors.passwordCheck = "Not same";
     }
 
