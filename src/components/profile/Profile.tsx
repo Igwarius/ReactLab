@@ -63,6 +63,7 @@ const Profile = ({
   userName,
 }: IProfile) => {
   const classes = useStyles();
+  const profileImgSize = "400";
 
   return (
     <Form
@@ -80,7 +81,7 @@ const Profile = ({
           <form onSubmit={handleSubmit}>
             <div className={classes.globalContainer}>
               <div className={classes.container}>
-                <img alt="img" src={file} height="400" width="400" />
+                <img alt="img" src={file} height={profileImgSize} width={profileImgSize} />
                 <ReactFileReader base64 handleFiles={handleFiles}>
                   <Button className={classes.button}>Upload</Button>
                 </ReactFileReader>
