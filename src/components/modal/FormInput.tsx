@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { Field } from "react-final-form";
 import { IFormInput } from "@/types";
+import ErrorMessage from "../profile/ErrorMessage";
 
 const useStyles = makeStyles(() => ({
   errors: {
@@ -33,9 +34,7 @@ const FormInput = ({ name, placeholder, type }: IFormInput) => {
           <div className={classes.innerInputContainer}>
             <input className={classes.input} {...input} type={type} placeholder={placeholder} />
 
-            {(meta.error || meta.submitError) && meta.touched && (
-              <span className={classes.errors}>{meta.error || meta.submitError}</span>
-            )}
+            <ErrorMessage meta={meta} />
           </div>
         </div>
       )}
