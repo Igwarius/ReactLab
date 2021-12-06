@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React from "react";
 import { Button, makeStyles } from "@material-ui/core";
-import { Field, Form } from "react-final-form";
+import { Form } from "react-final-form";
 import ReactFileReader from "react-file-reader";
 import { InputName, InputPlaceholder, InputType } from "@/constants/globalConstants";
 
@@ -9,6 +9,7 @@ import ModalWindowContainer from "../modal/ModaWindowContainer";
 import FormInput from "../modal/FormInput";
 
 import { IModalProps } from "@/types";
+import InputTextArea from "./InputTextArea";
 
 export interface IProfileFormFields {
   login?: string;
@@ -64,6 +65,7 @@ const Profile = ({
 }: IProfile) => {
   const classes = useStyles();
   const profileImgSize = "400";
+  const inputTextArea = { name: InputName.description, placeholder: InputPlaceholder.Description };
 
   return (
     <Form
@@ -88,19 +90,7 @@ const Profile = ({
               </div>
               <div className={classes.container}>
                 <FormInput {...logIn} />
-                <Field name={InputName.description}>
-                  {({ input, meta }) => (
-                    <div>
-                      <span>{InputPlaceholder.Description}</span>
-                      <div>
-                        <textarea {...input} />
-                        {(meta.error || meta.submitError) && meta.touched && (
-                          <span className={classes.errors}>{meta.error || meta.submitError}</span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </Field>
+                <InputTextArea {...inputTextArea} />
               </div>
               <div className={classes.container}>
                 <Button color="inherit" onClick={handleOpenModal}>
