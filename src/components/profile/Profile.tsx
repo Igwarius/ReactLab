@@ -10,14 +10,14 @@ import FormInput from "../modal/FormInput";
 
 import { IModalProps } from "@/types";
 
-export interface IForm {
+export interface IProfileFormFields {
   login?: string;
   description?: string;
 }
 
 export interface IProfile {
-  onSubmit: (values: IForm) => void;
-  validation: (values: IForm) => IForm;
+  onSubmit: (values: IProfileFormFields) => void;
+  validation: (values: IProfileFormFields) => IProfileFormFields;
   changePassword: IModalProps;
   file: string;
   handleFiles: (files: { base64: React.SetStateAction<string> }) => void;

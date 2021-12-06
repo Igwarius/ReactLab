@@ -11,7 +11,7 @@ import {
 } from "@/redux/selectors/authSelectors";
 import { getProfile, saveProfile } from "@/redux/thunks/authThunks";
 import { IModalProps } from "@/types";
-import Profile, { IForm, IProfile } from "./Profile";
+import Profile, { IProfileFormFields, IProfile } from "./Profile";
 
 const ProfileContainer = () => {
   const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
@@ -44,8 +44,8 @@ const ProfileContainer = () => {
     setFile(img);
   }, [userName, description]);
 
-  const validation = (values: IForm) => {
-    const errors: IForm = { login: undefined, description: undefined };
+  const validation = (values: IProfileFormFields) => {
+    const errors: IProfileFormFields = { login: undefined, description: undefined };
 
     if (!values.login) {
       errors.login = "Required";
@@ -62,7 +62,7 @@ const ProfileContainer = () => {
     handleClose: handleCloseModal,
     open: openModal,
   };
-  const onSubmit = (values: IForm) => {
+  const onSubmit = (values: IProfileFormFields) => {
     dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
   };
   const logIn = { name: InputName.LogIn, placeholder: InputPlaceholder.LogIn, type: InputType.Text };
