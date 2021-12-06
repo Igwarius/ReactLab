@@ -12,7 +12,7 @@ export interface IGame {
 export interface IModalProps {
   typeModal: ModalType | null;
   open: boolean;
-  handleClose: () => void;
+  handleModal: () => void;
 }
 
 export interface IFormInput {

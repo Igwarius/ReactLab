@@ -31,12 +31,8 @@ const ProfileContainer = () => {
     dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
   };
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
+  const handleModal = () => {
+    setOpenModal(!openModal);
   };
 
   useEffect(() => {
@@ -65,7 +61,7 @@ const ProfileContainer = () => {
 
   const changePassword: IModalProps = {
     typeModal: ModalType.PasswordChange,
-    handleClose: handleCloseModal,
+    handleModal,
     open: openModal,
   };
   const logIn = { name: InputName.LogIn, placeholder: InputPlaceholder.LogIn, type: InputType.Text };
@@ -78,7 +74,6 @@ const ProfileContainer = () => {
     file,
     handleFiles,
     logIn,
-    handleOpenModal,
   };
 
   return <Profile {...props} />;

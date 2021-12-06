@@ -15,7 +15,7 @@ import { getStatusSelector, getUserNameSelector } from "@/redux/selectors/authSe
 import { signOut } from "@/redux/actions/authActions";
 import { changePassword, registrationOrLogin } from "@/redux/thunks/authThunks";
 
-const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
+const ModalWindowContainer = ({ typeModal, handleModal: handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();
   const statusRed = useSelector(getStatusSelector);
   const userName = useSelector(getUserNameSelector);

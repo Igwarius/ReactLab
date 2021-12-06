@@ -71,7 +71,7 @@ const HeaderContainer = (): JSX.Element => {
 
   const registration: IModalProps = {
     typeModal: modelType,
-    handleClose: handleCloseModal,
+    handleModal: handleCloseModal,
     open: openModal,
   };
 

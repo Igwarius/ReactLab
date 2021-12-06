@@ -28,7 +28,7 @@ export interface IProfile {
     placeholder: InputPlaceholder;
     type: InputType;
   };
-  handleOpenModal: () => void;
+
   userName: string;
 }
 
@@ -59,7 +59,7 @@ const Profile = ({
   file,
   handleFiles,
   logIn,
-  handleOpenModal,
+
   description,
   userName,
 }: IProfile) => {
@@ -93,7 +93,7 @@ const Profile = ({
                 <InputTextArea {...inputTextArea} />
               </div>
               <div className={classes.container}>
-                <Button color="inherit" onClick={handleOpenModal}>
+                <Button color="inherit" onClick={changePassword.handleModal}>
                   Change Password
                 </Button>
 
