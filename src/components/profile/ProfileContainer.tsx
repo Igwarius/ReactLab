@@ -15,7 +15,6 @@ import Profile, { IProfileFormFields, IProfile } from "./Profile";
 
 const ProfileContainer = () => {
   const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
-    console.log(files);
     setFile(files.base64);
   };
   const history = useHistory();

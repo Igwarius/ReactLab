@@ -120,7 +120,6 @@ export default webpackMockServer.add((app, helper) => {
     users = users.map((user) =>
       user.login === body.login ? { ...user, login: body.login, img: body.img, description: body.description } : user
     );
-    console.log(users);
     res.json({ success: true });
   });
 });
