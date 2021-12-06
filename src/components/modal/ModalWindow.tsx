@@ -75,19 +75,19 @@ const ModalWindow = ({
               <div className={classes.content}>
                 <p className={classes.header}>{typeModal}</p>
                 {typeModal !== ModalType.PasswordChange && (
-                  <div>
+                  <>
                     <FormInput {...logIn} />
-                  </div>
+                  </>
                 )}
 
-                <div>
+                <>
                   <FormInput {...password} />
-                </div>
+                </>
 
                 {(typeModal === ModalType.Registration || typeModal === ModalType.PasswordChange) && (
-                  <div>
+                  <>
                     <FormInput {...passwordCheck} />
-                  </div>
+                  </>
                 )}
 
                 <Button type="submit">{typeModal}</Button>
