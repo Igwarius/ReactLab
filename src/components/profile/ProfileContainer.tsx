@@ -14,10 +14,6 @@ import { IModalProps } from "@/types";
 import Profile, { IProfileFormFields, IProfile } from "./Profile";
 
 const ProfileContainer = () => {
-  const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
-    setFile(files.base64);
-  };
-
   const history = useHistory();
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<string>("");
@@ -33,6 +29,10 @@ const ProfileContainer = () => {
 
   const handleModal = () => {
     setOpenModal(!openModal);
+  };
+
+  const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
+    setFile(files.base64);
   };
 
   useEffect(() => {
