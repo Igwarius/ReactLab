@@ -25,9 +25,8 @@ export default createReducer(initialState, {
     state.status = action.payload;
     state.userName = action.meta.arg.values.login;
   },
-  [getProfile.fulfilled.type]: (state, action) => {
-    const { user } = action.payload;
-    state.description = user.description;
-    state.img = user.img;
+  [getProfile.fulfilled.type]: (state, { user: { description, img } }) => {
+    state.description = description;
+    state.img = img;
   },
 });
