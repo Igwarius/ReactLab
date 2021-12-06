@@ -17,6 +17,7 @@ const ProfileContainer = () => {
   const handleFiles = (files: { base64: React.SetStateAction<string> }) => {
     setFile(files.base64);
   };
+
   const history = useHistory();
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<string>("");
@@ -25,12 +26,15 @@ const ProfileContainer = () => {
   const userName = useSelector(getUserNameSelector);
   const description = useSelector(getDescriptionSelector);
   const img = useSelector(getImgSelector);
+
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
+
   useEffect(() => {
     if (!isAutorised) {
       history.push(urls.MAIN);
@@ -39,7 +43,6 @@ const ProfileContainer = () => {
 
   useEffect(() => {
     dispatch(getProfile(userName));
-
     setFile(img);
   }, [userName, description]);
 
