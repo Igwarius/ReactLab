@@ -17,9 +17,7 @@ export interface IForm {
 
 export interface IProfile {
   onSubmit: (values: IForm) => void;
-
   validation: (values: IForm) => IForm;
-
   changePassword: IModalProps;
   file: string;
   handleFiles: (files: { base64: React.SetStateAction<string> }) => void;
