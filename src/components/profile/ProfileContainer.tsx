@@ -27,6 +27,10 @@ const ProfileContainer = () => {
   const description = useSelector(getDescriptionSelector);
   const img = useSelector(getImgSelector);
 
+  const onSubmit = (values: IProfileFormFields) => {
+    dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
+  };
+
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -63,9 +67,6 @@ const ProfileContainer = () => {
     typeModal: ModalType.PasswordChange,
     handleClose: handleCloseModal,
     open: openModal,
-  };
-  const onSubmit = (values: IProfileFormFields) => {
-    dispatch(saveProfile({ login: values.login, description: values.description, img: file }));
   };
   const logIn = { name: InputName.LogIn, placeholder: InputPlaceholder.LogIn, type: InputType.Text };
   const props: IProfile = {
