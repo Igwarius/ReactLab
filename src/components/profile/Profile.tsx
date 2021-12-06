@@ -81,7 +81,7 @@ const Profile = ({
           <form onSubmit={handleSubmit}>
             <div className={classes.globalContainer}>
               <div className={classes.container}>
-                <img alt="img" src={file} height={profileImgSize} width={profileImgSize} />
+                <img alt="User Avatar" src={file} height={profileImgSize} width={profileImgSize} />
                 <ReactFileReader base64 handleFiles={handleFiles}>
                   <Button className={classes.button}>Upload</Button>
                 </ReactFileReader>
