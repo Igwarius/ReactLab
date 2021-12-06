@@ -31,7 +31,10 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
     const isNotPasswordChangeModal = typeModal !== ModalType.PasswordChange;
     const isNotPasswordSame = values.password !== values.passwordCheck;
     const isPasswordEmpty = !values.password;
-    const isPasswordLengthNotCorrect = values.password.length < minPasswordLength;
+    let isPasswordLengthNotCorrect = false;
+    if (!isPasswordEmpty) {
+      isPasswordLengthNotCorrect = values.password.length < minPasswordLength;
+    }
     if (loginIsEmpty && isNotPasswordChangeModal) {
       errors.login = "Required";
     }
