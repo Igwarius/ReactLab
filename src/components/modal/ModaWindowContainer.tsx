@@ -2,7 +2,14 @@ import React from "react";
 import { StatusCodes } from "http-status-codes";
 import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
-import { InputName, InputType, InputPlaceholder, ModalType, IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
+import {
+  InputName,
+  InputType,
+  InputPlaceholder,
+  ModalType,
+  IS_AUTHORIZED_KEY,
+  REQUIRED_ERROR_MESSAGE,
+} from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
 import { getStatusSelector, getUserNameSelector } from "@/redux/selectors/authSelectors";
 import { signOut } from "@/redux/actions/authActions";
@@ -36,10 +43,10 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
       isPasswordLengthNotCorrect = values.password.length < minPasswordLength;
     }
     if (loginIsEmpty && isNotPasswordChangeModal) {
-      errors.login = "Required";
+      errors.login = REQUIRED_ERROR_MESSAGE;
     }
     if (isPasswordEmpty) {
-      errors.password = "Required";
+      errors.password = REQUIRED_ERROR_MESSAGE;
     }
     if (!isPasswordEmpty && isPasswordLengthNotCorrect) {
       errors.password = `${minPasswordLength} or more characters`;

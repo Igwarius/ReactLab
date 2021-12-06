@@ -1,5 +1,5 @@
 export const IS_AUTHORIZED_KEY = "isAutorised";
-
+export const REQUIRED_ERROR_MESSAGE = "Required";
 export const enum ModalType {
   Registration = "Registration",
   LogIn = "Log in",

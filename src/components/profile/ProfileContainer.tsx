@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { InputName, ModalType, InputPlaceholder, InputType } from "@/constants/globalConstants";
+import { InputName, ModalType, InputPlaceholder, InputType, REQUIRED_ERROR_MESSAGE } from "@/constants/globalConstants";
 import urls from "@/constants/urls";
 import {
   isAutorisedSelector,
@@ -48,10 +48,10 @@ const ProfileContainer = () => {
     const errors: IProfileFormFields = { login: undefined, description: undefined };
 
     if (!values.login) {
-      errors.login = "Required";
+      errors.login = REQUIRED_ERROR_MESSAGE;
     }
     if (!values.description) {
-      errors.description = "Required";
+      errors.description = REQUIRED_ERROR_MESSAGE;
     }
 
     return errors;
