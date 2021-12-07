@@ -11,6 +11,7 @@ import HeaderContainer from "./components/header/HeaderContainer";
 import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 import { store } from "./redux/reduxStore";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 const AppContainer = (): JSX.Element => (
   <ErrorBoundary>
@@ -22,6 +23,7 @@ const AppContainer = (): JSX.Element => (
           <Route exact path={urls.MAIN} component={Main} />
           <Route path={urls.PRODUCTS} component={Products} />
           <Route exact path={urls.ABOUT} component={About} />
+          <Route exact path={urls.PROFILE} component={ProfileContainer} />
           <Route render={() => <Redirect to={urls.MAIN} />} />
         </Switch>
         <Footer />

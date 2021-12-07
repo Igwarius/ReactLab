@@ -12,7 +12,7 @@ export interface IGame {
 export interface IModalProps {
   typeModal: ModalType | null;
   open: boolean;
-  handleClose: () => void;
+  handleModal: () => void;
 }
 
 export interface IFormInput {
@@ -30,6 +30,9 @@ export interface ILoginContext {
 export interface IAuthState {
   isAutorised: boolean;
   status: number;
+  userName: string;
+  description: string;
+  img: string;
 }
 
 export interface IGameState {

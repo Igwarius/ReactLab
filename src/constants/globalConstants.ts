@@ -1,24 +1,26 @@
-/* eslint-disable no-shadow */
 export const IS_AUTHORIZED_KEY = "isAutorised";
-
-export const enum ModalType {
-  registration = "Registration",
-  logIn = "Log in",
+export const REQUIRED_ERROR_MESSAGE = "Required";
+export enum ModalType {
+  Registration = "Registration",
+  LogIn = "Log in",
+  PasswordChange = "Password Change",
 }
 
-export const enum InputName {
-  logIn = "login",
-  password = "password",
-  passwordCheck = "passwordCheck",
+export enum InputName {
+  LogIn = "login",
+  Password = "password",
+  PasswordCheck = "passwordCheck",
+  description = "description",
 }
 
-export const enum InputPlaceholder {
-  logIn = "Login",
-  password = "Password",
-  passwordCheck = "Password Check",
+export enum InputPlaceholder {
+  LogIn = "Login",
+  Password = "Password",
+  PasswordCheck = "Password Check",
+  description = "Description",
 }
 
-export const enum InputType {
-  text = "text",
-  password = "password",
+export enum InputType {
+  Text = "text",
+  Password = "password",
 }

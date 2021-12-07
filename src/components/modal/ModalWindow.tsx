@@ -9,7 +9,8 @@ export interface IModalWindow {
   typeModal: ModalType | null;
   handleClose: () => void;
   open: boolean;
-  onSubmit: (values: IForm) => void;
+  onSubmitPasswordChange: (values: IForm) => void;
+  onSubmitLogin: (values: IForm) => void;
   validation: (values: IForm) => IForm;
   logIn: IFormInput;
   password: IFormInput;
@@ -20,6 +21,8 @@ export interface IForm {
   login?: string;
   password?: string;
   passwordCheck?: string;
+  img?: string;
+  description?: string;
 }
 
 const useStyles = makeStyles(() => ({
@@ -52,7 +55,8 @@ const ModalWindow = ({
   typeModal,
   handleClose,
   open,
-  onSubmit,
+  onSubmitLogin,
+  onSubmitPasswordChange,
   validation,
   logIn,
   password,
@@ -64,26 +68,18 @@ const ModalWindow = ({
     <Modal open={open} onClose={handleClose}>
       <div className={classes.menuPaper}>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={typeModal !== ModalType.PasswordChange ? onSubmitLogin : onSubmitPasswordChange}
           validate={validation}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className={classes.content}>
                 <p className={classes.header}>{typeModal}</p>
-                <div>
-                  <FormInput {...logIn} />
-                </div>
+                {typeModal !== ModalType.PasswordChange && <FormInput {...logIn} />}
 
-                <div>
-                  <FormInput {...password} />
-                </div>
+                <FormInput {...password} />
 
-                {typeModal === ModalType.registration ? (
-                  <div>
-                    <FormInput {...passwordCheck} />
-                  </div>
-                ) : (
-                  <div />
+                {(typeModal === ModalType.Registration || typeModal === ModalType.PasswordChange) && (
+                  <FormInput {...passwordCheck} />
                 )}
 
                 <Button type="submit">{typeModal}</Button>

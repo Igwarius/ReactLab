@@ -2,36 +2,56 @@ import React from "react";
 import { StatusCodes } from "http-status-codes";
 import { useDispatch, useSelector } from "react-redux";
 import { IFormInput, IModalProps } from "@/types";
-import { InputName, InputType, InputPlaceholder, ModalType } from "@/constants/globalConstants";
+import {
+  InputName,
+  InputType,
+  InputPlaceholder,
+  ModalType,
+  IS_AUTHORIZED_KEY,
+  REQUIRED_ERROR_MESSAGE,
+} from "@/constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { getStatusSelector } from "@/redux/selectors/authSelectors";
-import { signIn } from "@/redux/actions/authActions";
-import { registrationOrLogin } from "@/redux/thunks/authThunks";
+import { getStatusSelector, getUserNameSelector } from "@/redux/selectors/authSelectors";
+import { signOut } from "@/redux/actions/authActions";
+import { changePassword, registrationOrLogin } from "@/redux/thunks/authThunks";
 
-const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => {
+const ModalWindowContainer = ({ typeModal, handleModal: handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();
   const statusRed = useSelector(getStatusSelector);
-  const onSubmit = (values: IForm) => {
+  const userName = useSelector(getUserNameSelector);
+  const onSubmitLogin = (values: IForm) => {
     dispatch(registrationOrLogin({ typeModal, values }));
     if (statusRed === StatusCodes.OK) {
       handleClose();
-      dispatch(signIn());
     }
   };
-
+  const onSubmitPasswordChange = (values: IForm) => {
+    dispatch(changePassword({ password: values.password, login: userName }));
+    localStorage.removeItem(IS_AUTHORIZED_KEY);
+    dispatch(signOut());
+    handleClose();
+  };
   const validation = (values: IForm) => {
     const errors: IForm = { login: undefined, password: undefined, passwordCheck: undefined };
     const minPasswordLength = 8;
-    if (!values.login) {
-      errors.login = "Required";
+    const loginIsEmpty = !values.login;
+    const isNotPasswordChangeModal = typeModal !== ModalType.PasswordChange;
+    const isNotPasswordSame = values.password !== values.passwordCheck;
+    const isPasswordEmpty = !values.password;
+    let isPasswordLengthNotCorrect = false;
+    if (!isPasswordEmpty) {
+      isPasswordLengthNotCorrect = values.password.length < minPasswordLength;
     }
-    if (!values.password) {
-      errors.password = "Required";
+    if (loginIsEmpty && isNotPasswordChangeModal) {
+      errors.login = REQUIRED_ERROR_MESSAGE;
     }
-    if (values.password && values.password.length < minPasswordLength) {
+    if (isPasswordEmpty) {
+      errors.password = REQUIRED_ERROR_MESSAGE;
+    }
+    if (!isPasswordEmpty && isPasswordLengthNotCorrect) {
       errors.password = `${minPasswordLength} or more characters`;
     }
-    if (typeModal === ModalType.registration && values.password !== values.passwordCheck) {
+    if (!isNotPasswordChangeModal && isNotPasswordSame) {
       errors.passwordCheck = "Not same";
     }
 
@@ -39,25 +59,26 @@ const ModalWindowContainer = ({ typeModal, handleClose, open }: IModalProps) => 
   };
 
   const logIn: IFormInput = {
-    name: InputName.logIn,
-    placeholder: InputPlaceholder.logIn,
-    type: InputType.text,
+    name: InputName.LogIn,
+    placeholder: InputPlaceholder.LogIn,
+    type: InputType.Text,
   };
   const password: IFormInput = {
-    name: InputName.password,
-    placeholder: InputPlaceholder.password,
-    type: InputType.password,
+    name: InputName.Password,
+    placeholder: InputPlaceholder.Password,
+    type: InputType.Password,
   };
   const passwordCheck: IFormInput = {
-    name: InputName.passwordCheck,
-    placeholder: InputPlaceholder.passwordCheck,
-    type: InputType.password,
+    name: InputName.PasswordCheck,
+    placeholder: InputPlaceholder.PasswordCheck,
+    type: InputType.Password,
   };
   const props: IModalWindow = {
     typeModal,
     handleClose,
     open,
-    onSubmit,
+    onSubmitLogin,
+    onSubmitPasswordChange,
     validation,
     logIn,
     password,

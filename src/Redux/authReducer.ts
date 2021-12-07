@@ -2,16 +2,20 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { IAuthState } from "@/types";
 import { signIn, signOut } from "./actions/authActions";
-import { registrationOrLogin } from "./thunks/authThunks";
+import { getProfile, registrationOrLogin } from "./thunks/authThunks";
 
 const initialState: IAuthState = {
   isAutorised: false,
   status: 0,
+  userName: "",
+  description: "",
+  img: "",
 };
 
 export default createReducer(initialState, {
-  [signIn.type]: (state) => {
+  [signIn.type]: (state, action) => {
     state.isAutorised = true;
+    state.userName = action.payload;
   },
   [signOut.type]: (state) => {
     state.isAutorised = false;
@@ -19,5 +23,17 @@ export default createReducer(initialState, {
   },
   [registrationOrLogin.fulfilled.type]: (state, action) => {
     state.status = action.payload;
+    state.userName = action.meta.arg.values.login;
+  },
+  [getProfile.fulfilled.type]: (
+    state,
+    {
+      payload: {
+        user: { description, img },
+      },
+    }
+  ) => {
+    state.description = description;
+    state.img = img;
   },
 });
