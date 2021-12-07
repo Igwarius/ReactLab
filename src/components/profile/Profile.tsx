@@ -70,11 +70,6 @@ const Profile = ({
   return (
     <Form
       initialValues={{ [InputName.LogIn]: userName, [InputName.description]: description }}
-      mutators={{
-        setValue: ([field, value], state, { changeValue }) => {
-          changeValue(state, field, () => value);
-        },
-      }}
       onSubmit={onSubmit}
       validate={validation}
       render={({ handleSubmit }) => (
