@@ -10,14 +10,14 @@ export enum InputName {
   LogIn = "login",
   Password = "password",
   PasswordCheck = "passwordCheck",
-  description = "Description",
+  description = "description",
 }
 
 export enum InputPlaceholder {
   LogIn = "Login",
   Password = "Password",
   PasswordCheck = "Password Check",
-  Description = "Description",
+  description = "Description",
 }
 
 export enum InputType {
