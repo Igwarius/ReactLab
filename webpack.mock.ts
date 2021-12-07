@@ -118,7 +118,6 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post("/save-profile", ({ body: { login, img, description } }, res) => {
     users = users.map((user) => (user.login === login ? { ...user, login, img, description } : user));
-    console.log(users);
     res.json({ success: true });
   });
 });
