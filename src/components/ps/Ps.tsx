@@ -1,5 +1,5 @@
 import React from "react";
 
-const Ps = () => <div>PS</div>;
+const Ps = () => <div />;
 
 export default Ps;

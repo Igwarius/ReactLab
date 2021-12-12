@@ -1,5 +1,5 @@
 import React from "react";
 
-const Pc = () => <div>PC</div>;
+const Pc = () => <div />;
 
 export default Pc;

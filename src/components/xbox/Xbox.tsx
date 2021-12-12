@@ -1,5 +1,5 @@
 import React from "react";
 
-const Xbox = () => <div>xbox</div>;
+const Xbox = () => <div />;
 
 export default Xbox;
