@@ -7,7 +7,7 @@ import Pc from "@/components/pc/Pc";
 import Xbox from "@/components/xbox/Xbox";
 import Ps from "@/components/ps/Ps";
 import urls from "@/constants/urls";
-import { GameAge, GameGener } from "@/constants/globalConstants";
+import { debounceDelay, GameAge, GameGener } from "@/constants/globalConstants";
 import { getProducts } from "@/redux/thunks/gameThunks";
 import { IGame } from "@/types";
 import GameCard from "../game-card/GameCard";
@@ -54,7 +54,6 @@ const Products = () => {
     setParam(event.target.value);
   };
 
-  const debounceDelay = 300;
   const games: IGame[] = useSelector(getProductsSelector);
 
   const debounced = useDebouncedCallback((value: string) => {

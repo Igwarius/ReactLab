@@ -33,3 +33,4 @@ export const GameGener = [
 ];
 export const GameAge = ["All", "0", "6", "12", "18"];
 export const GameSortType = ["Raiting", "Price"];
+export const debounceDelay = 300;
