@@ -29,12 +29,15 @@ const useStyles = makeStyles({
 });
 
 const Products = () => {
+  const genreDefault = "All";
+  const ageDefault = "All";
+  const typeDefault = "asc";
   const classes = useStyles();
   const [name, setGameName] = useState("");
-  const [genre, setGenre] = useState("All");
-  const [age, setAge] = useState("All");
+  const [genre, setGenre] = useState(genreDefault);
+  const [age, setAge] = useState(ageDefault);
   const [param, setParam] = useState("");
-  const [type, setType] = useState("asc");
+  const [type, setType] = useState(typeDefault);
   const [platform, setPlatform] = useState("");
   const dispatch = useDispatch();
 
@@ -88,7 +91,7 @@ const Products = () => {
     <div className={classes.root}>
       <div className={classes.filter}>
         <FormLabel component="legend">Type</FormLabel>
-        <Select defaultValue="asc" label="Type" onChange={handleTypeChange}>
+        <Select defaultValue={typeDefault} label="Type" onChange={handleTypeChange}>
           <MenuItem value="asc">Ascending</MenuItem>
           <MenuItem value="desc">Descending</MenuItem>
         </Select>
@@ -98,13 +101,18 @@ const Products = () => {
           <MenuItem value="price">Price</MenuItem>
         </Select>
         <FormLabel component="legend">Gener</FormLabel>
-        <RadioGroup defaultValue="All" onChange={handleGenreChange} aria-label="genre" name="radio-buttons-group">
+        <RadioGroup
+          defaultValue={genreDefault}
+          onChange={handleGenreChange}
+          aria-label="genre"
+          name="radio-buttons-group"
+        >
           {GameGener.map((element) => (
             <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
           ))}
         </RadioGroup>
         <FormLabel component="legend">Age</FormLabel>
-        <RadioGroup defaultValue="All" onChange={handleAgeChange} aria-label="age" name="radio-buttons-group">
+        <RadioGroup defaultValue={ageDefault} onChange={handleAgeChange} aria-label="age" name="radio-buttons-group">
           {GameAge.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}
