@@ -39,19 +39,15 @@ const Products = () => {
   const dispatch = useDispatch();
 
   const handleGenreChange = (event) => {
-    console.log(event.target.value);
     setGenre(event.target.value);
   };
   const handleAgeChange = (event) => {
-    console.log(event.target.value);
     setAge(event.target.value);
   };
   const handleTypeChange = (event) => {
-    console.log(event.target.value);
     setType(event.target.value);
   };
   const handleParamChange = (event) => {
-    console.log(event.target.value);
     setParam(event.target.value);
   };
 
