@@ -57,7 +57,7 @@ const Products = () => {
   const games: IGame[] = useSelector(getProductsSelector);
 
   const debounced = useDebouncedCallback((value: string) => {
-    if (value.length >= 3 || value.length === 0) {
+    if (!value.length || value.length >= 3) {
       const params = { genre, age, param, type, name, platform };
       dispatch(getProducts(params));
     }
