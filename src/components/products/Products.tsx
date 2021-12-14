@@ -7,7 +7,7 @@ import Pc from "@/components/pc/Pc";
 import Xbox from "@/components/xbox/Xbox";
 import Ps from "@/components/ps/Ps";
 import urls from "@/constants/urls";
-import { debounceDelay, GameAge, GameGener } from "@/constants/globalConstants";
+import { debounceDelay, GameAge, GameGeners } from "@/constants/globalConstants";
 import { getProducts } from "@/redux/thunks/gameThunks";
 import { IGame } from "@/types";
 import GameCard from "../game-card/GameCard";
@@ -106,7 +106,7 @@ const Products = () => {
           aria-label="genre"
           name="radio-buttons-group"
         >
-          {GameGener.map((element) => (
+          {GameGeners.map((element) => (
             <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
           ))}
         </RadioGroup>

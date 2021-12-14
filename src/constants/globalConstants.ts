@@ -25,7 +25,7 @@ export enum InputType {
   Password = "password",
 }
 
-export const GameGener = [
+export const GameGeners = [
   { value: "All", lable: "All" },
   { value: "rpg", lable: "RPG" },
   { value: "shooter", lable: "Shooter" },
