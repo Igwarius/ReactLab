@@ -41,16 +41,16 @@ const Products = () => {
   const [platform, setPlatform] = useState("");
   const dispatch = useDispatch();
 
-  const handleGenreChange = (event) => {
+  const handleGenreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGenre(event.target.value);
   };
-  const handleAgeChange = (event) => {
+  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAge(event.target.value);
   };
-  const handleTypeChange = (event) => {
+  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setType(event.target.value);
   };
-  const handleParamChange = (event) => {
+  const handleParamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setParam(event.target.value);
   };
 
