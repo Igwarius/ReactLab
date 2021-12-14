@@ -7,7 +7,7 @@ export const GameThunks = {
   GET_THREE_GAMES: "game/getThreeGames",
   GET_SEARCH_GAMES: "game/getSearchGames",
 };
-export interface IProductParametrs {
+export interface IProductParameters {
   genre: string;
   age: string;
   param: string;
@@ -26,26 +26,26 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
   return response.data;
 });
 
-export const getProducts = createAsyncThunk(GameThunks.GET_THREE_GAMES, async (parametrs: IProductParametrs) => {
+export const getProducts = createAsyncThunk(GameThunks.GET_THREE_GAMES, async (parameters: IProductParameters) => {
   let getProducts = `${apiUrls.GET_PRODUCTS}?`;
 
-  if (parametrs.age) {
-    getProducts = `${getProducts}age=${parametrs.age}&`;
+  if (parameters.age) {
+    getProducts = `${getProducts}age=${parameters.age}&`;
   }
-  if (parametrs.genre) {
-    getProducts = `${getProducts}genre=${parametrs.genre}&`;
+  if (parameters.genre) {
+    getProducts = `${getProducts}genre=${parameters.genre}&`;
   }
-  if (parametrs.type) {
-    getProducts = `${getProducts}SortDir=${parametrs.type}&`;
+  if (parameters.type) {
+    getProducts = `${getProducts}SortDir=${parameters.type}&`;
   }
-  if (parametrs.param) {
-    getProducts = `${getProducts}sortType=${parametrs.param}&`;
+  if (parameters.param) {
+    getProducts = `${getProducts}sortType=${parameters.param}&`;
   }
-  if (parametrs.name) {
-    getProducts = `${getProducts}name=${parametrs.name}&`;
+  if (parameters.name) {
+    getProducts = `${getProducts}name=${parameters.name}&`;
   }
-  if (parametrs.platform) {
-    getProducts = `${getProducts}platform=${parametrs.platform}&`;
+  if (parameters.platform) {
+    getProducts = `${getProducts}platform=${parameters.platform}&`;
   }
 
   const response = await axios.get(getProducts);

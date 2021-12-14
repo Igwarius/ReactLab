@@ -10,14 +10,14 @@ export const AuthThunks = {
   GET_PROFILE: "user/profile",
   CHANGE_PASSWORD: "user/changePassword",
 };
-interface IRegistrationParametrs {
+interface IRegistrationParameters {
   values: IForm;
   typeModal: ModalType | null;
 }
 
 export const registrationOrLogin = createAsyncThunk(
   AuthThunks.REGISTRATION_OR_SIGNIN,
-  async ({ typeModal, values }: IRegistrationParametrs) => {
+  async ({ typeModal, values }: IRegistrationParameters) => {
     const response = await axios.post(
       typeModal !== ModalType.Registration ? apiUrls.LOG_IN : apiUrls.REGISTRATION,
       values
