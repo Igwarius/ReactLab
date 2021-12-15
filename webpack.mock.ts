@@ -87,59 +87,43 @@ export default webpackMockServer.add((app, helper) => {
     if (platform) {
       gamesRes = gamesRes.filter((game) => game.platform.toLowerCase().includes(platform.toString().toLowerCase()));
     }
+    const sortAsc = (arr, key) =>
+      arr.sort((prev, next) => {
+        if (prev[key] < next[key]) {
+          return 1;
+        }
+        if (prev[key] > next[key]) {
+          return -1;
+        }
 
+        return 0;
+      });
+    const sortDesc = (arr, key) =>
+      arr.sort((prev, next) => {
+        if (prev[key] > next[key]) {
+          return 1;
+        }
+        if (prev[key] < next[key]) {
+          return -1;
+        }
+
+        return 0;
+      });
     if (sortType && SortDir) {
       if (SortDir === "asc") {
         if (sortType === "raiting") {
-          gamesRes = gamesRes.sort((obj1, obj2) => {
-            if (obj1.rating < obj2.rating) {
-              return 1;
-            }
-            if (obj1.rating > obj2.rating) {
-              return -1;
-            }
-
-            return 0;
-          });
+          gamesRes = sortAsc(gamesRes, "rating");
         }
         if (sortType === "price") {
-          gamesRes = gamesRes.sort((obj1, obj2) => {
-            if (obj1.price < obj2.price) {
-              return 1;
-            }
-            if (obj1.price > obj2.price) {
-              return -1;
-            }
-
-            return 0;
-          });
+          gamesRes = sortAsc(gamesRes, "price");
         }
       }
       if (SortDir === "desc") {
         if (sortType === "raiting") {
-          gamesRes = gamesRes.sort((obj1, obj2) => {
-            if (obj1.rating > obj2.rating) {
-              return 1;
-            }
-            if (obj1.rating < obj2.rating) {
-              return -1;
-            }
-
-            return 0;
-          });
+          gamesRes = sortDesc(gamesRes, "rating");
         }
         if (sortType === "price") {
-          gamesRes = gamesRes.sort((obj1, obj2) => {
-            console.log(obj1.price);
-            if (obj1.price > obj2.price) {
-              return 1;
-            }
-            if (obj1.price < obj2.price) {
-              return -1;
-            }
-
-            return 0;
-          });
+          gamesRes = sortDesc(gamesRes, "price");
         }
       }
     }
