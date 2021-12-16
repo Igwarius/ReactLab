@@ -6,7 +6,6 @@ import { getProducts, getSearchGames, getThreeGames } from "./thunks/gameThunks"
 const initialState: IGameState = {
   items: [],
   searchGames: [],
-  products: [],
 };
 
 export default createReducer(initialState, {
@@ -17,6 +16,6 @@ export default createReducer(initialState, {
     state.searchGames = action.payload;
   },
   [getProducts.fulfilled.type]: (state, action) => {
-    state.products = action.payload;
+    state.items = action.payload;
   },
 });

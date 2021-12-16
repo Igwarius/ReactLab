@@ -11,7 +11,7 @@ import { debounceDelay, GameAge, GameGeners } from "@/constants/globalConstants"
 import { getProducts } from "@/redux/thunks/gameThunks";
 import { IGame } from "@/types";
 import GameCard from "../game-card/GameCard";
-import { getProductsSelector } from "@/redux/selectors/gameSelectors";
+import { getThreeGamesSelector } from "@/redux/selectors/gameSelectors";
 
 const useStyles = makeStyles({
   root: {
@@ -54,7 +54,7 @@ const Products = () => {
     setParam(event.target.value);
   };
 
-  const games: IGame[] = useSelector(getProductsSelector);
+  const games: IGame[] = useSelector(getThreeGamesSelector);
 
   const debounced = useDebouncedCallback((value: string) => {
     if (!value.length || value.length >= 3) {
