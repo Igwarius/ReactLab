@@ -27,28 +27,28 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
 });
 
 export const getProducts = createAsyncThunk(GameThunks.GET_THREE_GAMES, async (parameters: IProductParameters) => {
-  let getProducts = `${apiUrls.GET_PRODUCTS}?`;
+  const getProductsLink: string[] = [`${apiUrls.GET_PRODUCTS}?`];
 
   if (parameters.age) {
-    getProducts = `${getProducts}age=${parameters.age}&`;
+    getProductsLink.push(`age=${parameters.age}&`);
   }
   if (parameters.genre) {
-    getProducts = `${getProducts}genre=${parameters.genre}&`;
+    getProductsLink.push(`genre=${parameters.genre}&`);
   }
   if (parameters.type) {
-    getProducts = `${getProducts}SortDir=${parameters.type}&`;
+    getProductsLink.push(`SortDir=${parameters.type}&`);
   }
   if (parameters.param) {
-    getProducts = `${getProducts}sortType=${parameters.param}&`;
+    getProductsLink.push(`sortType=${parameters.param}&`);
   }
   if (parameters.name) {
-    getProducts = `${getProducts}name=${parameters.name}&`;
+    getProductsLink.push(`name=${parameters.name}&`);
   }
   if (parameters.platform) {
-    getProducts = `${getProducts}platform=${parameters.platform}&`;
+    getProductsLink.push(`platform=${parameters.platform}&`);
   }
 
-  const response = await axios.get(getProducts);
+  const response = await axios.get(getProductsLink.join(""));
 
   return response.data;
 });
