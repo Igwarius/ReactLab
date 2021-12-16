@@ -84,7 +84,7 @@ export default webpackMockServer.add((app, helper) => {
     if (name) {
       gamesRes = gamesRes.filter((game) => game.name.toLowerCase().includes(name.toString().toLowerCase()));
     }
-    if (platform) {
+    if (platform && platform !== "All") {
       gamesRes = gamesRes.filter((game) => game.platform.toLowerCase().includes(platform.toString().toLowerCase()));
     }
     const sortAsc = (arr, key) =>

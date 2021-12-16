@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import urls from "../../constants/urls";
 import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
-import Header, { ICategory, IHeaderProps } from "./Header";
+import Header, { IHeaderProps } from "./Header";
 import { signIn, signOut } from "@/redux/actions/authActions";
 import { getUserNameSelector, isAutorisedSelector } from "@/redux/selectors/authSelectors";
-
-const categoriesArray: ICategory[] = [
-  {
-    label: "PC",
-    path: `${urls.PRODUCTS}/pc`,
-  },
-  {
-    label: "PS",
-    path: `${urls.PRODUCTS}/ps`,
-  },
-  {
-    label: "XBOX",
-    path: `${urls.PRODUCTS}/xbox`,
-  },
-];
 
 const HeaderContainer = (): JSX.Element => {
   const history = useHistory();
@@ -86,7 +70,7 @@ const HeaderContainer = (): JSX.Element => {
     onHandleClose,
     onLinkClick,
     registration,
-    categoriesArray,
+
     userName,
   };
 

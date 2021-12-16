@@ -1,13 +1,8 @@
-import { Switch, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { RadioGroup, FormControlLabel, Radio, FormLabel, MenuItem, Select, makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebouncedCallback } from "use-debounce";
-import Pc from "@/components/pc/Pc";
-import Xbox from "@/components/xbox/Xbox";
-import Ps from "@/components/ps/Ps";
-import urls from "@/constants/urls";
-import { debounceDelay, GameAge, GameGeners } from "@/constants/globalConstants";
+import { debounceDelay, GameAge, GameGeners, Platform } from "@/constants/globalConstants";
 import { getProducts } from "@/redux/thunks/gameThunks";
 import { IGame } from "@/types";
 import GameCard from "../game-card/GameCard";
@@ -31,6 +26,7 @@ const useStyles = makeStyles({
 const Products = () => {
   const genreDefault = "All";
   const ageDefault = "All";
+  const platformDefault = "All";
   const typeDefault = "asc";
   const classes = useStyles();
   const [name, setGameName] = useState("");
@@ -53,6 +49,9 @@ const Products = () => {
   const handleParamChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setParam(event.target.value);
   };
+  const handlePlatformChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPlatform(event.target.value);
+  };
 
   const games: IGame[] = useSelector(getThreeGamesSelector);
 
@@ -67,20 +66,7 @@ const Products = () => {
     setGameName(value);
     debounced(value);
   };
-  useEffect(() => {
-    if (window.location.href.includes("pc")) {
-      setPlatform("pc");
-    } else if (window.location.href.includes("ps")) {
-      setPlatform("ps");
-    } else if (window.location.href.includes("xbox")) {
-      setPlatform("xbox");
-    } else {
-      setPlatform("");
-    }
 
-    const params = { genre, age, param, type, name, platform };
-    dispatch(getProducts(params));
-  }, [window.location.href]);
   useEffect(() => {
     const params = { genre, age, param, type, name, platform };
     dispatch(getProducts(params));
@@ -110,17 +96,23 @@ const Products = () => {
             <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
           ))}
         </RadioGroup>
+        <FormLabel component="legend">Platform</FormLabel>
+        <RadioGroup
+          defaultValue={platformDefault}
+          onChange={handlePlatformChange}
+          aria-label="platform"
+          name="radio-buttons-group"
+        >
+          {Platform.map((element) => (
+            <FormControlLabel value={element} control={<Radio />} label={element} />
+          ))}
+        </RadioGroup>
         <FormLabel component="legend">Age</FormLabel>
         <RadioGroup defaultValue={ageDefault} onChange={handleAgeChange} aria-label="age" name="radio-buttons-group">
           {GameAge.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}
         </RadioGroup>
-        <Switch>
-          <Route path={`${urls.PRODUCTS}/pc`} component={Pc} />
-          <Route path={`${urls.PRODUCTS}/xbox`} component={Xbox} />
-          <Route path={`${urls.PRODUCTS}/ps`} component={Ps} />
-        </Switch>
       </div>
       <div>
         <input
