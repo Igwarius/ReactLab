@@ -69,23 +69,30 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json(response);
   });
-
+  interface ISortParametrs {
+    genre: string;
+    age: string;
+    name: string;
+    sortType: string;
+    SortDir: string;
+    platform: string;
+  }
   app.get("/all-products", (req, res) => {
-    const { genre, age, name, sortType, SortDir, platform } = req.query;
+    const { genre, age, name, sortType, SortDir, platform } = req.query as unknown as ISortParametrs;
 
     let gamesRes: typeof games = [];
     gamesRes = games;
     if (age && age !== "All") {
-      gamesRes = gamesRes.filter((game) => game.age.toLowerCase().includes(age.toString().toLowerCase()));
+      gamesRes = gamesRes.filter((game) => game.age.toLowerCase().includes(age.toLowerCase()));
     }
     if (genre && genre !== "All") {
-      gamesRes = gamesRes.filter((game) => game.genre.toLowerCase().includes(genre.toString().toLowerCase()));
+      gamesRes = gamesRes.filter((game) => game.genre.toLowerCase().includes(genre.toLowerCase()));
     }
     if (name) {
-      gamesRes = gamesRes.filter((game) => game.name.toLowerCase().includes(name.toString().toLowerCase()));
+      gamesRes = gamesRes.filter((game) => game.name.toLowerCase().includes(name.toLowerCase()));
     }
     if (platform && platform !== "All") {
-      gamesRes = gamesRes.filter((game) => game.platform.toLowerCase().includes(platform.toString().toLowerCase()));
+      gamesRes = gamesRes.filter((game) => game.platform.toLowerCase().includes(platform.toLowerCase()));
     }
     const sortAsc = (arr, key) =>
       arr.sort((prev, next) => {
