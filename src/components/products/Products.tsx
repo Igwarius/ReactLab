@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RadioGroup, FormControlLabel, Radio, FormLabel, MenuItem, Select, makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebouncedCallback } from "use-debounce";
-import { debounceDelay, GameAge, GameGeners, Platform } from "@/constants/globalConstants";
+import { debounceDelay, GameAge, GameGenres, Platform } from "@/constants/globalConstants";
 import { getProducts } from "@/redux/thunks/gameThunks";
 import { IGame } from "@/types";
 import GameCard from "../game-card/GameCard";
@@ -24,16 +24,16 @@ const useStyles = makeStyles({
 });
 
 const Products = () => {
-  const genreDefault = "All";
-  const ageDefault = "All";
-  const platformDefault = "All";
-  const typeDefault = "asc";
+  const sortValueGenreDefault = "All";
+  const sortValueAgeDefault = "All";
+  const sortValuePlatformDefault = "All";
+  const sortValueTypeDefault = "asc";
   const classes = useStyles();
   const [name, setGameName] = useState("");
-  const [genre, setGenre] = useState(genreDefault);
-  const [age, setAge] = useState(ageDefault);
+  const [genre, setGenre] = useState(sortValueGenreDefault);
+  const [age, setAge] = useState(sortValueAgeDefault);
   const [param, setParam] = useState("");
-  const [type, setType] = useState(typeDefault);
+  const [type, setType] = useState(sortValueTypeDefault);
   const [platform, setPlatform] = useState("");
   const dispatch = useDispatch();
 
@@ -76,29 +76,34 @@ const Products = () => {
     <div className={classes.root}>
       <div className={classes.filter}>
         <FormLabel component="legend">Type</FormLabel>
-        <Select defaultValue={typeDefault} label="Type" onChange={handleTypeChange}>
+        <Select defaultValue={sortValueTypeDefault} label="Type" onChange={handleTypeChange}>
           <MenuItem value="asc">Ascending</MenuItem>
           <MenuItem value="desc">Descending</MenuItem>
         </Select>
         <Select defaultValue="" label="param" onChange={handleParamChange}>
           <MenuItem value="">None</MenuItem>
-          <MenuItem value="raiting">Raitng</MenuItem>
+          <MenuItem value="rating">Raitng</MenuItem>
           <MenuItem value="price">Price</MenuItem>
         </Select>
         <FormLabel component="legend">Gener</FormLabel>
-        <RadioGroup defaultValue={genreDefault} onChange={handleGenreChange} aria-label="genre">
-          {GameGeners.map((element) => (
+        <RadioGroup defaultValue={sortValueGenreDefault} onChange={handleGenreChange} aria-label="genre">
+          {GameGenres.map((element) => (
             <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
           ))}
         </RadioGroup>
         <FormLabel component="legend">Platform</FormLabel>
-        <RadioGroup defaultValue={platformDefault} onChange={handlePlatformChange} aria-label="platform">
+        <RadioGroup defaultValue={sortValuePlatformDefault} onChange={handlePlatformChange} aria-label="platform">
           {Platform.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}
         </RadioGroup>
         <FormLabel component="legend">Age</FormLabel>
-        <RadioGroup defaultValue={ageDefault} onChange={handleAgeChange} aria-label="age">
+        <RadioGroup
+          defaultValue={sortValueAgeDefault}
+          onChange={handleAgeChange}
+          aria-label="age"
+          name="radio-buttons-group"
+        >
           {GameAge.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}

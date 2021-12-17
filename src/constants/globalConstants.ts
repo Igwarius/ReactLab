@@ -25,7 +25,7 @@ export enum InputType {
   Password = "password",
 }
 
-export const GameGeners = [
+export const GameGenres = [
   { value: "All", lable: "All" },
   { value: "rpg", lable: "RPG" },
   { value: "shooter", lable: "Shooter" },
@@ -33,5 +33,5 @@ export const GameGeners = [
 ];
 export const GameAge = ["All", "0", "6", "12", "18"];
 export const Platform = ["All", "pc", "xbox", "ps"];
-export const GameSortType = ["Raiting", "Price"];
+export const GameSortType = ["Rating", "Price"];
 export const debounceDelay = 300;

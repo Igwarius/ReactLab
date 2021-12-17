@@ -36,7 +36,7 @@ export const getProducts = createAsyncThunk(GameThunks.GET_THREE_GAMES, async (p
     getProductsLink.push(`genre=${parameters.genre}`);
   }
   if (parameters.type) {
-    getProductsLink.push(`SortDir=${parameters.type}`);
+    getProductsLink.push(`sortDir=${parameters.type}`);
   }
   if (parameters.param) {
     getProductsLink.push(`sortType=${parameters.param}`);

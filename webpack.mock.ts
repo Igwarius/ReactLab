@@ -74,11 +74,11 @@ export default webpackMockServer.add((app, helper) => {
     age: string;
     name: string;
     sortType: string;
-    SortDir: string;
+    sortDir: string;
     platform: string;
   }
   app.get("/all-products", (req, res) => {
-    const { genre, age, name, sortType, SortDir, platform } = req.query as unknown as ISortParametrs;
+    const { genre, age, name, sortType, sortDir, platform } = req.query as unknown as ISortParametrs;
 
     let gamesRes: typeof games = [];
     gamesRes = games;
@@ -116,17 +116,17 @@ export default webpackMockServer.add((app, helper) => {
 
         return 0;
       });
-    if (sortType && SortDir) {
-      if (SortDir === "asc") {
-        if (sortType === "raiting") {
+    if (sortType && sortDir) {
+      if (sortDir === "asc") {
+        if (sortType === "rating") {
           gamesRes = sortAsc(gamesRes, "rating");
         }
         if (sortType === "price") {
           gamesRes = sortAsc(gamesRes, "price");
         }
       }
-      if (SortDir === "desc") {
-        if (sortType === "raiting") {
+      if (sortDir === "desc") {
+        if (sortType === "rating") {
           gamesRes = sortDesc(gamesRes, "rating");
         }
         if (sortType === "price") {
