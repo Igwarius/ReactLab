@@ -86,29 +86,19 @@ const Products = () => {
           <MenuItem value="price">Price</MenuItem>
         </Select>
         <FormLabel component="legend">Gener</FormLabel>
-        <RadioGroup
-          defaultValue={genreDefault}
-          onChange={handleGenreChange}
-          aria-label="genre"
-          name="radio-buttons-group"
-        >
+        <RadioGroup defaultValue={genreDefault} onChange={handleGenreChange} aria-label="genre">
           {GameGeners.map((element) => (
             <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
           ))}
         </RadioGroup>
         <FormLabel component="legend">Platform</FormLabel>
-        <RadioGroup
-          defaultValue={platformDefault}
-          onChange={handlePlatformChange}
-          aria-label="platform"
-          name="radio-buttons-group"
-        >
+        <RadioGroup defaultValue={platformDefault} onChange={handlePlatformChange} aria-label="platform">
           {Platform.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}
         </RadioGroup>
         <FormLabel component="legend">Age</FormLabel>
-        <RadioGroup defaultValue={ageDefault} onChange={handleAgeChange} aria-label="age" name="radio-buttons-group">
+        <RadioGroup defaultValue={ageDefault} onChange={handleAgeChange} aria-label="age">
           {GameAge.map((element) => (
             <FormControlLabel value={element} control={<Radio />} label={element} />
           ))}
