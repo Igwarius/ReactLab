@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Button, Typography, Menu, MenuItem, Fade, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Search from "@/components/search/Search";
@@ -6,19 +6,6 @@ import ModalWindowContainer from "../modal/ModaWindowContainer";
 import { IModalProps } from "@/types";
 import headersData from "@/constants/headerData";
 import urls from "@/constants/urls";
-
-const useStyles = makeStyles(() => ({
-  menuPaper: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    textDecoration: "none",
-  },
-}));
-
-export interface ICategory {
-  label: string;
-  path: string;
-}
 
 export interface IHeaderProps {
   anchorEl: (EventTarget & HTMLButtonElement) | null;
@@ -30,25 +17,21 @@ export interface IHeaderProps {
   onHandleClose: () => void;
   onLinkClick: (link: string) => void;
   registration: IModalProps;
-  categoriesArray: ICategory[];
+
   userName: string;
 }
 
 const Header = ({
-  anchorEl,
-  onHandleClick,
   isLogged,
   handleOpenReg,
   handleOpenLog,
   onLogOut,
-  onHandleClose,
+
   onLinkClick,
   registration,
-  categoriesArray,
+
   userName,
 }: IHeaderProps): JSX.Element => {
-  const classes = useStyles();
-
   const getMenuButtons = () =>
     headersData.map(({ label, href }) => (
       <Button
@@ -72,15 +55,6 @@ const Header = ({
         <Toolbar>
           {getMenuButtons()}
 
-          <Button
-            color="inherit"
-            aria-controls="fade-menu"
-            aria-owns={anchorEl ? "simple-menu" : undefined}
-            aria-haspopup="true"
-            onMouseOver={onHandleClick}
-          >
-            Categories
-          </Button>
           {!isLogged ? (
             <div>
               <Button color="inherit" onClick={handleOpenReg}>
@@ -100,24 +74,7 @@ const Header = ({
               </Button>
             </>
           )}
-          <Menu
-            classes={{ paper: classes.menuPaper }}
-            color="inherit"
-            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-            transformOrigin={{ vertical: "top", horizontal: "center" }}
-            getContentAnchorEl={null}
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={onHandleClose}
-            MenuListProps={{ onMouseLeave: onHandleClose }}
-            TransitionComponent={Fade}
-          >
-            {categoriesArray.map((element, index) => (
-              <MenuItem key={index} color="inherit" onClick={() => onLinkClick(element.path)}>
-                {element.label}
-              </MenuItem>
-            ))}
-          </Menu>
+
           <Search />
         </Toolbar>
       </AppBar>

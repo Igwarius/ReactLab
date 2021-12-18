@@ -10,30 +10,42 @@ const games = [
     price: 50,
     rating: 5,
     date: new Date("October 26, 2007"),
+    age: "6",
+    genre: "RPG",
+    platform: "pc",
   },
   {
     id: 2,
     name: "CS Go",
     img: "https://sm.ign.com/ign_ru/screenshot/default/1counter-strike-global-offensive_373t.jpg",
-    price: 50,
+    price: 30,
     rating: 3,
     date: new Date("October 26, 2005"),
+    age: "12",
+    genre: "Shooter",
+    platform: "xbox",
   },
   {
     id: 3,
     name: "Tekken",
     img: "https://upload.wikimedia.org/wikipedia/ru/6/6e/Tekken7Poster.jpg",
-    price: 50,
+    price: 20,
     rating: 4,
     date: new Date("October 26, 2004"),
+    age: "18",
+    genre: "RPG",
+    platform: "ps",
   },
   {
     id: 4,
     name: "Witcher 2",
     img: "https://s1.gaming-cdn.com/images/products/789/orig/game-gog-com-the-witcher-2-assassins-of-kings-enhanced-edition-cover.jpg",
-    price: 50,
+    price: 40,
     rating: 5,
     date: new Date("October 26, 2003"),
+    age: "0",
+    genre: "RPG",
+    platform: "pc",
   },
 ];
 
@@ -57,6 +69,76 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json(response);
   });
+  interface ISortParametrs {
+    genre: string;
+    age: string;
+    name: string;
+    sortType: string;
+    sortDir: string;
+    platform: string;
+  }
+  app.get("/all-products", (req, res) => {
+    const { genre, age, name, sortType, sortDir, platform } = req.query as unknown as ISortParametrs;
+
+    let gamesRes: typeof games = [];
+    gamesRes = games;
+    if (age && age !== "All") {
+      gamesRes = gamesRes.filter((game) => game.age.toLowerCase().includes(age.toLowerCase()));
+    }
+    if (genre && genre !== "All") {
+      gamesRes = gamesRes.filter((game) => game.genre.toLowerCase().includes(genre.toLowerCase()));
+    }
+    if (name) {
+      gamesRes = gamesRes.filter((game) => game.name.toLowerCase().includes(name.toLowerCase()));
+    }
+    if (platform && platform !== "All") {
+      gamesRes = gamesRes.filter((game) => game.platform.toLowerCase().includes(platform.toLowerCase()));
+    }
+    const sortAsc = (arr, key) =>
+      arr.sort((prev, next) => {
+        if (prev[key] < next[key]) {
+          return 1;
+        }
+        if (prev[key] > next[key]) {
+          return -1;
+        }
+
+        return 0;
+      });
+    const sortDesc = (arr, key) =>
+      arr.sort((prev, next) => {
+        if (prev[key] > next[key]) {
+          return 1;
+        }
+        if (prev[key] < next[key]) {
+          return -1;
+        }
+
+        return 0;
+      });
+    if (sortType && sortDir) {
+      if (sortDir === "asc") {
+        if (sortType === "rating") {
+          gamesRes = sortAsc(gamesRes, "rating");
+        }
+        if (sortType === "price") {
+          gamesRes = sortAsc(gamesRes, "price");
+        }
+      }
+      if (sortDir === "desc") {
+        if (sortType === "rating") {
+          gamesRes = sortDesc(gamesRes, "rating");
+        }
+        if (sortType === "price") {
+          gamesRes = sortDesc(gamesRes, "price");
+        }
+      }
+    }
+    res.json(gamesRes);
+
+    return res;
+  });
+
   app.get("/game-by-name", (req, res) => {
     const { name } = req.query;
     if (!name) {

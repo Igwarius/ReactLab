@@ -7,5 +7,6 @@ const apiUrls = {
   GET_PROFILE: `${serverURL}/profile-info`,
   CHANGE_PASSWORD: `${serverURL}/change-password`,
   SAVE_PROFILE: `${serverURL}/save-profile`,
+  GET_PRODUCTS: `${serverURL}/all-products`,
 };
 export default apiUrls;
