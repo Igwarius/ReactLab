@@ -37,7 +37,6 @@ export interface IAuthState {
 interface ICart {
   order: {
     games: IGame[];
-    userName: string;
   };
 }
 export interface IGameState {

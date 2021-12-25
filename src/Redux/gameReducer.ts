@@ -9,7 +9,6 @@ const initialState: IGameState = {
   searchGames: [],
   cart: {
     order: {
-      userName: "",
       games: [],
     },
   },
