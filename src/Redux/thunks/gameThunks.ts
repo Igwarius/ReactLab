@@ -16,7 +16,7 @@ export interface IProductParameters {
   name: string;
   platform: string;
 }
-export interface IAddToCartParametrs {
+export interface IAddToCartParameters {
   name: string;
   gameName: string;
 }
@@ -30,7 +30,7 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
 
   return response.data;
 });
-export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values: IAddToCartParametrs) => {
+export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values: IAddToCartParameters) => {
   const response = await axios.post(apiUrls.ADD_TO_CART, values);
 
   return response.status;
