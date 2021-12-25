@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import { deleteCart, getCart } from "@/redux/thunks/gameThunks";
 import { getCartSelector } from "@/redux/selectors/gameSelectors";
 import { IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
+import urls from "@/constants/urls";
+import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
 
 const useStyles = makeStyles({
   table: {
@@ -19,7 +22,8 @@ const Cart = () => {
   const [games, setGames] = useState([]);
   const dispatch = useDispatch();
   const cart = useSelector(getCartSelector);
-
+  const history = useHistory();
+  const isAutorised = useSelector(isAutorisedSelector);
   let totalPrice = 0;
   const onDeleteSelectedGame = () => {
     const filteredFileList = games.filter((item) => !selectedGame.includes(item.id));
@@ -48,6 +52,11 @@ const Cart = () => {
       setGames(cart.games);
     }
   }, [cart]);
+  useEffect(() => {
+    if (!localStorage.getItem(IS_AUTHORIZED_KEY)) {
+      history.push(urls.MAIN);
+    }
+  }, [isAutorised]);
 
   return (
     <div className={classes.table}>
