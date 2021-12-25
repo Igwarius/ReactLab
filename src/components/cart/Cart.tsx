@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { DataGrid } from "@mui/x-data-grid";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import { deleteCart, getCart } from "@/redux/thunks/gameThunks";
 import { getCartSelector } from "@/redux/selectors/gameSelectors";
 import { IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
 
+const useStyles = makeStyles({
+  table: {
+    height: "400px",
+    width: "100%",
+  },
+});
+
 const Cart = () => {
+  const classes = useStyles();
   const [selectedGame, setSelectedGame] = useState([]);
   const [games, setGames] = useState([]);
   const dispatch = useDispatch();
@@ -45,7 +52,7 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div className={classes.table}>
       <DataGrid
         checkboxSelection
         rows={games}
