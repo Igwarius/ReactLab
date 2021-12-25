@@ -237,7 +237,9 @@ export default webpackMockServer.add((app, helper) => {
 
         return a;
       });
-    } else orders.push({ userName: name, games: [game] });
+    } else {
+      orders.push({ userName: name, games: [game] });
+    }
 
     res.json({ success: true });
   });
