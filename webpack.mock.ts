@@ -216,7 +216,7 @@ export default webpackMockServer.add((app, helper) => {
     const check = (element: { userName: string }) => element.userName === name;
     if (orders.some(check)) {
       const order = orders.find((a) => a.userName === name);
-      res.json({ order });
+      res.json(order);
     }
 
     res.status(400);

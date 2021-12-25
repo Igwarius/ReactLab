@@ -8,9 +8,7 @@ const initialState: IGameState = {
   items: [],
   searchGames: [],
   cart: {
-    order: {
-      games: [],
-    },
+    games: [],
   },
 };
 

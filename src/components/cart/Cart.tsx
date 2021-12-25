@@ -44,8 +44,8 @@ const Cart = () => {
     dispatch(getCart(localStorage.getItem(IS_AUTHORIZED_KEY)));
   }, []);
   useEffect(() => {
-    if (cart.order != null) {
-      setGames(cart.order.games);
+    if (cart != null) {
+      setGames(cart.games);
     }
   }, [cart]);
 
