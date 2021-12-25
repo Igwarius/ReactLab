@@ -31,10 +31,10 @@ const Cart = () => {
     setGames([]);
   };
   const columns = [
-    { field: "name", headerName: "Game", width: 130 },
-    { field: "price", headerName: "Price", width: 130 },
-    { field: "genre", headerName: "Genre", width: 130 },
-    { field: "platform", headerName: "Platform", width: 130 },
+    { field: "name", headerName: "Game" },
+    { field: "price", headerName: "Price" },
+    { field: "genre", headerName: "Genre" },
+    { field: "platform", headerName: "Platform" },
   ];
 
   games.forEach((game) => {
