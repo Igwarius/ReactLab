@@ -36,13 +36,11 @@ export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values:
   return response.status;
 });
 export const getCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
-  console.log(value);
   const response = await axios.get(`${apiUrls.ADD_TO_CART}?name=${value}`);
 
   return response.data;
 });
 export const deleteCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
-  console.log(value);
   const response = await axios.delete(`${apiUrls.ADD_TO_CART}?name=${value}`);
 
   return response.data;

@@ -30,8 +30,6 @@ const Cart = () => {
     dispatch(getCart(localStorage.getItem(IS_AUTHORIZED_KEY)));
     setGames([]);
   };
-  const mySet = new Set(games);
-  console.log(mySet);
   const columns = [
     { field: "name", headerName: "Game", width: 130 },
     { field: "price", headerName: "Price", width: 130 },

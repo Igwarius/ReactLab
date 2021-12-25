@@ -214,7 +214,6 @@ export default webpackMockServer.add((app, helper) => {
   app.get("/orders-by-name", (req, res) => {
     const { name } = req.query;
     const check = (element: { userName: string }) => element.userName === name;
-    console.log(check);
     if (orders.some(check)) {
       const order = orders.find((a) => a.userName === name);
       res.json({ order });
@@ -230,8 +229,6 @@ export default webpackMockServer.add((app, helper) => {
     const game = games.find((game) => game.name === gameName);
     if (orders.some(check)) {
       orders = orders.map((a) => {
-        console.log(a.userName.toLowerCase);
-        console.log(name);
         if (a.userName.toLowerCase() === name.toLowerCase()) {
           if (!a.games.includes(game)) {
             a.games.push(game);
