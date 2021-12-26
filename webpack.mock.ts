@@ -2,6 +2,13 @@
 import webpackMockServer from "webpack-mock-server";
 import cors from "cors";
 
+function check(arr, val) {
+  console.log(arr.some((element: { userName: string }) => val === element.userName));
+  console.log(val);
+
+  return arr.some((element: { userName: string }) => val === element.userName);
+}
+
 const games = [
   {
     id: 1,
@@ -213,8 +220,9 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.get("/orders", (req, res) => {
     const { name } = req.query;
-    const check = (element: { userName: string }) => element.userName === name;
-    if (orders.some(check)) {
+
+    if (check(orders, name)) {
+      console.log("a");
       const order = orders.find((a) => a.userName === name);
       res.json(order);
     }
@@ -225,9 +233,9 @@ export default webpackMockServer.add((app, helper) => {
   app.post("/orders", (req, res) => {
     const { userName, gameName } = req.body;
 
-    const check = (element: { userName: string }) => element.userName === userName;
     const game = games.find((game) => game.name === gameName);
-    if (orders.some(check)) {
+    console.log(check(orders, userName));
+    if (check(orders, userName)) {
       orders = orders.map((a) => {
         if (a.userName.toLowerCase() === userName.toLowerCase()) {
           if (!a.games.includes(game)) {
