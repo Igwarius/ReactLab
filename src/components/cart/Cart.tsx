@@ -1,6 +1,7 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, makeStyles } from "@material-ui/core";
+import { IGame } from "@/types";
 
 const useStyles = makeStyles({
   table: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 export interface ICart {
-  games: unknown[];
+  games: IGame[];
   columns: {
     field: string;
     headerName: string;
