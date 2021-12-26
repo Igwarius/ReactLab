@@ -223,13 +223,13 @@ export default webpackMockServer.add((app, helper) => {
     res.json({ success: false });
   });
   app.post("/orders", (req, res) => {
-    const { name, gameName } = req.body;
+    const { userName, gameName } = req.body;
 
-    const check = (element: { userName: string }) => element.userName === name;
+    const check = (element: { userName: string }) => element.userName === userName;
     const game = games.find((game) => game.name === gameName);
     if (orders.some(check)) {
       orders = orders.map((a) => {
-        if (a.userName.toLowerCase() === name.toLowerCase()) {
+        if (a.userName.toLowerCase() === userName.toLowerCase()) {
           if (!a.games.includes(game)) {
             a.games.push(game);
           }
@@ -238,7 +238,7 @@ export default webpackMockServer.add((app, helper) => {
         return a;
       });
     } else {
-      orders.push({ userName: name, games: [game] });
+      orders.push({ userName, games: [game] });
     }
 
     res.json({ success: true });

@@ -30,7 +30,7 @@ const GameCard = ({ name, img, price, rating }: IGame) => {
 
   const onClick = () => {
     if (isLogged) {
-      dispatch(addToCart({ name: userName, gameName: name }));
+      dispatch(addToCart({ userName, gameName: name }));
     }
   };
 

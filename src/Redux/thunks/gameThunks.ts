@@ -17,7 +17,7 @@ export interface IProductParameters {
   platform: string;
 }
 export interface IAddToCartParameters {
-  name: string;
+  userName: string;
   gameName: string;
 }
 export const getThreeGames = createAsyncThunk(GameThunks.GET_THREE_GAMES, async () => {
