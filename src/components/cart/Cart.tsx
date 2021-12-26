@@ -37,8 +37,6 @@ const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGam
           }}
         />
       )}
-
-      <div />
       <p>Total price:{totalPrice}$</p>
       <Button type="submit" onClick={onDeleteSelectedGame}>
         Delete
