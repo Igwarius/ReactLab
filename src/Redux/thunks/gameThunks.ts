@@ -31,17 +31,17 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
   return response.data;
 });
 export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values: IAddToCartParameters) => {
-  const response = await axios.post(apiUrls.ADD_TO_CART, values);
+  const response = await axios.post(apiUrls.CART, values);
 
   return response.status;
 });
 export const getCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
-  const response = await axios.get(`${apiUrls.ADD_TO_CART}?name=${value}`);
+  const response = await axios.get(`${apiUrls.CART}?name=${value}`);
 
   return response.data;
 });
 export const deleteCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
-  const response = await axios.delete(`${apiUrls.ADD_TO_CART}?name=${value}`);
+  const response = await axios.delete(`${apiUrls.CART}?name=${value}`);
 
   return response.data;
 });
