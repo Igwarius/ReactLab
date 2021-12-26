@@ -15,7 +15,7 @@ export interface ICart {
     field: string;
     headerName: string;
   }[];
-  setSelectedGame: React.Dispatch<React.SetStateAction<unknown[]>>;
+  setSelectedGame: (number) => void;
   totalPrice: number;
   onDeleteSelectedGame: () => void;
   onBuy: () => void;
