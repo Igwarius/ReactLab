@@ -22,9 +22,7 @@ const CartContainer = () => {
     setGames(filteredFileList);
   };
   const OnBuy = () => {
-    dispatch(deleteCart(localStorage.getItem(IS_AUTHORIZED_KEY))).bind(
-      dispatch(getCart(localStorage.getItem(IS_AUTHORIZED_KEY)))
-    );
+    dispatch(deleteCart(localStorage.getItem(IS_AUTHORIZED_KEY)));
   };
   const columns = [
     { field: "name", headerName: "Game" },

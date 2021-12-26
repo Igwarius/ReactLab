@@ -2,7 +2,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 import { IGameState } from "@/types";
-import { getCart, getProducts, getSearchGames, getThreeGames } from "./thunks/gameThunks";
+import { deleteCart, getCart, getProducts, getSearchGames, getThreeGames } from "./thunks/gameThunks";
 
 const initialState: IGameState = {
   items: [],
@@ -23,6 +23,9 @@ export default createReducer(initialState, {
     state.items = action.payload;
   },
   [getCart.fulfilled.type]: (state, action) => {
+    state.cart = action.payload;
+  },
+  [deleteCart.fulfilled.type]: (state, action) => {
     state.cart = action.payload;
   },
 });
