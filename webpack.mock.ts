@@ -3,9 +3,6 @@ import webpackMockServer from "webpack-mock-server";
 import cors from "cors";
 
 function check(arr, val) {
-  console.log(arr.some((element: { userName: string }) => val === element.userName));
-  console.log(val);
-
   return arr.some((element: { userName: string }) => val === element.userName);
 }
 
@@ -222,7 +219,6 @@ export default webpackMockServer.add((app, helper) => {
     const { name } = req.query;
 
     if (check(orders, name)) {
-      console.log("a");
       const order = orders.find((a) => a.userName === name);
       res.json(order);
     }
@@ -234,7 +230,7 @@ export default webpackMockServer.add((app, helper) => {
     const { userName, gameName } = req.body;
 
     const game = games.find((game) => game.name === gameName);
-    console.log(check(orders, userName));
+
     if (check(orders, userName)) {
       orders = orders.map((a) => {
         if (a.userName.toLowerCase() === userName.toLowerCase()) {
