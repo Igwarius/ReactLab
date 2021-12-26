@@ -211,7 +211,7 @@ export default webpackMockServer.add((app, helper) => {
     res.status(400);
     res.json({ success: false });
   });
-  app.get("/orders-by-name", (req, res) => {
+  app.get("/orders", (req, res) => {
     const { name } = req.query;
     const check = (element: { userName: string }) => element.userName === name;
     if (orders.some(check)) {
@@ -222,7 +222,7 @@ export default webpackMockServer.add((app, helper) => {
     res.status(400);
     res.json({ success: false });
   });
-  app.post("/orders-by-name", (req, res) => {
+  app.post("/orders", (req, res) => {
     const { name, gameName } = req.body;
 
     const check = (element: { userName: string }) => element.userName === name;
@@ -243,7 +243,7 @@ export default webpackMockServer.add((app, helper) => {
 
     res.json({ success: true });
   });
-  app.delete("/orders-by-name", (req, res) => {
+  app.delete("/orders", (req, res) => {
     const { name } = req.query;
 
     const check = (element: { userName: string }) => element.userName === name;

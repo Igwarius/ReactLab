@@ -8,6 +8,6 @@ const apiUrls = {
   CHANGE_PASSWORD: `${serverURL}/change-password`,
   SAVE_PROFILE: `${serverURL}/save-profile`,
   GET_PRODUCTS: `${serverURL}/all-products`,
-  ADD_TO_CART: `${serverURL}/orders-by-name`,
+  ADD_TO_CART: `${serverURL}/orders`,
 };
 export default apiUrls;
