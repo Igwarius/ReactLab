@@ -17,10 +17,10 @@ export interface ICart {
   setSelectedGame: React.Dispatch<React.SetStateAction<unknown[]>>;
   totalPrice: number;
   onDeleteSelectedGame: () => void;
-  OnBuy: () => void;
+  onBuy: () => void;
 }
 
-const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGame, OnBuy }: ICart) => {
+const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGame, onBuy }: ICart) => {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGam
       <Button type="submit" onClick={onDeleteSelectedGame}>
         Delete
       </Button>
-      <Button type="submit" onClick={OnBuy}>
+      <Button type="submit" onClick={onBuy}>
         Buy
       </Button>
     </div>

@@ -21,7 +21,7 @@ const CartContainer = () => {
     const filteredFileList = games.filter((item) => !selectedGame.includes(item.id));
     setGames(filteredFileList);
   };
-  const OnBuy = () => {
+  const onBuy = () => {
     dispatch(deleteCart(localStorage.getItem(IS_AUTHORIZED_KEY)));
   };
   const columns = [
@@ -60,7 +60,7 @@ const CartContainer = () => {
     setSelectedGame,
     totalPrice,
     onDeleteSelectedGame,
-    OnBuy,
+    onBuy,
   };
 
   return <Cart {...props} />;
