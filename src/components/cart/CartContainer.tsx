@@ -7,10 +7,11 @@ import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
 import { getCartSelector } from "@/redux/selectors/gameSelectors";
 import { deleteCart, getCart } from "@/redux/thunks/gameThunks";
 import Cart, { ICart } from "./Cart";
+import { IGame } from "@/types";
 
 const CartContainer = () => {
-  const [selectedGame, setSelectedGame] = useState([]);
-  const [games, setGames] = useState([]);
+  const [selectedGame, setSelectedGame] = useState<number[]>([]);
+  const [games, setGames] = useState<IGame[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   const cart = useSelector(getCartSelector);
