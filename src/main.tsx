@@ -12,7 +12,7 @@ import Footer from "./components/footer/Footer";
 import ErrorBoundary from "./components/error-boundary/ErrorrBoundary";
 import { store } from "./redux/reduxStore";
 import ProfileContainer from "./components/profile/ProfileContainer";
-import Cart from "./components/cart/Cart";
+import CartContainer from "./components/cart/CartContainer";
 
 const AppContainer = (): JSX.Element => (
   <ErrorBoundary>
@@ -25,7 +25,7 @@ const AppContainer = (): JSX.Element => (
           <Route path={urls.PRODUCTS} component={Products} />
           <Route exact path={urls.ABOUT} component={About} />
           <Route exact path={urls.PROFILE} component={ProfileContainer} />
-          <Route exact path={urls.CART} component={Cart} />
+          <Route exact path={urls.CART} component={CartContainer} />
 
           <Route render={() => <Redirect to={urls.MAIN} />} />
         </Switch>
