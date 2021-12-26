@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IS_AUTHORIZED_KEY } from "@/constants/globalConstants";
 import urls from "@/constants/urls";
-import { isAutorisedSelector } from "@/redux/selectors/authSelectors";
 import { getCartSelector } from "@/redux/selectors/gameSelectors";
 import { deleteCart, getCart } from "@/redux/thunks/gameThunks";
 import Cart, { ICart } from "./Cart";
@@ -16,7 +15,6 @@ const CartContainer = () => {
   const dispatch = useDispatch();
   const cart = useSelector(getCartSelector);
   const history = useHistory();
-  const isAutorised = useSelector(isAutorisedSelector);
 
   const onDeleteSelectedGame = () => {
     const filteredFileList = games.filter((item) => !selectedGame.includes(item.id));
@@ -53,7 +51,7 @@ const CartContainer = () => {
     if (!localStorage.getItem(IS_AUTHORIZED_KEY)) {
       history.push(urls.MAIN);
     }
-  }, [isAutorised]);
+  }, [localStorage.getItem(IS_AUTHORIZED_KEY)]);
 
   const props: ICart = {
     games,
