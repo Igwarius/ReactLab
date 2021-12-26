@@ -20,11 +20,12 @@ const Cart = () => {
   const classes = useStyles();
   const [selectedGame, setSelectedGame] = useState([]);
   const [games, setGames] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const dispatch = useDispatch();
   const cart = useSelector(getCartSelector);
   const history = useHistory();
   const isAutorised = useSelector(isAutorisedSelector);
-  let totalPrice = 0;
+
   const onDeleteSelectedGame = () => {
     const filteredFileList = games.filter((item) => !selectedGame.includes(item.id));
     setGames(filteredFileList);
@@ -41,9 +42,6 @@ const Cart = () => {
     { field: "platform", headerName: "Platform" },
   ];
 
-  games.forEach((game) => {
-    totalPrice = game.price + totalPrice;
-  });
   useEffect(() => {
     dispatch(getCart(localStorage.getItem(IS_AUTHORIZED_KEY)));
   }, []);
@@ -53,6 +51,15 @@ const Cart = () => {
     }
   }, [cart]);
   useEffect(() => {
+    let price = 0;
+    if (games) {
+      games.forEach((game) => {
+        price += game.price;
+      });
+    }
+    setTotalPrice(price);
+  }, [games]);
+  useEffect(() => {
     if (!localStorage.getItem(IS_AUTHORIZED_KEY)) {
       history.push(urls.MAIN);
     }
@@ -60,16 +67,21 @@ const Cart = () => {
 
   return (
     <div className={classes.table}>
-      <DataGrid
-        checkboxSelection
-        rows={games}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        onSelectionModelChange={(selectionModel) => {
-          setSelectedGame(selectionModel);
-        }}
-      />
+      {games ? (
+        <DataGrid
+          checkboxSelection
+          rows={games}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          onSelectionModelChange={(selectionModel) => {
+            setSelectedGame(selectionModel);
+          }}
+        />
+      ) : (
+        <div />
+      )}
+
       <div />
       <p>Total price:{totalPrice}$</p>
       <Button type="submit" onClick={onDeleteSelectedGame}>
