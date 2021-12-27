@@ -35,7 +35,7 @@ const GameCard = ({ name, img, price, rating }: IGame) => {
   };
 
   return (
-    <div role="button" onClick={onClick} onKeyDown={onClick} className={classes.root}>
+    <div onClick={onClick} onKeyDown={onClick} className={classes.root}>
       <h3 className={classes.header}> {name}</h3>
       <img className={classes.img} src={img} alt="Poster" />
       <p>price: {price} $</p>

@@ -32,6 +32,7 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
+    "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/interactive-supports-focus": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-empty-function": "off",
