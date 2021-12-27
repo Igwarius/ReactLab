@@ -6,6 +6,7 @@ import apiUrls from "@/constants/apiUrls";
 export const GameThunks = {
   GET_THREE_GAMES: "game/getThreeGames",
   GET_SEARCH_GAMES: "game/getSearchGames",
+  ADD_TO_CART: "games/addToCart",
 };
 export interface IProductParameters {
   genre: string;
@@ -14,6 +15,10 @@ export interface IProductParameters {
   type: string;
   name: string;
   platform: string;
+}
+export interface IAddToCartParameters {
+  userName: string;
+  gameName: string;
 }
 export const getThreeGames = createAsyncThunk(GameThunks.GET_THREE_GAMES, async () => {
   const response = await axios.get(apiUrls.GET_THREE_GAMES);
@@ -25,7 +30,21 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
 
   return response.data;
 });
+export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values: IAddToCartParameters) => {
+  const response = await axios.post(apiUrls.CART, values);
 
+  return response.status;
+});
+export const getCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
+  const response = await axios.get(`${apiUrls.CART}?name=${value}`);
+
+  return response.data;
+});
+export const deleteCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (value: string) => {
+  const response = await axios.delete(`${apiUrls.CART}?name=${value}`);
+
+  return response.data;
+});
 export const getProducts = createAsyncThunk(GameThunks.GET_THREE_GAMES, async (parameters: IProductParameters) => {
   const getProductsLink: string[] = [`${apiUrls.GET_PRODUCTS}?`];
 

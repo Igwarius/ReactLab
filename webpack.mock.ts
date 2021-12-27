@@ -2,6 +2,8 @@
 import webpackMockServer from "webpack-mock-server";
 import cors from "cors";
 
+const check = (arr, val) => arr.some((element: { userName: string }) => val === element.userName);
+
 const games = [
   {
     id: 1,
@@ -48,7 +50,24 @@ const games = [
     platform: "pc",
   },
 ];
-
+let orders = [
+  {
+    userName: "Igwarius",
+    games: [
+      {
+        id: 4,
+        name: "Witcher 2",
+        img: "https://s1.gaming-cdn.com/images/products/789/orig/game-gog-com-the-witcher-2-assassins-of-kings-enhanced-edition-cover.jpg",
+        price: 40,
+        rating: 5,
+        date: new Date("October 26, 2003"),
+        age: "0",
+        genre: "RPG",
+        platform: "pc",
+      },
+    ],
+  },
+];
 let users = [
   {
     login: "Igwarius",
@@ -193,6 +212,48 @@ export default webpackMockServer.add((app, helper) => {
 
     res.status(400);
     res.json({ success: false });
+  });
+  app.get("/orders", (req, res) => {
+    const { name } = req.query;
+
+    if (check(orders, name)) {
+      const order = orders.find((a) => a.userName === name);
+      res.json(order);
+    }
+
+    res.status(400);
+    res.json({ success: false });
+  });
+  app.post("/orders", (req, res) => {
+    const { userName, gameName } = req.body;
+
+    const game = games.find((game) => game.name === gameName);
+
+    if (check(orders, userName)) {
+      orders = orders.map((a) => {
+        if (a.userName.toLowerCase() === userName.toLowerCase()) {
+          if (!a.games.includes(game)) {
+            a.games.push(game);
+          }
+        }
+
+        return a;
+      });
+    } else {
+      orders.push({ userName, games: [game] });
+    }
+
+    res.json({ success: true });
+  });
+  app.delete("/orders", (req, res) => {
+    const { name } = req.query;
+
+    const check = (element: { userName: string }) => element.userName === name;
+    if (orders.some(check)) {
+      orders = orders.filter((a) => a.userName !== name);
+    }
+
+    res.json({ success: true });
   });
   app.post("/change-password", ({ body: { login, password } }, res) => {
     users = users.map((user) => (user.login === login ? { ...user, password } : user));

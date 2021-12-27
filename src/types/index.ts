@@ -34,8 +34,11 @@ export interface IAuthState {
   description: string;
   img: string;
 }
-
+interface ICart {
+  games: IGame[];
+}
 export interface IGameState {
   items: IGame[];
   searchGames: IGame[];
+  cart: ICart;
 }
