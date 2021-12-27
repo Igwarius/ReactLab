@@ -26,7 +26,7 @@ const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGam
 
   return (
     <div className={classes.table}>
-      {games && games.length && (
+      {games && games.length ? (
         <DataGrid
           checkboxSelection
           rows={games}
@@ -37,7 +37,7 @@ const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGam
             setSelectedGame(selectionModel);
           }}
         />
-      )}
+      ) : null}
       <p>Total price:{totalPrice}$</p>
       <Button type="submit" onClick={onDeleteSelectedGame}>
         Delete
