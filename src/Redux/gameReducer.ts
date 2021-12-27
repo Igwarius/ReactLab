@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 
-import { IGameState } from "@/types";
+import { IGame, IGameState } from "@/types";
 import { deleteCart, getCart, getProducts, getSearchGames, getThreeGames } from "./thunks/gameThunks";
+import { ICart } from "@/components/cart/Cart";
 
 const initialState: IGameState = {
   items: [],
@@ -12,20 +13,21 @@ const initialState: IGameState = {
   },
 };
 
-export default createReducer(initialState, {
-  [getThreeGames.fulfilled.type]: (state, action) => {
-    state.items = action.payload;
-  },
-  [getSearchGames.fulfilled.type]: (state, action) => {
-    state.searchGames = action.payload;
-  },
-  [getProducts.fulfilled.type]: (state, action) => {
-    state.items = action.payload;
-  },
-  [getCart.fulfilled.type]: (state, action) => {
-    state.cart = action.payload;
-  },
-  [deleteCart.fulfilled.type]: (state, action) => {
-    state.cart = action.payload;
-  },
-});
+export default createReducer(initialState, (builder) =>
+  builder
+    .addMatcher(
+      isAnyOf(getThreeGames.fulfilled, getProducts.fulfilled),
+      (state: IGameState, action: PayloadAction<IGame[]>) => {
+        state.items = action.payload;
+      }
+    )
+    .addMatcher(
+      (action) => action.type === getSearchGames.fulfilled.type,
+      (state: IGameState, action: PayloadAction<IGame[]>) => {
+        state.searchGames = action.payload;
+      }
+    )
+    .addMatcher(isAnyOf(getCart.fulfilled, deleteCart.fulfilled), (state: IGameState, action: PayloadAction<ICart>) => {
+      state.cart = action.payload;
+    })
+);
