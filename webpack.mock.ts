@@ -2,9 +2,7 @@
 import webpackMockServer from "webpack-mock-server";
 import cors from "cors";
 
-function check(arr, val) {
-  return arr.some((element: { userName: string }) => val === element.userName);
-}
+const check = (arr, val) => arr.some((element: { userName: string }) => val === element.userName);
 
 const games = [
   {
