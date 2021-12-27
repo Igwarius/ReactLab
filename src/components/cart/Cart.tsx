@@ -33,9 +33,7 @@ const Cart = ({ games, columns, setSelectedGame, totalPrice, onDeleteSelectedGam
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          onSelectionModelChange={(selectionModel) => {
-            setSelectedGame(selectionModel);
-          }}
+          onSelectionModelChange={setSelectedGame}
         />
       ) : null}
       <p>Total price:{totalPrice}$</p>
