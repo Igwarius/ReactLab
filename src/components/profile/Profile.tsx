@@ -65,11 +65,11 @@ const Profile = ({
 }: IProfile) => {
   const classes = useStyles();
   const profileImgSize = "400";
-  const inputTextArea = { name: InputName.description, placeholder: InputPlaceholder.description };
+  const inputTextArea = { name: InputName.Description, placeholder: InputPlaceholder.Description };
 
   return (
     <Form
-      initialValues={{ [InputName.LogIn]: userName, [InputName.description]: description }}
+      initialValues={{ [InputName.LogIn]: userName, [InputName.Description]: description }}
       onSubmit={onSubmit}
       validate={validation}
       render={({ handleSubmit }) => (

@@ -7,6 +7,9 @@ export interface IGame {
   price: number;
   rating: number;
   date: Date;
+  age: number;
+  genre: string;
+  platform: string;
 }
 
 export interface IModalProps {
@@ -33,6 +36,7 @@ export interface IAuthState {
   userName: string;
   description: string;
   img: string;
+  role: string;
 }
 interface ICart {
   games: IGame[];
