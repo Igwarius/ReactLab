@@ -9,5 +9,6 @@ const apiUrls = {
   SAVE_PROFILE: `${serverURL}/save-profile`,
   GET_PRODUCTS: `${serverURL}/all-products`,
   CART: `${serverURL}/orders`,
+  GAMES: `${serverURL}/games`,
 };
 export default apiUrls;

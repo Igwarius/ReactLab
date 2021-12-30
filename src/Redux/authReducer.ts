@@ -10,6 +10,7 @@ const initialState: IAuthState = {
   userName: "",
   description: "",
   img: "",
+  role: "",
 };
 
 export default createReducer(initialState, {
@@ -20,9 +21,11 @@ export default createReducer(initialState, {
   [signOut.type]: (state) => {
     state.isAutorised = false;
     state.status = 0;
+    state.role = "";
   },
   [registrationOrLogin.fulfilled.type]: (state, action) => {
-    state.status = action.payload;
+    state.status = action.payload.status;
+    state.role = action.payload.data.role;
     state.userName = action.meta.arg.values.login;
   },
   [getProfile.fulfilled.type]: (
