@@ -30,7 +30,6 @@ const GameModalContainer = ({ typeModal, handleModal: handleClose, open, game }:
       id: undefined,
       name: undefined,
       price: undefined,
-
       img: undefined,
       rating: undefined,
       date: undefined,
@@ -83,7 +82,6 @@ const GameModalContainer = ({ typeModal, handleModal: handleClose, open, game }:
     handleClose,
     open,
     onSubmit,
-
     validation,
     name,
     category,
