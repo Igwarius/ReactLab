@@ -39,9 +39,12 @@ const GameModalContainer = ({ typeModal, handleModal: handleClose, open, game }:
     };
 
     const nameIsEmpty = !values.name;
-
+    const platfoemIsEmpty = !values.platform;
     if (nameIsEmpty) {
       errors.name = REQUIRED_ERROR_MESSAGE;
+    }
+    if (platfoemIsEmpty) {
+      errors.platform = REQUIRED_ERROR_MESSAGE;
     }
 
     return errors;
