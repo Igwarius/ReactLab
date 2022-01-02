@@ -6,7 +6,7 @@ import GameModal, { IGameModalWindow } from "./GameModal";
 import { addGame, deleteGame, putGame } from "@/redux/thunks/gameThunks";
 
 export interface IGameModalProps {
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
   open: boolean;
   handleModal: () => void;
   game: IGame;
