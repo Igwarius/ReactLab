@@ -248,7 +248,19 @@ export default webpackMockServer.add((app, helper) => {
   });
   app.post("/games", (req, res) => {
     const { name, age, img, platform, price, date, genre } = req.body;
-    games.push({ id: games.length + 1, name, img, price, rating: 0, date: new Date(date), age, genre, platform });
+    const minimum = 0;
+    const maximum = 100;
+    games.push({
+      id: Math.floor(Math.random() * (maximum - minimum + 1)) + minimum,
+      name,
+      img,
+      price,
+      rating: 0,
+      date: new Date(date),
+      age,
+      genre,
+      platform,
+    });
     res.json({ success: true });
   });
   app.put("/games", (req, res) => {
