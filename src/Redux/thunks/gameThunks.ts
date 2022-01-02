@@ -9,6 +9,8 @@ export const GameThunks = {
   GET_SEARCH_GAMES: "game/getSearchGames",
   ADD_TO_CART: "games/addToCart",
   ADD_GAME: "games/addGame",
+  DELETE_GAME: "games/deleteGame",
+  UPDATE_GAME: "games/updateGame",
 };
 export interface IProductParameters {
   genre: string;
@@ -42,12 +44,12 @@ export const addGame = createAsyncThunk(GameThunks.ADD_GAME, async (values: IGam
 
   return response.status;
 });
-export const putGame = createAsyncThunk(GameThunks.ADD_GAME, async (values: IGame) => {
+export const putGame = createAsyncThunk(GameThunks.UPDATE_GAME, async (values: IGame) => {
   const response = await axios.put(apiUrls.GAMES, values);
 
   return response.status;
 });
-export const deleteGame = createAsyncThunk(GameThunks.ADD_GAME, async (values: IGame) => {
+export const deleteGame = createAsyncThunk(GameThunks.DELETE_GAME, async (values: IGame) => {
   const response = await axios.delete(`${apiUrls.GAMES}?id=${values.id}`);
 
   return response.status;
