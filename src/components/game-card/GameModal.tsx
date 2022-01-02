@@ -1,10 +1,11 @@
-import { Button, FormControlLabel, makeStyles, Modal, Radio, RadioGroup } from "@material-ui/core";
+import { Button, makeStyles, Modal } from "@material-ui/core";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import { IFormInput, IGame } from "@/types";
 import { GameAge, GameGenres, InputName, ModalType, Platform } from "@/constants/globalConstants";
 import FormInput from "../modal/FormInput";
 import ErrorMessage from "../profile/ErrorMessage";
+import RadioButtonsForm from "./radioButtonsForm";
 
 export interface IGameModalWindow {
   typeModal?: ModalType;
@@ -77,6 +78,10 @@ const GameModal = ({
   onDelete,
 }: IGameModalWindow) => {
   const classes = useStyles();
+  const GameGenresValues = [];
+  GameGenres.forEach((gener) => {
+    GameGenresValues.push(gener.value);
+  });
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -116,19 +121,7 @@ const GameModal = ({
                 <FormInput {...price} />
                 <FormInput {...image} />
 
-                <Field name={age.name}>
-                  {({ input }) => (
-                    <div className={classes.globalInputContainer}>
-                      <div className={classes.innerInputContainer}>
-                        <RadioGroup {...input} aria-label="age">
-                          {GameAge.filter((element) => element !== "All").map((element) => (
-                            <FormControlLabel value={element} control={<Radio />} label={element} />
-                          ))}
-                        </RadioGroup>
-                      </div>
-                    </div>
-                  )}
-                </Field>
+                <RadioButtonsForm name={age.name} array={GameAge} />
                 <Field name="date">
                   {({ input, meta }) => (
                     <div className={classes.globalInputContainer}>
@@ -140,32 +133,9 @@ const GameModal = ({
                     </div>
                   )}
                 </Field>
-                <Field name={InputName.Genre}>
-                  {({ input }) => (
-                    <div className={classes.globalInputContainer}>
-                      <div className={classes.innerInputContainer}>
-                        <RadioGroup {...input} aria-label="genre">
-                          {GameGenres.filter((element) => element.lable !== "All").map((element) => (
-                            <FormControlLabel value={element.value} control={<Radio />} label={element.lable} />
-                          ))}
-                        </RadioGroup>
-                      </div>
-                    </div>
-                  )}
-                </Field>
-                <Field name={InputName.Platform}>
-                  {({ input }) => (
-                    <div className={classes.globalInputContainer}>
-                      <div className={classes.innerInputContainer}>
-                        <RadioGroup {...input} aria-label="platform">
-                          {Platform.filter((element) => element !== "All").map((element) => (
-                            <FormControlLabel value={element} control={<Radio />} label={element} />
-                          ))}
-                        </RadioGroup>
-                      </div>
-                    </div>
-                  )}
-                </Field>
+                <RadioButtonsForm name={InputName.Genre} array={GameGenresValues} />
+                <RadioButtonsForm name={InputName.Platform} array={Platform} />
+
                 <Button type="submit">{typeModal}</Button>
                 <Button onClick={onDelete}>Delete</Button>
               </div>
