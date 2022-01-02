@@ -47,7 +47,7 @@ const GameCard = ({ id, name, img, price, rating, date, age, genre, platform }: 
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  const add: IGameModalProps = {
+  const GameModalProps: IGameModalProps = {
     typeModal: modelType,
     handleModal: handleCloseModal,
     open: openModal,
@@ -72,7 +72,7 @@ const GameCard = ({ id, name, img, price, rating, date, age, genre, platform }: 
         </>
       )}
 
-      <GameModalContainer {...add} />
+      <GameModalContainer {...GameModalProps} />
     </div>
   );
 };
