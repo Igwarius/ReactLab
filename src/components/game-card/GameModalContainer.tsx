@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { IFormInput, IGame } from "@/types";
 import { InputName, InputType, InputPlaceholder, REQUIRED_ERROR_MESSAGE, ModalType } from "@/constants/globalConstants";
-
 import GameModal, { IGameModalWindow } from "./GameModal";
 import { addGame, deleteGame, putGame } from "@/redux/thunks/gameThunks";
 

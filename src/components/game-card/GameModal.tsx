@@ -13,7 +13,6 @@ export interface IGameModalWindow {
   onDelete: () => void;
   onSubmit: (values: IGame) => void;
   validation: (values: IGame) => IGame;
-
   name: IFormInput;
   category: IFormInput;
   price: IFormInput;
