@@ -94,7 +94,16 @@ const GameModal = ({
                   [InputName.Genre]: game.genre.toString().toLowerCase(),
                   [InputName.Platform]: game.platform,
                 }
-              : []
+              : {
+                  id: 0,
+                  [InputName.Name]: "",
+                  [InputName.Price]: 0,
+                  [InputName.Image]: "",
+                  [InputName.Age]: 0,
+                  [InputName.Date]: new Date(),
+                  [InputName.Genre]: "",
+                  [InputName.Platform]: "",
+                }
           }
           onSubmit={onSubmit}
           validate={validation}
