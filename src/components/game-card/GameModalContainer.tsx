@@ -16,8 +16,11 @@ const GameModalContainer = ({ typeModal, handleModal: handleClose, open, game }:
   const dispatch = useDispatch();
 
   const onSubmit = (values: IGame) => {
-    if (typeModal === ModalType.AddGame) dispatch(addGame(values));
-    else dispatch(putGame(values));
+    if (typeModal === ModalType.AddGame) {
+      dispatch(addGame(values));
+    } else {
+      dispatch(putGame(values));
+    }
     handleClose();
   };
   const onDelete = () => {
