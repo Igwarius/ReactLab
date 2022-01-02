@@ -13,7 +13,7 @@ export interface IGame {
 }
 
 export interface IModalProps {
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
   open: boolean;
   handleModal: () => void;
 }

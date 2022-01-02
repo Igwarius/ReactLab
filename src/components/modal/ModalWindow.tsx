@@ -6,7 +6,7 @@ import { ModalType } from "@/constants/globalConstants";
 import FormInput from "./FormInput";
 
 export interface IModalWindow {
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
   handleClose: () => void;
   open: boolean;
   onSubmitPasswordChange: (values: IForm) => void;

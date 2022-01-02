@@ -12,7 +12,7 @@ export const AuthThunks = {
 };
 interface IRegistrationParameters {
   values: IForm;
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
 }
 
 export const registrationOrLogin = createAsyncThunk(

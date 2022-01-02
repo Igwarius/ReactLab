@@ -7,7 +7,7 @@ import FormInput from "../modal/FormInput";
 import ErrorMessage from "../profile/ErrorMessage";
 
 export interface IGameModalWindow {
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
   handleClose: () => void;
   open: boolean;
   onDelete: () => void;
