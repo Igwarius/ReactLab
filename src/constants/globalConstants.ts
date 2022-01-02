@@ -40,7 +40,7 @@ export enum InputType {
   Text = "text",
   Password = "password",
 }
-
+export const AdminRole = "admin";
 export const GameGenres = [
   { value: "All", lable: "All" },
   { value: "rpg", lable: "RPG" },
