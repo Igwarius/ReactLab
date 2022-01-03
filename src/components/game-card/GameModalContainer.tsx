@@ -28,17 +28,7 @@ const GameModalContainer = ({ typeModal, handleModal: handleClose, open, game }:
   };
 
   const validation = (values: IGame) => {
-    const errors: IGame = {
-      id: undefined,
-      name: undefined,
-      price: undefined,
-      img: undefined,
-      rating: undefined,
-      date: undefined,
-      age: undefined,
-      genre: undefined,
-      platform: undefined,
-    };
+    const errors: Partial<IGame> = {};
 
     const nameIsEmpty = !values.name;
     const platfoemIsEmpty = !values.platform;

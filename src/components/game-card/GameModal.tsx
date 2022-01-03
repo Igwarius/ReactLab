@@ -13,7 +13,7 @@ export interface IGameModalWindow {
   open: boolean;
   onDelete: () => void;
   onSubmit: (values: IGame) => void;
-  validation: (values: IGame) => IGame;
+  validation: (values: IGame) => Partial<IGame>;
   name: IFormInput;
   category: IFormInput;
   price: IFormInput;
