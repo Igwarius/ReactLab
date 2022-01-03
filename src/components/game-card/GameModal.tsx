@@ -78,10 +78,7 @@ const GameModal = ({
   onDelete,
 }: IGameModalWindow) => {
   const classes = useStyles();
-  const GameGenresValues = [];
-  GameGenres.forEach((gener) => {
-    GameGenresValues.push(gener.value);
-  });
+  const gameGenresValues = GameGenres.map((genre) => genre.value);
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -133,7 +130,7 @@ const GameModal = ({
                     </div>
                   )}
                 </Field>
-                <RadioButtonsForm name={InputName.Genre} values={GameGenresValues} />
+                <RadioButtonsForm name={InputName.Genre} values={gameGenresValues} />
                 <RadioButtonsForm name={InputName.Platform} values={Platform} />
 
                 <Button type="submit">{typeModal}</Button>
