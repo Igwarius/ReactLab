@@ -17,10 +17,10 @@ const useStyles = makeStyles(() => ({
 
 export interface IRadioButtonsFormProps {
   name: string;
-  array: string[];
+  values: string[];
 }
 
-const RadioButtonsForm = ({ name, array }: IRadioButtonsFormProps) => {
+const RadioButtonsForm = ({ name, values: array }: IRadioButtonsFormProps) => {
   const classes = useStyles();
 
   return (

@@ -121,7 +121,7 @@ const GameModal = ({
                 <FormInput {...price} />
                 <FormInput {...image} />
 
-                <RadioButtonsForm name={age.name} array={GameAge} />
+                <RadioButtonsForm name={age.name} values={GameAge} />
                 <Field name="date">
                   {({ input, meta }) => (
                     <div className={classes.globalInputContainer}>
@@ -133,8 +133,8 @@ const GameModal = ({
                     </div>
                   )}
                 </Field>
-                <RadioButtonsForm name={InputName.Genre} array={GameGenresValues} />
-                <RadioButtonsForm name={InputName.Platform} array={Platform} />
+                <RadioButtonsForm name={InputName.Genre} values={GameGenresValues} />
+                <RadioButtonsForm name={InputName.Platform} values={Platform} />
 
                 <Button type="submit">{typeModal}</Button>
                 <Button onClick={onDelete}>Delete</Button>
