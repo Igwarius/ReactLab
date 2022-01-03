@@ -2,11 +2,15 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import apiUrls from "@/constants/apiUrls";
+import { IGame } from "@/types";
 
 export const GameThunks = {
   GET_THREE_GAMES: "game/getThreeGames",
   GET_SEARCH_GAMES: "game/getSearchGames",
   ADD_TO_CART: "games/addToCart",
+  ADD_GAME: "games/addGame",
+  DELETE_GAME: "games/deleteGame",
+  UPDATE_GAME: "games/updateGame",
 };
 export interface IProductParameters {
   genre: string;
@@ -32,6 +36,21 @@ export const getSearchGames = createAsyncThunk(GameThunks.GET_SEARCH_GAMES, asyn
 });
 export const addToCart = createAsyncThunk(GameThunks.ADD_TO_CART, async (values: IAddToCartParameters) => {
   const response = await axios.post(apiUrls.CART, values);
+
+  return response.status;
+});
+export const addGame = createAsyncThunk(GameThunks.ADD_GAME, async (values: IGame) => {
+  const response = await axios.post(apiUrls.GAMES, values);
+
+  return response.status;
+});
+export const putGame = createAsyncThunk(GameThunks.UPDATE_GAME, async (values: IGame) => {
+  const response = await axios.put(apiUrls.GAMES, values);
+
+  return response.status;
+});
+export const deleteGame = createAsyncThunk(GameThunks.DELETE_GAME, async (values: IGame) => {
+  const response = await axios.delete(`${apiUrls.GAMES}?id=${values.id}`);
 
   return response.status;
 });

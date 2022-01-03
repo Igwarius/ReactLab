@@ -4,27 +4,43 @@ export enum ModalType {
   Registration = "Registration",
   LogIn = "Log in",
   PasswordChange = "Password Change",
+  AddGame = "Add Game",
+  EditGame = "Edit Game",
 }
 
 export enum InputName {
   LogIn = "login",
   Password = "password",
   PasswordCheck = "passwordCheck",
-  description = "description",
+  Description = "description",
+  Name = "name",
+  Category = "category",
+  Price = "price",
+  Image = "img",
+  Age = "age",
+  Platform = "platform",
+  Date = "date",
+  Genre = "genre",
 }
 
 export enum InputPlaceholder {
   LogIn = "Login",
   Password = "Password",
   PasswordCheck = "Password Check",
-  description = "Description",
+  Description = "Description",
+  Name = "Name",
+  Category = "Category",
+  Price = "Price",
+  Image = "Img",
+  Age = "Age",
+  Platform = "Platform",
 }
 
 export enum InputType {
   Text = "text",
   Password = "password",
 }
-
+export const AdminRole = "admin";
 export const GameGenres = [
   { value: "All", lable: "All" },
   { value: "rpg", lable: "RPG" },

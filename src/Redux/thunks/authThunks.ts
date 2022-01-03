@@ -12,7 +12,7 @@ export const AuthThunks = {
 };
 interface IRegistrationParameters {
   values: IForm;
-  typeModal: ModalType | null;
+  typeModal?: ModalType;
 }
 
 export const registrationOrLogin = createAsyncThunk(
@@ -26,7 +26,7 @@ export const registrationOrLogin = createAsyncThunk(
       localStorage.setItem(IS_AUTHORIZED_KEY, values.login);
     }
 
-    return response.status;
+    return response;
   }
 );
 export const getProfile = createAsyncThunk(AuthThunks.GET_PROFILE, async (userName: string) => {
