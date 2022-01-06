@@ -77,4 +77,4 @@ const GameCard = ({ id, name, img, price, rating, date, age, genre, platform }: 
   );
 };
 
-export default GameCard;
+export default React.memo(GameCard);
