@@ -5,8 +5,8 @@ import { IFormInput, IGame } from "@/types";
 import { GameAge, GameGenres, InputName, ModalType, Platform } from "@/constants/globalConstants";
 import FormInput from "../modal/FormInput";
 import ErrorMessage from "../profile/ErrorMessage";
-import RadioButtonsForm from "./radioButtonsForm";
 
+const RadioButtonsForm = React.lazy(() => import("./radioButtonsForm"));
 export interface IGameModalWindow {
   typeModal?: ModalType;
   handleClose: () => void;
