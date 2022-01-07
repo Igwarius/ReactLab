@@ -77,4 +77,17 @@ const GameCard = ({ id, name, img, price, rating, date, age, genre, platform }: 
   );
 };
 
-export default React.memo(GameCard);
+function gamePropsAreEqual(prevGame, nextGame) {
+  return (
+    prevGame.id === nextGame.id &&
+    prevGame.name === nextGame.name &&
+    prevGame.img === nextGame.img &&
+    prevGame.price === nextGame.price &&
+    prevGame.rating === nextGame.rating &&
+    prevGame.date === nextGame.date &&
+    prevGame.age === nextGame.age &&
+    prevGame.genre === nextGame.genre &&
+    prevGame.platform === nextGame.platform
+  );
+}
+export default React.memo(GameCard, gamePropsAreEqual);
