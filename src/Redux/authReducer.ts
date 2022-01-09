@@ -13,15 +13,18 @@ const initialState: IAuthState = {
   role: "",
 };
 
-export default createReducer(initialState, {
+const authReducer = createReducer(initialState, {
   [signIn.type]: (state, action) => {
-    state.isAutorised = true;
+    if (action.payload) {
+      state.isAutorised = true;
+    }
     state.userName = action.payload;
   },
   [signOut.type]: (state) => {
     state.isAutorised = false;
     state.status = 0;
     state.role = "";
+    state.userName = "";
   },
   [registrationOrLogin.fulfilled.type]: (state, action) => {
     state.status = action.payload.status;
@@ -40,3 +43,4 @@ export default createReducer(initialState, {
     state.img = img;
   },
 });
+export default authReducer;
