@@ -4,25 +4,20 @@ import authReducer from "../redux/authReducer";
 import { IAuthState } from "../types";
 import { signIn, signOut } from "../redux/actions/authActions";
 
-const initialState: IAuthState = {
-  isAutorised: false,
-  status: 0,
-  userName: "",
-  description: "",
-  img: "",
-  role: "",
-};
-const initialStateForLogOut: IAuthState = {
-  isAutorised: true,
-  status: 0,
-  userName: "Igwarius",
-  description: "",
-  img: "",
-  role: "",
-};
-
 test("success login", () => {
-  expect(authReducer(initialState, signIn("Igwarius"))).toStrictEqual({
+  // arrange
+  const name = "Igwarius";
+  const action = signIn(name);
+  const initialState: IAuthState = {
+    isAutorised: false,
+    status: 0,
+    userName: "",
+    description: "",
+    img: "",
+    role: "",
+  };
+  // act and assert
+  expect(authReducer(initialState, action)).toStrictEqual({
     isAutorised: true,
     status: 0,
     userName: "Igwarius",
@@ -33,7 +28,19 @@ test("success login", () => {
 });
 
 test("faild login", () => {
-  expect(authReducer(initialState, signIn(""))).toStrictEqual({
+  // arrange
+  const name = "";
+  const action = signIn(name);
+  const initialState: IAuthState = {
+    isAutorised: false,
+    status: 0,
+    userName: "",
+    description: "",
+    img: "",
+    role: "",
+  };
+  // act and assert
+  expect(authReducer(initialState, action)).toStrictEqual({
     isAutorised: false,
     status: 0,
     userName: "",
@@ -42,8 +49,20 @@ test("faild login", () => {
     role: "",
   });
 });
+
 test("success logout", () => {
-  expect(authReducer(initialStateForLogOut, signOut)).toStrictEqual({
+  // arrange
+  const action = signOut;
+  const initialStateForLogOut: IAuthState = {
+    isAutorised: true,
+    status: 0,
+    userName: "Igwarius",
+    description: "",
+    img: "",
+    role: "",
+  };
+  // act and assert
+  expect(authReducer(initialStateForLogOut, action)).toStrictEqual({
     isAutorised: false,
     status: 0,
     userName: "",
