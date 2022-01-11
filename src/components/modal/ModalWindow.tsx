@@ -1,8 +1,8 @@
 import { Button, makeStyles, Modal } from "@material-ui/core";
 import React from "react";
 import { Form } from "react-final-form";
-import { IFormInput } from "@/types";
-import { ModalType } from "@/constants/globalConstants";
+import { IFormInput } from "../../types";
+import { ModalType } from "../../constants/globalConstants";
 import FormInput from "./FormInput";
 
 export interface IModalWindow {

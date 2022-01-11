@@ -1,11 +1,11 @@
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import Search from "@/components/search/Search";
+import Search from "../search/Search";
 import ModalWindowContainer from "../modal/ModaWindowContainer";
-import { IModalProps } from "@/types";
-import headersData from "@/constants/headerData";
-import urls from "@/constants/urls";
+import { IModalProps } from "../../types";
+import headersData from "../../constants/headerData";
+import urls from "../../constants/urls";
 
 export interface IHeaderProps {
   anchorEl: (EventTarget & HTMLButtonElement) | null;
@@ -57,7 +57,7 @@ const Header = ({
 
           {!isLogged ? (
             <div>
-              <Button color="inherit" onClick={handleOpenReg}>
+              <Button id="reg" color="inherit" onClick={handleOpenReg}>
                 Registration
               </Button>
               <Button color="inherit" onClick={handleOpenLog}>
