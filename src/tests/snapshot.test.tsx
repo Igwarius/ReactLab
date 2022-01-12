@@ -9,7 +9,7 @@ import Header, { IHeaderProps } from "../components/header/Header";
 import Search from "../components/search/Search";
 
 describe("Header snapshot tests", () => {
-  it("main page renders search", () => {
+  it("Should main page renders search", () => {
     // arrange
     const props: IHeaderProps = {
       anchorEl: null,
@@ -37,7 +37,7 @@ describe("Header snapshot tests", () => {
     // assert
     expect(tree.root.findByType(Search)).toBeTruthy();
   });
-  it("main page renders buttons log in buttons", () => {
+  it("Should main page renders buttons log in buttons", () => {
     // arrange
     const props: IHeaderProps = {
       anchorEl: null,
@@ -68,7 +68,7 @@ describe("Header snapshot tests", () => {
     // assert
     expect(logInButton && RegistrationButton).toBeTruthy();
   });
-  it("main page renders buttons log out buttons", () => {
+  it("Should main page renders buttons log out buttons", () => {
     // arrange
     const props: IHeaderProps = {
       anchorEl: null,

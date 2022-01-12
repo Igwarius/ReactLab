@@ -4,7 +4,7 @@ import { IAuthState } from "../types";
 import { signIn, signOut } from "../redux/actions/authActions";
 
 describe("AuthReducer tests", () => {
-  test("success login", () => {
+  test("Should success login", () => {
     // arrange
     const name = "Igwarius";
     const action = signIn(name);
@@ -29,7 +29,7 @@ describe("AuthReducer tests", () => {
     });
   });
 
-  test("faild login", () => {
+  test("Should faild login", () => {
     // arrange
     const name = "";
     const action = signIn(name);
@@ -54,7 +54,7 @@ describe("AuthReducer tests", () => {
     });
   });
 
-  test("success logout", () => {
+  test("Should success logout", () => {
     // arrange
     const action = signOut;
     const initialStateForLogOut: IAuthState = {
