@@ -17,7 +17,7 @@ describe("AuthReducer tests", () => {
       role: "",
     };
     // act and assert
-    expect(authReducer(initialState, action)).toStrictEqual({
+    expect(authReducer(initialState, action)).toEqual({
       isAutorised: true,
       status: 0,
       userName: "Igwarius",
@@ -40,7 +40,7 @@ describe("AuthReducer tests", () => {
       role: "",
     };
     // act and assert
-    expect(authReducer(initialState, action)).toStrictEqual({
+    expect(authReducer(initialState, action)).toEqual({
       isAutorised: false,
       status: 0,
       userName: "",
