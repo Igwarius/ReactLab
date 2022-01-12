@@ -66,7 +66,8 @@ describe("Header snapshot tests", () => {
     const logInButton = buttons.filter((a) => a._fiber.memoizedProps.children === "Log in");
     const RegistrationButton = buttons.filter((a) => a._fiber.memoizedProps.children === "Registration");
     // assert
-    expect(logInButton && RegistrationButton).toBeTruthy();
+    expect(logInButton).toBeTruthy();
+    expect(RegistrationButton).toBeTruthy();
   });
   it("Should main page renders buttons log out buttons", () => {
     // arrange
