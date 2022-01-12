@@ -1,4 +1,4 @@
-import { expect, it, jest, describe } from "@jest/globals";
+import { expect, it, jest, describe, beforeAll } from "@jest/globals";
 import { createMemoryHistory } from "history";
 import * as redux from "react-redux";
 import React from "react";
@@ -9,6 +9,12 @@ import Header, { IHeaderProps } from "../components/header/Header";
 import Search from "../components/search/Search";
 
 describe("Header snapshot tests", () => {
+  beforeAll(() => {
+    const useDispatchSpy = jest.spyOn(redux, "useDispatch");
+    const useSelectorSpy = jest.spyOn(redux, "useSelector");
+    useDispatchSpy.mockReturnValue(jest.fn());
+    useSelectorSpy.mockReturnValue(jest.fn());
+  });
   it("Should main page renders search", () => {
     // arrange
     const props: IHeaderProps = {
@@ -24,10 +30,6 @@ describe("Header snapshot tests", () => {
       userName: "",
     };
     const history = createMemoryHistory();
-    const useDispatchSpy = jest.spyOn(redux, "useDispatch");
-    const useSelectorSpy = jest.spyOn(redux, "useSelector");
-    useDispatchSpy.mockReturnValue(jest.fn());
-    useSelectorSpy.mockReturnValue(jest.fn());
     // act
     const tree = TestRenderer.create(
       <Router history={history}>
@@ -52,10 +54,6 @@ describe("Header snapshot tests", () => {
       userName: "",
     };
     const history = createMemoryHistory();
-    const useDispatchSpy = jest.spyOn(redux, "useDispatch");
-    const useSelectorSpy = jest.spyOn(redux, "useSelector");
-    useDispatchSpy.mockReturnValue(jest.fn());
-    useSelectorSpy.mockReturnValue(jest.fn());
     // act
     const tree = TestRenderer.create(
       <Router history={history}>
@@ -84,10 +82,6 @@ describe("Header snapshot tests", () => {
       userName: "Igwarius",
     };
     const history = createMemoryHistory();
-    const useDispatchSpy = jest.spyOn(redux, "useDispatch");
-    const useSelectorSpy = jest.spyOn(redux, "useSelector");
-    useDispatchSpy.mockReturnValue(jest.fn());
-    useSelectorSpy.mockReturnValue(jest.fn());
     // act
     const tree = TestRenderer.create(
       <Router history={history}>
