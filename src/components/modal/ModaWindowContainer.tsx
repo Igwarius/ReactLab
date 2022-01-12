@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusCodes } from "http-status-codes";
 import { useDispatch, useSelector } from "react-redux";
-import { IFormInput, IModalProps } from "@/types";
+import { IFormInput, IModalProps } from "../../types";
 import {
   InputName,
   InputType,
@@ -9,11 +9,11 @@ import {
   ModalType,
   IS_AUTHORIZED_KEY,
   REQUIRED_ERROR_MESSAGE,
-} from "@/constants/globalConstants";
+} from "../../constants/globalConstants";
 import ModalWindow, { IForm, IModalWindow } from "./ModalWindow";
-import { getStatusSelector, getUserNameSelector } from "@/redux/selectors/authSelectors";
-import { signOut } from "@/redux/actions/authActions";
-import { changePassword, registrationOrLogin } from "@/redux/thunks/authThunks";
+import { getStatusSelector, getUserNameSelector } from "../../redux/selectors/authSelectors";
+import { signOut } from "../../redux/actions/authActions";
+import { changePassword, registrationOrLogin } from "../../redux/thunks/authThunks";
 
 const ModalWindowContainer = ({ typeModal, handleModal: handleClose, open }: IModalProps) => {
   const dispatch = useDispatch();

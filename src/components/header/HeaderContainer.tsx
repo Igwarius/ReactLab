@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IModalProps } from "../../types";
 import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
 import Header, { IHeaderProps } from "./Header";
-import { signIn, signOut } from "@/redux/actions/authActions";
-import { getUserNameSelector, isAutorisedSelector } from "@/redux/selectors/authSelectors";
+import { signIn, signOut } from "../../redux/actions/authActions";
+import { getUserNameSelector, isAutorisedSelector } from "../../redux/selectors/authSelectors";
 
 const HeaderContainer = (): JSX.Element => {
   const history = useHistory();

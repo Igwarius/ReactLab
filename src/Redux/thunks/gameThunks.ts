@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import apiUrls from "@/constants/apiUrls";
-import { IGame } from "@/types";
+import apiUrls from "../../constants/apiUrls";
+import { IGame } from "../../types";
 
 export const GameThunks = {
   GET_THREE_GAMES: "game/getThreeGames",

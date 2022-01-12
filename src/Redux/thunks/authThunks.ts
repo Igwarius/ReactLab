@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IS_AUTHORIZED_KEY, ModalType } from "@/constants/globalConstants";
-import apiUrls from "@/constants/apiUrls";
+import { IS_AUTHORIZED_KEY, ModalType } from "../../constants/globalConstants";
+import apiUrls from "../../constants/apiUrls";
 import { IForm } from "@/components/modal/ModalWindow";
 
 export const AuthThunks = {
