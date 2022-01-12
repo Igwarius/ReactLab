@@ -16,8 +16,10 @@ describe("AuthReducer tests", () => {
       img: "",
       role: "",
     };
-    // act and assert
-    expect(authReducer(initialState, action)).toEqual({
+    // act
+    const result = authReducer(initialState, action);
+    // assert
+    expect(result).toEqual({
       isAutorised: true,
       status: 0,
       userName: "Igwarius",
@@ -39,8 +41,10 @@ describe("AuthReducer tests", () => {
       img: "",
       role: "",
     };
-    // act and assert
-    expect(authReducer(initialState, action)).toEqual({
+    // act
+    const result = authReducer(initialState, action);
+    // assert
+    expect(result).toEqual({
       isAutorised: false,
       status: 0,
       userName: "",
@@ -61,8 +65,10 @@ describe("AuthReducer tests", () => {
       img: "",
       role: "",
     };
-    // act and assert
-    expect(authReducer(initialStateForLogOut, action)).toStrictEqual({
+    // act
+    const result = authReducer(initialStateForLogOut, action);
+    // assert
+    expect(result).toEqual({
       isAutorised: false,
       status: 0,
       userName: "",
